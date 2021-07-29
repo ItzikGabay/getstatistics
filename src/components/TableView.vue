@@ -1,8 +1,5 @@
-
-
 <template>
-  <q-page class="">
-      <div class="q-pa-md">
+  <div class="q-pa-md">
     <q-table
       title="Treats"
       :data="data"
@@ -12,31 +9,20 @@
       color="amber"
     />
   </div>
-    <div class="q-pa-md q-gutter-sm">
-    <q-banner rounded class="bg-purple-8 text-white">
-
-      We can't find your saved recipes until you sign in.
-
-      <template v-slot:action>
-        <q-btn flat color="white" label="Continue as a Guest" />
-        <q-btn flat color="white" label="Sign in" />
-      </template>
-    </q-banner>
-  </div>
-  </q-page>
 </template>
 
-<style>
-</style>
-
 <script>
+
+// import LocalStorageDrivers from "../middleware/local-storage/index.js"
+
 export default {
-  name: 'HelloWorld',
-  data () {
+  name: 'hey',
+  props: ['tableName'],
+  data() {
     return {
       columns: [
         {
-          name: 'desc',
+          name: 'id',
           required: true,
           label: 'Dessert (100g serving)',
           align: 'left',
@@ -44,7 +30,7 @@ export default {
           format: val => `${val}`,
           sortable: true
         },
-        { name: 'calories', align: 'center', label: 'Calories', field: 'calories', sortable: true },
+        { name: 'name', align: 'center', label: 'Calories', field: 'calories', sortable: true },
         { name: 'fat', label: 'Fat (g)', field: 'fat', sortable: true },
         { name: 'carbs', label: 'Carbs (g)', field: 'carbs' },
         { name: 'protein', label: 'Protein (g)', field: 'protein' },
@@ -52,9 +38,9 @@ export default {
         { name: 'calcium', label: 'Calcium (%)', field: 'calcium', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) },
         { name: 'iron', label: 'Iron (%)', field: 'iron', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) }
       ],
-      data: [
+      rows: [
         {
-          name: 'Frozen Yogurt',
+          id: 123,
           calories: 159,
           fat: 6.0,
           carbs: 24,
@@ -153,16 +139,22 @@ export default {
           calcium: '12%',
           iron: '6%'
         }
-      ],
-      newData: [{ 
-          name: 1
-          }]
+      ]
     }
   },
-  methods: {
-    read() {
-
-    }
+  created() {
+    // console.log(this);
+    // console.log(this.rows);
+    // console.log(LocalStorageDrivers.select(this.tableName));
+    // this.rows = LocalStorageDrivers.select(this.tableName)
+    // this.rows = [{ name: 'hey'}]
+    // console.log(LocalStorageDrivers.select(this.tableName));
+    // this.rows = localStorageDriver.select(this.tableName)
   }
 }
 </script>
+
+<style scoped>
+  
+</style>
+
