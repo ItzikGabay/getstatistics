@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <AddItem :tableName="'tableItem'"/>
-    <TableViewer :tableName="'tableItem'"/>
+    <AddItem :tableName="'tableItem'" @itemAdded="reloadTable" />
+    <TableViewer :tableName="'tableItem'" :needToReload="reloadValue" />
   </div>
 </template>
 
@@ -16,6 +16,16 @@ export default {
   name: 'Home',
   components: {
    TableViewer, AddItem
+  },
+  data() {
+    return {
+      reloadValue: false
+    }
+  },
+  methods: {
+    reloadTable() {
+      this.reloadValue = !this.reloadValue
+    }
   }
 }
 </script>

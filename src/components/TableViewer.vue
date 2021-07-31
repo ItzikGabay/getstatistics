@@ -36,7 +36,7 @@ import localStorageDriver from "../middleware/local-storage/index.js"
 
 export default {
     name: 'TableViewer',
-    props: ['tableName'],
+    props: ['tableName', 'needToReload'],
     data() {
     return {
       columns: [
@@ -64,10 +64,8 @@ export default {
         this.data = localStorageDriver.select(this.tableName)
       },
       remove(id) {
-        console.log(this.tableName, id);
-        console.log(this.data);
         localStorageDriver.remove(this.tableName, id)
-          this.read()
+        this.read()
       },
       goToItem(id) {
         this.$router.push(`/item/${id}`)
@@ -75,6 +73,11 @@ export default {
   },
     created() {
     this.read()
+    },
+    watch: {
+      needToReload() {
+          this.read()
+      }
     }
 }
 </script>

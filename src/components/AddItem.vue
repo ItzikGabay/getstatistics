@@ -31,10 +31,9 @@ export default {
     },
     methods: {
         insert(item) {
-            debugger
             localStorageDriver.insert(this.tableName, this.editedItem)
-            debugger
-            // this.$router.push('/')
+            // Activate the event of "itemAdded"
+            this.$emit('itemAdded')
         },
         update() {
             localStorageDriver.update(this.tableName, this.editedItem.id, this.editedItem)
