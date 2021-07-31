@@ -12,7 +12,7 @@
 
       <template v-slot:body="props">
         <q-tr :props="props">
-          <q-td key="id" :props="props">{{ props.row.id }}</q-td>
+          <q-td key="id" :props="props" @click="goToItem(props.row.id)"><a href="javascript:void(0)">{{ props.row.id }}</a></q-td>
           <q-td key="name" :props="props">{{ props.row.name }}</q-td>
           <q-td key="phone" :props="props">{{ props.row.phone }}</q-td>
           <q-td key="email" :props="props">{{ props.row.email }}</q-td>
@@ -68,6 +68,9 @@ export default {
         console.log(this.data);
         localStorageDriver.remove(this.tableName, id)
           this.read()
+      },
+      goToItem(id) {
+        this.$router.push(`/item/${id}`)
       }
   },
     created() {

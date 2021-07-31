@@ -26,7 +26,7 @@
     >
       <q-list>
         <q-item-label header>Menu</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="#">
+        <q-item clickable tag="a" target="_blank" href="javascript:void(0)">
           <q-item-section avatar>
             <q-icon name="school" />
           </q-item-section>
@@ -34,7 +34,7 @@
             <q-item-label>Main Page</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="/#">
+        <q-item clickable tag="a" target="_blank" href="javascript:void(0)">
           <q-item-section avatar>
             <q-icon name="code" />
           </q-item-section>
@@ -54,7 +54,7 @@
     </q-drawer>
 
     <q-page-container>
-      <Home/>
+      <router-view></router-view>
     </q-page-container>
   </q-layout>
 </template>

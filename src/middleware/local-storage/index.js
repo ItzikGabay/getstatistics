@@ -53,22 +53,11 @@ const localStorageDrivers = {
         // arr[foundIndex] = item;
         localStorage.setItem(table, JSON.stringify(arr))
     },
-    updateOne: function(table, id, item) {
+    getItemByID: function(table, id) {
         var arr = this.select(table)
-        var foundIndex = this._findIndexById(table, id)
-    
-        if(foundIndex === undefined) {
-            return
-        }
-    
-        for(var key in item) {
-            if (item[key] && key !== 'id') {
-                arr[foundIndex][key] = item[key]
-            }
-        }
-    
-        // arr[foundIndex] = item;
-        localStorage.setItem(table, JSON.stringify(arr))
+        return arr.find(function(item) {
+            return item.id == id
+        })
     },
     _findIndexById: function(table, id) {
         // retrieve data from local storage
