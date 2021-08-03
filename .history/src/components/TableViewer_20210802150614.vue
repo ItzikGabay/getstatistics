@@ -65,7 +65,8 @@ export default {
         this.read()
       },
       goToItem(id) {
-        this.$router.push(`/item/${id}`)
+        // this.$router.push(`/item/${id}`)
+        this.$router.push(`/item/`)
       }
   },
     created() {

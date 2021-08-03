@@ -66,6 +66,7 @@ export default {
       },
       goToItem(id) {
         this.$router.push(`/item/${id}`)
+        // this.$router.push(`/item/lomeshanema`)
       }
   },
     created() {

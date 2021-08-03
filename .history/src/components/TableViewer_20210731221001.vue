@@ -6,7 +6,10 @@
       :data="data"
       :columns="columns"
       row-key="name"
-      binary-state-sortc
+      binary-state-sort
+      :selected-rows-label="getSelectedString"
+      selection="multiple"
+      :selected.sync="selected"
     >
     
       <template v-slot:body="props">

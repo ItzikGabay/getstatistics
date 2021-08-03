@@ -15,7 +15,7 @@ import TableViewer from '../components/TableViewer.vue'
 export default {
   name: 'Home',
   components: {
-   AddItem, TableViewer
+   TableViewer
   },
   data() {
     return {
@@ -23,7 +23,8 @@ export default {
     }
   },
   methods: {
-    reloadTable() {
+    reloadTable(temp) {
+      debugger
       this.reloadValue = !this.reloadValue
     }
   }

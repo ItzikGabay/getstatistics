@@ -6,7 +6,7 @@
       :data="data"
       :columns="columns"
       row-key="name"
-      binary-state-sortc
+      binary-state-sort
     >
     
       <template v-slot:body="props">

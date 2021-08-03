@@ -43,27 +43,10 @@
               </q-item-section>
             </q-item>
 
-            <q-item active clickable v-ripple>
-              <q-item-section avatar>
-                <q-icon name="star" />
-              </q-item-section>
-
-              <q-item-section>
-                <router-link to="/api-list">API List</router-link>
+                          <q-item-section>
+                <router-link to="/item/1">fds Item</router-link>
               </q-item-section>
             </q-item>
-
-            <q-item active clickable v-ripple>
-              <q-item-section avatar>
-                <q-icon name="star" />
-              </q-item-section>
-
-              <q-item-section>
-                <router-link to="/Posts">Posts</router-link>
-              </q-item-section>
-            </q-item>
-            
-            
 
           </q-list>
         </q-scroll-area>

@@ -30,12 +30,10 @@ export default {
         }   
     },
     methods: {
-        insert() {
+        insert(item) {
             localStorageDriver.insert(this.tableName, this.editedItem)
             // Activate the event of "itemAdded"
             this.$emit('itemAdded')
-
-            // only for undefined
             // this.$router.push('/')
         },
         update() {

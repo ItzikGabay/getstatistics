@@ -23,7 +23,8 @@ export default {
     }
   },
   methods: {
-    reloadTable() {
+    reloadTable(temp) {
+      debugger
       this.reloadValue = !this.reloadValue
     }
   }
