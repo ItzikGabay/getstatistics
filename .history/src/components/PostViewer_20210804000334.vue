@@ -3,7 +3,7 @@
         <q-timeline-entry
          v-for="post in posts" :key="post.settings"
         :title="post.title"
-        :subtitle="String(post.dateCreated)"
+        :subtitle="date"
         style="width: 700px;"
         color="orange"
         icon="done_all"
@@ -42,6 +42,7 @@ export default {
     props: ['data'],
     data() {
         return {
+          date: 'date' + post.dateCreated,
           posts: {}
         }
     },

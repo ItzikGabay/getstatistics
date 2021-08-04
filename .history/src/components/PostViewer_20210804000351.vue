@@ -3,7 +3,7 @@
         <q-timeline-entry
          v-for="post in posts" :key="post.settings"
         :title="post.title"
-        :subtitle="String(post.dateCreated)"
+        :subtitle="post.dateCreated"
         style="width: 700px;"
         color="orange"
         icon="done_all"
