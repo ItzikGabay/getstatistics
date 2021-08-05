@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="getWhiteBackground">
     <AddItem :item="item" :tableName="tableName" />
   </div>
 </template>

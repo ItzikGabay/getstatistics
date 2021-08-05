@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import localStorageDriver from "../../middleware/local-storage/index";
 import AddPost from "../../components/posts/AddPost.vue";
 
 export default {

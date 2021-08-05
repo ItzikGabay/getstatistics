@@ -24,6 +24,7 @@
     <div class="row">
       <div class="col-6" style="padding-right: 10px">
         <h5>HTML Preview:</h5>
+        <h5>{{editedPost.title}}</h5>
         <q-card flat bordered>
           <q-card-section v-html="editedPost.content" />
         </q-card>
@@ -42,6 +43,7 @@
 
 <script>
 import localStorageDriver from "../../middleware/local-storage/index";
+import Drivers from "../../middleware/drivers/index";
 import PostViewer from "./PostViewer.vue";
 
 export default {
@@ -54,10 +56,19 @@ export default {
     return {
       editedPost: {
         id: new Date().getTime(),
+        postedBy: 'Itzik Gabay',
         title: "",
         content: "",
-        dateCreated: new Date().getTime(),
-        
+        dateCreated: Drivers.todayDateString()[0].toString(),
+        isScheduled: true, 
+        scheduleTime: {
+        year: '2020',
+        month: '04',
+        day: '09',
+        hour: '18',
+        minute: '30',
+        platforms: ['facebook', 'youtube', 'rav-meser', 'google']
+    }
       },
     };
   },

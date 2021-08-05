@@ -2,7 +2,7 @@
     <div>
         <q-timeline-entry
          v-for="post in posts" :key="post.settings"
-        :title="'Post title: ' + post.title"
+        :title="'ID: ' + post.id"
         :subtitle="String(post.dateCreated)"
         style="width: 700px;"
         color="orange"
@@ -11,6 +11,9 @@
 
 
         <div>
+          <b>Title:</b>
+          <div v-html="post.title.substring(0,70)"></div>
+          <p></p>
           <b>Text:</b>
           <div v-html="post.content.substring(0,70)"></div>
         </div>
