@@ -12,7 +12,7 @@
 
         <div>
           <b>Text:</b>
-          <div v-html="post.content.substring(0,70)"></div>
+          <div v-html="post.content"></div>
         </div>
         <hr>
         <b>Posted at: </b>

@@ -2,7 +2,7 @@
     <div>
         <q-timeline-entry
          v-for="post in posts" :key="post.settings"
-        :title="'Post title: ' + post.title"
+        :title="post.title"
         :subtitle="String(post.dateCreated)"
         style="width: 700px;"
         color="orange"
@@ -11,15 +11,14 @@
 
 
         <div>
-          <b>Text:</b>
-          <div v-html="post.content.substring(0,70)"></div>
+          <div v-html="post.content"></div>
         </div>
         <hr>
         <b>Posted at: </b>
         <q-badge rounded color="red" label="ins" class="socialBadge" />
         <q-badge rounded color="primary" label="fb" class="socialBadge"/>
         <q-badge rounded color="orange" label="rav-meser" class="socialBadge" />
-        <hr>
+
     <div class="q-gutter-sm">
       <q-chip class="publisherChip">
         <q-avatar>
@@ -27,7 +26,6 @@
         </q-avatar>
         Published By Itzik
       </q-chip>
-      <hr>
     </div>  
       <q-btn color="primary" size="sm" text-color="white" label="More info" @click="edit(post.id)" rounded/>
       <q-btn color="red" size="sm" text-color="white" label="Delete post" @click="deletePost(post.id)" rounded/>

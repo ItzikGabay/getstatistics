@@ -32,9 +32,8 @@
           <div v-html="this.post.content"></div>
         </q-card-section>
       </q-card-section>
+      <q-btn color="primary" size="sm" text-color="white" label="Edit post" @click="goToItem(post.id)" rounded/>
     </q-card>
-    <hr>
-    <q-btn color="primary" size="sm" text-color="white" label="Edit post" @click="goToItem(post.id)" rounded/>
   </div>
 
 </template>

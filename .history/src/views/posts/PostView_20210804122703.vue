@@ -11,6 +11,7 @@
         </q-item-section>
 
         <q-item-section>
+          <q-btn color="primary" size="sm" text-color="white" label="Edit post" @click="goToItem(post.id)" rounded/>
           <q-item-label>{{this.post.title}}</q-item-label>
           <q-item-label caption>
             published by [Todo user Owner], at {{this.post.dateCreated}}
@@ -33,8 +34,6 @@
         </q-card-section>
       </q-card-section>
     </q-card>
-    <hr>
-    <q-btn color="primary" size="sm" text-color="white" label="Edit post" @click="goToItem(post.id)" rounded/>
   </div>
 
 </template>

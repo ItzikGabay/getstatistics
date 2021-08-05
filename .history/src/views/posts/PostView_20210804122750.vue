@@ -3,6 +3,7 @@
 
     <q-card class="my-card" flat style="width: 700px; margin: 20px 0 0 20px">
         <!--  bordered-->
+        <q-btn color="primary" size="sm" text-color="white" label="Edit post" @click="goToItem(post.id)" rounded/>
       <q-item>
         <q-item-section avatar>
           <q-avatar>
@@ -31,10 +32,10 @@
         <q-card-section class="col-4">
           <div v-html="this.post.content"></div>
         </q-card-section>
+        <hr>
+        fds
       </q-card-section>
     </q-card>
-    <hr>
-    <q-btn color="primary" size="sm" text-color="white" label="Edit post" @click="goToItem(post.id)" rounded/>
   </div>
 
 </template>

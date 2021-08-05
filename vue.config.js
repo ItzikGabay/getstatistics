@@ -4,5 +4,8 @@ module.exports = {
   },
   transpileDependencies: [
     /[\\/]node_modules[\\/]quasar[\\/]/
-  ]
+  ],
+  devServer: {
+    host: 'localhost',
+  }
 }

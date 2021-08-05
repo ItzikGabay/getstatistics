@@ -1,67 +1,68 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
+  /**
+   * ! Users Components
+   */
+
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Home",
+    component: Home,
   },
   {
-    path: '/item/:id',
-    name: 'Item',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ItemView.vue')
+    path: "/item/:id",
+    name: "Item",
+    component: () => import("../views/ItemView.vue"),
+  },
+
+  /************************
+   * ! Posts Components
+   ***********************/
+
+  {
+    path: "/posts", // Showing all the posts
+    name: "Posts",
+    component: () => import("../views/posts/PostsView.vue"),
   },
   {
-    path: '/posts',
-    name: 'Posts',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/posts/PostsView.vue')
+    path: "/posts/add",
+    name: "PostCreate",
+    component: () => import("../views/posts/PostCreate.vue"),
   },
   {
-    path: '/posts/:id',
-    name: 'PostView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/posts/PostView.vue')
+    path: "/posts/:id",
+    name: "PostView",
+    component: () => import("../views/posts/PostView.vue"),
   },
   {
-    path: '/posts/:id/edit',
-    name: 'PostEdit',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/posts/PostEdit.vue')
+    path: "/posts/:id/edit",
+    name: "PostEdit",
+    component: () => import("../views/posts/PostEdit.vue"),
+  },
+
+  /**
+   * ! API Components
+   */
+
+  {
+    path: "/PlatformStats", // Platform Stats of facebook, ravmeser, youtube, etc
+    name: "PlatformStats",
+    component: () => import("../views/dashboard/PlatformStats.vue"),
   },
   {
-    path: '/createPost',
-    name: 'PostCreate',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/posts/PostCreate.vue')
+    path: "/api-list",
+    name: "APIList",
+    component: () => import("../views/APIList.vue"),
   },
-  {
-    path: '/api-list',
-    name: 'APIList',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/APIList.vue')
-  }
-]
+];
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

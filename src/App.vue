@@ -1,5 +1,5 @@
 <template>
-<div class="q-pa-md" style="padding: 0;">
+  <div class="q-pa-md" style="padding: 0;">
     <q-layout view="hHh Lpr lff" class="shadow-2 rounded-borders">
       <q-header elevated style="background: #082032">
         <q-toolbar>
@@ -8,19 +8,11 @@
         </q-toolbar>
       </q-header>
 
-      <q-drawer
-        v-model="drawer"
-        show-if-above
-        :width="200"
-        :breakpoint="500"
-      >
+      <q-drawer v-model="drawer" show-if-above :width="200" :breakpoint="500">
         <q-scroll-area class="fit" style="background: #334756; color: #ffffff">
           <q-list padding class="menu-list">
-
             <q-item clickable v-ripple>
-              <q-item-section>
-                <b>Welcome Back,</b> Flashdev
-              </q-item-section>
+              <q-item-section> <b>Welcome Back,</b> Flashdev </q-item-section>
             </q-item>
 
             <q-item clickable v-ripple>
@@ -63,7 +55,7 @@
               </q-item-section>
             </q-item>
 
-          <q-item active clickable v-ripple>
+            <q-item active clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="star" />
               </q-item-section>
@@ -72,38 +64,35 @@
                 <router-link to="/createPost">Create Post</router-link>
               </q-item-section>
             </q-item>
-            
-            
-
           </q-list>
         </q-scroll-area>
       </q-drawer>
 
-    <q-page-container>
-      <router-view></router-view>
-    </q-page-container>
+      <q-page-container>
+        <router-view></router-view>
+      </q-page-container>
     </q-layout>
-      </div>
+  </div>
 </template>
 
 <script>
-import Home from './views/Home.vue'
+import Home from "./views/Home.vue";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
-    Home
+    Home,
   },
 
-  data () {
+  data() {
     return {
       leftDrawerOpen: this.$q.platform.is.desktop,
       drawer: false,
-      miniState: true
-    }
-  }
-}
+      miniState: true,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -111,9 +100,11 @@ export default {
   background: #ffffff;
 }
 
-.router-link-exact-active, .router-link-active, a, a:active {
+.router-link-exact-active,
+.router-link-active,
+a,
+a:active {
   text-decoration: none;
   color: white;
 }
-
 </style>

@@ -33,7 +33,6 @@
         </q-card-section>
       </q-card-section>
     </q-card>
-    <hr>
     <q-btn color="primary" size="sm" text-color="white" label="Edit post" @click="goToItem(post.id)" rounded/>
   </div>
 

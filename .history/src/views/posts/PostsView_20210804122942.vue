@@ -2,7 +2,7 @@
   <div class="q-px-lg q-pb-md">
     <q-timeline color="secondary">
       <q-timeline-entry heading>
-      August, 2021
+      <h4>August, 2021</h4>
       </q-timeline-entry>
         <PostViewer/>
       <q-timeline-entry heading>

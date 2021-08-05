@@ -1,36 +1,36 @@
 <template>
   <div>
-      <AddItem :item="item" :tableName="tableName"/>
+    <AddItem :item="item" :tableName="tableName" />
   </div>
 </template>
 
 <script>
-
-import localStorageDriver from "../middleware/local-storage/index.js"
-import AddItem from "../components/AddItem.vue"
+import localStorageDriver from "../middleware/local-storage/index.js";
+import AddItem from "../components/AddItem.vue";
 
 export default {
-    name: 'Item',
-    components: {
-        AddItem
+  name: "Item",
+  components: {
+    AddItem,
+  },
+  data() {
+    return {
+      item: {},
+      tableName: "tableItem",
+    };
+  },
+  methods: {
+    getItem() {
+      this.item = localStorageDriver.getItemByID(
+        this.tableName,
+        this.$route.params.id
+      );
     },
-    data() {
-        return {
-            item: {},
-            tableName: 'tableItem'
-        }
-    },
-    methods: {
-        getItem() {
-         this.item = localStorageDriver.getItemByID(this.tableName, this.$route.params.id)
-        }
-    },
-    created() {
-        this.getItem()
-    }
-}
+  },
+  created() {
+    this.getItem();
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

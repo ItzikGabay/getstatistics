@@ -74,6 +74,32 @@ const localStorageDrivers = {
             }
         }
         return foundIndex;
+    },
+    _getStats: function(arr) {
+        // we want to sory by bucket of month -> day
+
+        let bucketSort = {}
+        // if(bucketSort[month])
+
+        for(let index in arr) {
+            // retreive {object} of {array} from DB (Local Storage this case.)
+            let result = arr[index]
+
+            // getting the DATE element
+            let date = result.join_date
+            // removing time 00:00:00
+            date = date.split(' ')
+            // choosing only the dates, and remove time 00:00:00
+            date = date[0]
+            // split to array of year, month, day
+            date = date.split('-')
+            let obj_date = {
+                year: date[0],
+                month: date[1],
+                day: date[2]
+            }
+            
+        }
     }
 }
 
