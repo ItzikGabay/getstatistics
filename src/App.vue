@@ -51,7 +51,7 @@
               </q-item-section>
 
               <q-item-section>
-                <router-link to="/Posts">Posts</router-link>
+                <router-link to="/posts">Posts</router-link>
               </q-item-section>
             </q-item>
 
@@ -61,7 +61,7 @@
               </q-item-section>
 
               <q-item-section>
-                <router-link to="/createPost">Create Post</router-link>
+                <router-link to="/posts/add">Create Post</router-link>
               </q-item-section>
             </q-item>
           </q-list>

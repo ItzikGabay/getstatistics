@@ -37,7 +37,7 @@
 
 <script>
 
-import localStorageDriver from "../middleware/local-storage/index.js"
+import localStorageDriver from "../../middleware/local-storage/index.js"
 
 export default {
     name: 'PostViewer',

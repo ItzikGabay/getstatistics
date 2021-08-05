@@ -17,7 +17,7 @@ const routes = [
   {
     path: "/item/:id",
     name: "Item",
-    component: () => import("../views/ItemView.vue"),
+    component: () => import("../views/items/ItemView.vue"),
   },
 
   /************************
@@ -57,7 +57,7 @@ const routes = [
   {
     path: "/api-list",
     name: "APIList",
-    component: () => import("../views/APIList.vue"),
+    component: () => import("../views/api/APIList.vue"),
   },
 ];
 

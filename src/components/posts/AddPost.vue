@@ -42,7 +42,7 @@
 
 <script>
 import localStorageDriver from "../../middleware/local-storage/index";
-import PostViewer from "../../components/PostViewer.vue";
+import PostViewer from "./PostViewer.vue";
 
 export default {
   name: "PostCreate",
@@ -57,15 +57,7 @@ export default {
         title: "",
         content: "",
         dateCreated: new Date().getTime(),
-      },
-      // title: this.post.title,
-      title: "hey222",
-      editor: "",
-      userPost: {
-        title: "This is title of post",
-        content: {
-          0: "This is a test for a post. It should to be a lot long...",
-        },
+        
       },
     };
   },

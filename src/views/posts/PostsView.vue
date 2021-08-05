@@ -16,7 +16,7 @@
 
 <script>
 
-import PostViewer from '../../components/PostViewer.vue'
+import PostViewer from '../../components/posts/PostViewer.vue'
 
 export default {
     name: 'PostsView',

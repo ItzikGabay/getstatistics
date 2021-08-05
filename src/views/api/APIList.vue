@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import ApiItem from '../components/ApiItem.vue'
+import ApiItem from '../../components/api/ApiItem.vue'
 
 export default {
     name: 'ApiList',
