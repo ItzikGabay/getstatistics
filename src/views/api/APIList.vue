@@ -1,6 +1,20 @@
 <template>
-<div class="q-pa-md">
-  <div class="q-pa-md q-gutter-sm">
+<div class="q-px-lg q-pb-md">
+
+    <q-breadcrumbs class="text-brown">
+      <template v-slot:separator>
+        <q-icon
+          size="1.5em"
+          name="chevron_right"
+          color="primary"
+        />
+      </template>
+
+      <q-breadcrumbs-el label="Home" icon="home" to="/" />
+      <q-breadcrumbs-el label="Api" icon="widgets"/>
+    </q-breadcrumbs>
+
+
     <q-btn label="Add New API Connection" color="primary" @click="fixed = true" />
     <q-banner inline-actions rounded class="bg-primary text-white">
       Remember, you always can add more API's to your dashboard.
@@ -10,7 +24,7 @@
         <q-btn flat label="Dismiss" />
       </template>
     </q-banner>
-  </div>
+  
         
         <q-dialog v-model="fixed">
             <q-card>

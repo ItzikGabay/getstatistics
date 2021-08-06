@@ -41,7 +41,7 @@
               </q-item-section>
 
               <q-item-section>
-                <router-link to="/api-list">API List</router-link>
+                <router-link to="/api">API List</router-link>
               </q-item-section>
             </q-item>
 

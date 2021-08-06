@@ -3,8 +3,14 @@
     <q-card class="my-card" flat bordered>
       <q-card-section horizontal>
         <q-card-section class="q-pt-xs">
-          <div class="text-overline">Overline</div>
-          <div class="text-h5 q-mt-sm q-mb-xs">{{value}}</div>
+          <div class="text-overline">Platform:</div>
+                  <q-btn
+          size="lg"
+          text-color="#FF0080"
+          :label="value"
+          @click="goTo()"
+           flat
+        />
           <div class="text-caption text-grey">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </div>
@@ -43,8 +49,11 @@ export default {
             value: this.apiName
         }
     },
-
-
+    methods: {
+      goTo() {
+        this.$router.push(`/api/1/stats`);
+      }
+    }
 }
 </script>
 
