@@ -1,5 +1,5 @@
 <template>
-  <div class="getWhiteBackground">
+  <div class="q-px-lg q-pb-md getWhiteBackground">
     <AddItem :item="item" :tableName="tableName" />
   </div>
 </template>

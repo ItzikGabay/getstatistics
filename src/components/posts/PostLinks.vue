@@ -11,7 +11,8 @@
       </thead>
       <tbody>
         <tr v-for="(value, key) in post.scheduleTime.platforms" :key="key">
-          <td class="text-left"><q-badge color="green">{{ value }}</q-badge></td>
+          <td class="text-left" v-if="post.scheduleTime.platformsObj[value].posted"><q-badge color="green">{{ value }}</q-badge></td>
+          <td class="text-left" v-if="!post.scheduleTime.platformsObj[value].posted"><q-badge color="amber">{{ value }}</q-badge></td>
           <td class="text-left">{{ key }}</td>
           <td class="text-right"><a href="#">Post Link</a></td>
           <td class="text-right">02-03-2021 17:59</td>

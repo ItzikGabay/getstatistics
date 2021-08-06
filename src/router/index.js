@@ -55,9 +55,14 @@ const routes = [
     component: () => import("../views/dashboard/PlatformStats.vue"),
   },
   {
-    path: "/api-list",
+    path: "/api",
     name: "APIList",
     component: () => import("../views/api/APIList.vue"),
+  },
+  {
+    path: "/api/:id/stats", // Platform Stats of facebook, ravmeser, youtube, etc
+    name: "Stats",
+    component: () => import("../views/api/Stats.vue"),
   },
 ];
 

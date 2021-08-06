@@ -1,10 +1,14 @@
 <template>
-  <div class="q-px-lg q-pb-md">
-    <h4>Your title:</h4>
+  <div>
+    <div class="text-editor">
+      <q-input standout v-model="editedPost.title" label="Title" />
 
-    <q-input standout v-model="editedPost.title" label="Title" />
-    <div>Content:</div>
-    <q-editor v-model="editedPost.content" min-height="20rem" />
+      <q-editor
+        v-model="editedPost.content"
+        min-height="20rem"
+        class="text-editor"
+      />
+    </div>
 
     <q-btn
       v-if="!post"
@@ -26,7 +30,7 @@
     <div class="row">
       <div class="col-6" style="padding-right: 10px">
         <h5>HTML Preview:</h5>
-        <h5>{{editedPost.title}}</h5>
+        <h5>{{ editedPost.title }}</h5>
         <q-card flat bordered>
           <q-card-section v-html="editedPost.content" />
         </q-card>
@@ -58,19 +62,30 @@ export default {
     return {
       editedPost: {
         id: new Date().getTime(),
-        postedBy: 'Itzik Gabay',
+        postedBy: "Itzikgabay",
         title: "",
         content: "",
         dateCreated: Drivers.todayDateString()[0].toString(),
-        isScheduled: true, 
+        isScheduled: true,
         scheduleTime: {
-        year: '2020',
-        month: '04',
-        day: '09',
-        hour: '18',
-        minute: '30',
-        platforms: ['facebook', 'youtube', 'rav-meser', 'google']
-    }
+          year: "2020",
+          month: "04",
+          day: "09",
+          hour: "18",
+          minute: "30",
+          platforms: ["facebook", "youtube", "ravmeser", "google"],
+          platformsObj: {
+            facebook: {
+              posted: true,
+              clickLinks: 0,
+              dateScheduled: "",
+            },
+            youtube: { posted: true },
+            ravmeser: { posted: true, clickLinks: 0, dateScheduled: "" },
+            google: { posted: true },
+            taboola: {},
+          },
+        },
       },
     };
   },
@@ -92,4 +107,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.text-editor {
+  margin: 30px 0 0 0;
+}
+</style>

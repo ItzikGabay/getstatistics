@@ -1,12 +1,28 @@
 <template>
-  <div>
+  <div class="q-px-lg q-pb-md">
+
+
+    <q-breadcrumbs class="text-brown">
+      <template v-slot:separator>
+        <q-icon
+          size="1.5em"
+          name="chevron_right"
+          color="primary"
+        />
+      </template>
+
+      <q-breadcrumbs-el label="Home" icon="home" to="/" />
+      <q-breadcrumbs-el label="Posts" icon="widgets" to="/posts/" />
+      <q-breadcrumbs-el :label="'Post: ' + this.post.id" />
+    </q-breadcrumbs>
+
     <div class="actions">
       <q-btn
         size="sm"
         text-color="black"
         label="Edit this post"
         @click="goToItem(post.id)"
-        flat
+        push
       />
       <q-btn
         size="sm"

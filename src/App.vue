@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md" style="padding: 0;">
+  <div style="padding: 0;">
     <q-layout view="hHh Lpr lff" class="shadow-2 rounded-borders">
       <q-header elevated style="background: #082032">
         <q-toolbar>

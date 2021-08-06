@@ -10,7 +10,13 @@
       icon="done_all"
     >
       <div>
-        <h5 v-html="post.title.substring(0, 70)"></h5>
+        <q-btn
+          size="lg"
+          text-color="#FF0080"
+          :label="post.title.substring(0, 70)"
+          @click="edit(post.id)"
+           flat
+        />
         <q-separator />
         <div style="width: 95%" v-html="post.content.substring(0, 70)"></div>
       </div>
@@ -24,23 +30,18 @@
         :label="value"
         class="socialBadge"
       />
-            <q-badge
-        flat
-        color="orange"
-        label="Taboola"
-        class="socialBadge"
-      />
+      <q-badge flat color="orange" label="Taboola" class="socialBadge" />
       <!-- <q-badge rounded color="red" label="ins" class="socialBadge" />
         <q-badge rounded color="primary" label="fb" class="socialBadge"/>
         <q-badge rounded color="orange" label="rav-meser" class="socialBadge" /> -->
       <q-separator />
       <p>More actions:</p>
       <q-btn
-        size="sm"
+        size="md"
         text-color="primary"
         label="More info"
         @click="edit(post.id)"
-        flat
+        push
       />
       <q-btn
         size="sm"
@@ -115,6 +116,6 @@ h5 {
 
 .q-separator {
   margin: 20px 0 20px 0;
-  width: 95%
+  width: 95%;
 }
 </style>
