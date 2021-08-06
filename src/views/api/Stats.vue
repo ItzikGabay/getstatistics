@@ -5,10 +5,44 @@
       :columns="columns"
       row-key="name"
     />
+          <div id="chart">
+        <apexchart type="bar" height="350" :options="chartOptions" :series="series"></apexchart>
+      </div>
   </div>
 </template>s
 
 <script>
+
+import drivers from "../../middleware/drivers/index"
+import ApexCharts from 'apexcharts'
+
+let ravmeserData = [
+  { 
+    id: 1,
+    date: '11/08/2021'
+  },
+    { 
+    id: 2,
+    date: '11/08/2021'
+  },
+    { 
+    id: 3,
+    date: '09/08/2021'
+  },
+    { 
+    id: 4,
+    date: '12/08/2021'
+  },
+    { 
+    id: 5,
+    date: '13/08/2021'
+  },
+    { 
+    id: 6,
+    date: '11/08/2021'
+  }
+]
+
 export default {
   data () {
     return {
@@ -28,24 +62,26 @@ export default {
         { name: 'new', align: 'left', label: 'new', field: 'new', sortable: true },
         { name: 'score', align: 'left', label: 'score', field: 'score', sortable: true },
       ],
-      data: [
-        {
-          name: '15-09',
-          new: 159,
-          score: 6.0,
-        },
-        {
-          name: '16-09',
-          new: 100,
-          score: 4.0,
-        },
-        {
-          name: '17-09',
-          new: 220,
-          score: 9.0,
-        },
-      ]
+      data: [],
+      stats: ''
     }
+  },
+  methods: {
+    renderMonth(month) {
+      this.stats = drivers.convertToArrDates(ravmeserData, '8')
+      let newRows = []
+      for(const key in this.stats) {
+        newRows.push({
+          name: key + '-0' + month,
+          new: this.stats[key].length,
+          score: 10.0,
+        })
+      }
+      this.data = newRows
+    },
+  },
+  created() {
+    this.renderMonth('8')
   }
 }
 </script>

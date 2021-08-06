@@ -13,7 +13,7 @@ let Drivers = {
     
         return [today, dd, mm, yyyy]
     },
-    convertToArrDates: (arr, dateStart, dateEnd) => {
+    convertToArrDates: (arr, month, dateEnd) => {
       let newResult = {}
         for(let leadInd in arr) {
     
@@ -39,12 +39,11 @@ let Drivers = {
             newResult[year][month][day].push(arr[leadInd])
         }
     
-        let data = newResult['2021']['8']
-    
-        for (const index in data) {
-          let dateArr = data[index]
-          console.log(dateArr);
-        }
+        let data = newResult['2021'][month]
+        return data
+    },
+    test() {
+      alert('hello! working!')
     }
 }
 
