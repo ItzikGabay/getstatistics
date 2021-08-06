@@ -1,11 +1,11 @@
 <template>
     <div>
         <q-timeline-entry
+        class="timeline"
          v-for="post in posts" :key="post.settings"
         :title="'ID: ' + post.id"
         :subtitle="String(post.dateCreated)"
-        style="width: 700px;"
-        color="orange"
+        color="green"
         icon="done_all"
       >
 
@@ -18,10 +18,11 @@
           <div v-html="post.content.substring(0,70)"></div>
         </div>
         <hr>
-        <b>Posted at: </b>
-        <q-badge rounded color="red" label="ins" class="socialBadge" />
+        <b>Posted: </b>
+          <q-badge v-for="(value, key) in post.scheduleTime.platforms" :key="key" rounded color="primary" :label="value" class="socialBadge"/>
+        <!-- <q-badge rounded color="red" label="ins" class="socialBadge" />
         <q-badge rounded color="primary" label="fb" class="socialBadge"/>
-        <q-badge rounded color="orange" label="rav-meser" class="socialBadge" />
+        <q-badge rounded color="orange" label="rav-meser" class="socialBadge" /> -->
         <hr>
     <div class="q-gutter-sm">
       <q-chip class="publisherChip">
@@ -77,4 +78,13 @@ export default {
 .publisherChip {
     margin-top: 15px;
 }
+
+.timeline {
+  background: #ffffff;
+  width: 900px;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-bottom: 50px;
+}
+
 </style>

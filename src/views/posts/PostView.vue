@@ -1,6 +1,25 @@
 <template>
   <div>
-    <q-card class="my-card" flat style="width: 700px; margin: 20px 0 0 20px">
+    <div class="actions">
+      <span><b>Actions: </b></span>
+      <q-btn
+        color="primary"
+        size="sm"
+        text-color="white"
+        label="Edit post"
+        @click="goToItem(post.id)"
+        rounded
+      />
+      <q-btn
+        color="red"
+        size="sm"
+        text-color="white"
+        label="Delete post"
+        @click="deletePost(post.id)" 
+        rounded
+      />
+    </div>
+    <q-card class="my-card" flat>
       <!--  bordered-->
       <q-item>
         <q-item-section avatar>
@@ -10,7 +29,10 @@
         </q-item-section>
 
         <q-item-section>
-          <q-item-label>{{ this.post.title }}</q-item-label>
+          <q-item-label
+            ><b>Post title: </b>
+            <h5>{{ this.post.title }}</h5></q-item-label
+          >
           <q-item-label caption>
             published by {{ this.post.postedBy }}, at
             {{ this.post.dateCreated }}
@@ -22,43 +44,35 @@
 
       <q-card-section horizontal>
         <q-card-section id="q-card-left">
-          <p>Successfully posted:</p>
-          <div v-for="(value, key) in this.platforms" :key="key">
-            <a href="#">{{ value }} (post link)</a>
-          </div>
-          <br />
-          <p>Still not posted:</p>
-          <div>
-            <a href="#">Taboola (Schedule)</a>
-          </div>
+          <p>[notes]</p>
         </q-card-section>
 
         <q-separator vertical />
 
         <q-card-section class="col-4">
+          <b>Post content: </b>
           <div v-html="this.post.content"></div>
         </q-card-section>
       </q-card-section>
+
+      <q-separator />
     </q-card>
-    <hr />
-    <q-btn
-      color="primary"
-      size="sm"
-      text-color="white"
-      label="Edit post"
-      @click="goToItem(post.id)"
-      rounded
-    />
+
+    <PostLinks :postData="this.post" />
   </div>
 </template>
 
 <script>
 import localStorageDriver from "../../middleware/local-storage/index.js";
+import PostLinks from "../../components/posts/PostLinks.vue";
 
 // get data of the single post
 
 export default {
   name: "PostView",
+  components: {
+    PostLinks,
+  },
   data() {
     return {
       post: "",
@@ -68,6 +82,11 @@ export default {
   methods: {
     goToItem(id) {
       this.$router.push(`/posts/${id}/edit`);
+    },
+    deletePost(id) {
+        localStorageDriver.remove('posts', id)
+        this.read()
+        this.$router.push(`/posts/`);
     },
     read() {
       this.post = localStorageDriver.getItemByID(
@@ -91,5 +110,9 @@ p {
 
 #q-card-left {
   font-size: 12px;
+}
+
+.q-card {
+  margin: 20px 20px 20px 20px;
 }
 </style>

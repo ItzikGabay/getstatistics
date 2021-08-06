@@ -12,6 +12,7 @@
       text-color="black"
       label="Insert"
       @click="insertPost"
+      class="buttonMargin"
     />
     <q-btn
       v-if="post"
@@ -19,6 +20,7 @@
       text-color="black"
       label="Save"
       @click="updatePost"
+      class="buttonMargin"
     />
 
     <div class="row">
