@@ -1,22 +1,19 @@
 <template>
   <div>
     <div class="actions">
-      <span><b>Actions: </b></span>
       <q-btn
-        color="primary"
         size="sm"
-        text-color="white"
-        label="Edit post"
+        text-color="black"
+        label="Edit this post"
         @click="goToItem(post.id)"
-        rounded
+        flat
       />
       <q-btn
-        color="red"
         size="sm"
-        text-color="white"
-        label="Delete post"
+        text-color="red"
+        label="Delete this post"
         @click="deletePost(post.id)" 
-        rounded
+        flat
       />
     </div>
     <q-card class="my-card" flat>
@@ -29,12 +26,11 @@
         </q-item-section>
 
         <q-item-section>
-          <q-item-label
-            ><b>Post title: </b>
+          <q-item-label>
             <h5>{{ this.post.title }}</h5></q-item-label
           >
           <q-item-label caption>
-            published by {{ this.post.postedBy }}, at
+            published by <b>@{{ this.post.postedBy }}</b>, at
             {{ this.post.dateCreated }}
           </q-item-label>
         </q-item-section>
@@ -50,7 +46,6 @@
         <q-separator vertical />
 
         <q-card-section class="col-4">
-          <b>Post content: </b>
           <div v-html="this.post.content"></div>
         </q-card-section>
       </q-card-section>
@@ -114,5 +109,9 @@ p {
 
 .q-card {
   margin: 20px 20px 20px 20px;
+}
+
+h5 {
+  margin: 12px 0 12px 0
 }
 </style>
