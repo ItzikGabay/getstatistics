@@ -7,3 +7,8 @@ const functions = require("firebase-functions");
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
+
+exports.googleAuthLogin = functions.https.onCall((dataSentByUser, context) => {
+    const name = dataSentByUser.name;
+    return `Hello! ${name}`
+});
