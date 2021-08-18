@@ -20,8 +20,8 @@ import database from 'firebase/database'
  * @param {Object} options - {id:} of user & {route:} where to read in Firebase.
  * @return {Array} Data of request.
  */
-function read(options) {
-    return firebaseInstance.firebase.database().ref(`users/`).once('value')
+function findAll(options) {
+    return firebaseInstance.firebase.database().ref(`users/${window.user.uid}${options.endpoint}`).once('value')
         .then(res => {
             const arr = []
             const map = res.val()
@@ -35,5 +35,5 @@ function read(options) {
 }
 
 export default {
-    read
+    findAll
 }

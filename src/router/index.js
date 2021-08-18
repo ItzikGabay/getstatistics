@@ -42,6 +42,7 @@ const routes = [
     name: 'Posts',
     component: () => import('../views/posts/Posts.vue')
   },
+  { path: '*', redirect: '/' }
 
 ]
 

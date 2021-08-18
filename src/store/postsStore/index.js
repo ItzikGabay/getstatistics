@@ -1,3 +1,14 @@
+/***************************
+ *   
+ * file: 
+ * /store/postsStore/index.js
+ *
+ * Summary: 
+ * Import vuex from files.
+ *
+ *
+***************************/
+
 import state from './posts.state'
 import mutations from './posts.mutations'
 import actions from './posts.actions'

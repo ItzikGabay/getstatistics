@@ -1,3 +1,14 @@
+/***************************
+ *   
+ * file: 
+ * /store/index.js
+ *
+ * Summary: 
+ * System store file.
+ *
+ *
+***************************/
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 import postsStore from './postsStore'
