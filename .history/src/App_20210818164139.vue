@@ -75,7 +75,7 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view/>
+      <rout
     </q-page-container>
   </q-layout>
 </template>
