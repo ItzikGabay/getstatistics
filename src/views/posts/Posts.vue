@@ -1,20 +1,18 @@
 <template>
   <div>
-      <p>Hey working</p>
+      <p>Month: August</p>
+      <List/>
   </div>
 </template>
 
 <script>
+import List from '../../components/posts/List.vue'
+
 export default {
     name: 'Posts',
-    data() {
-        return {
-
-        }
-    }
+    components: {
+        List
+    },
+    
 }
 </script>
-
-<style>
-
-</style>
