@@ -23,7 +23,7 @@
 
 
       <p>Father component: </p>
-      <List :postsData="this.post"/>
+      <List :postsData="this.data"/>
   </div>
 </template>
 
@@ -39,10 +39,12 @@ export default {
     },
     data() {
         /**
-         * endpoint: which table to search in database.
+         * @str "endpoint": which table to search in database.
+         * @obj {data}: data of posts. 
          */
         return {
             endpoint: 'test',
+            data: ''
         }
     },
     methods: {
@@ -54,7 +56,7 @@ export default {
          * @return {Array} array Data of request.
          */
         async read() {
-            this.post = await firestoreInstance.findAll({endpoint: this.endpoint})
+            this.data = await firestoreInstance.findAll({endpoint: this.endpoint})
         }
 
     },
