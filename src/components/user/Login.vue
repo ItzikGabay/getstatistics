@@ -27,7 +27,7 @@
 
 <script>
 
-import firebaseInstance from "../../middleware/firebase";
+import firebaseInstance from "../../middleware/database/realtime/index";
 
 export default {
     name: 'Login',

@@ -1,10 +1,10 @@
 /***************************
  *
  * file: 
- * /firebase/database/index.vue
+ * /firebase/database/index.js
  *
  * Summary: 
- * Database CRUD functions.
+ * FIREBASE - Database CRUD functions.
  *
  * Description: 
  * Functions that gives you communication with the Firebase & Firestore DB.
@@ -57,6 +57,7 @@ function findById(options) {
  * @return {null} return null
  */
 function insertItem(options) {
+    debugger;
     return firebaseInstance.firebase.database().ref(`${options.endpoint}/${window.user.uid}`).push(options.item)
 }
 

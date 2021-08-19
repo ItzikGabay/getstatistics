@@ -24,6 +24,7 @@
 
 <script>
 import List from '../../components/posts/List.vue'
+import firestoreInstance from '../../middleware/database/firestore/index'
 import { mapActions } from 'vuex'
 
 export default {
@@ -34,7 +35,11 @@ export default {
     methods: {
         ...mapActions("postsStore", ["test"]),
         async testFunction() {
-            this.test()
+            let result = await firestoreInstance.findAll()
+            alert('hey')
+            // let result = this.$store.state.postsStore.editedPost;
+            // this.test(result)
+            debugger;
         }
     },
     created() {

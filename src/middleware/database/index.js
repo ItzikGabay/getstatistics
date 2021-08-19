@@ -18,8 +18,8 @@ import firebase from 'firebase/app'
 
 import auth from 'firebase/auth'
 import 'firebase/database'
-import 'firebase/firestore'
 import 'firebase/functions'
+import 'firebase/firestore'
 import 'firebase/storage'
 
 // ## Firebase connections details
@@ -35,6 +35,8 @@ const firebaseConfig = {
 
 // ## Create connection
 firebase.initializeApp(firebaseConfig)
+
+// let db = firebase.firestore()
 
 // ## Save User Info on Local Storage
 firebase.auth().onAuthStateChanged(user => {
