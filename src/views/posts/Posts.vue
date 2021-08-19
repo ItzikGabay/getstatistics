@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import List from '../../components/posts/List.vue'
-import firestoreInstance from '../../middleware/database/firestore/index'
-import { mapActions } from 'vuex'
+import List from '../../components/posts/List.vue';
+import firestoreInstance from '../../middleware/database/firestore/index';
+import { mapActions } from 'vuex';
 
 export default {
     name: 'Posts',

@@ -23,7 +23,8 @@
 </template>
 
 <script>
-import Login from '../../components/user/Login.vue'
+import Login from '../../components/user/Login.vue';
+
 export default {
     name: 'Auth',
     components: {

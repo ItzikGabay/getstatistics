@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import List from '../components/posts/List.vue'
+import List from '../components/posts/List.vue';
 
 export default {
   name: 'Home',
