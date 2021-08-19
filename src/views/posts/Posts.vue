@@ -16,9 +16,14 @@
 
 <template>
   <div>
-      <p>Month: August</p>
-      <button @click="testFunction()">Test!</button>
-      <List/>
+      <!-- Test Fields -->
+      <button @click="read()">Refresh Data</button>
+      <hr>
+      <!-- Test Fields -->
+
+
+      <p>Father component: </p>
+      <List :postsData="this.post"/>
   </div>
 </template>
 
@@ -32,18 +37,29 @@ export default {
     components: {
         List
     },
-    methods: {
-        ...mapActions("postsStore", ["test"]),
-        async testFunction() {
-            let result = await firestoreInstance.findAll()
-            alert('hey')
-            // let result = this.$store.state.postsStore.editedPost;
-            // this.test(result)
-            debugger;
+    data() {
+        /**
+         * endpoint: which table to search in database.
+         */
+        return {
+            endpoint: 'test',
         }
     },
-    created() {
-        
+    methods: {
+        ...mapActions("postsStore", ["test"]),
+
+        /**
+         * Send get request to retrieve all data from firebase.
+         * @param {Object} options - object {id:} of user & {route:} where to read in Firebase.
+         * @return {Array} array Data of request.
+         */
+        async read() {
+            this.post = await firestoreInstance.findAll({endpoint: this.endpoint})
+        }
+
+    },
+    async created() {
+        await this.read()
     }
 }
 </script>

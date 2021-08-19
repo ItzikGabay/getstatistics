@@ -16,14 +16,15 @@
 
 <template>
     <div>
-        <p>Hey!</p>
+        <p>Sun component: result =></p>
+        <p>{{this.postsData}}</p>
     </div>
 </template>
 
 <script>
 export default {
     name: 'List',
-
+    props: ['postsData'],
 }
 </script>
 
