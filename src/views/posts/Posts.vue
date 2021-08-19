@@ -17,6 +17,7 @@
 <template>
   <div>
       <p>Month: August</p>
+      <button @click="testFunction()">Test!</button>
       <List/>
   </div>
 </template>
@@ -32,12 +33,12 @@ export default {
     },
     methods: {
         ...mapActions("postsStore", ["test"]),
-        testFunction() {
+        async testFunction() {
             this.test()
         }
     },
     created() {
-        this.test()
+        
     }
 }
 </script>
