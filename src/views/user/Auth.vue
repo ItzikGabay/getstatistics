@@ -17,19 +17,37 @@
 
 <template>
   <div>
-      <p>Login component:</p>
-      <Login/>
+    <!-- <div v-if="!this.user"> -->
+        <h3>Login:</h3>
+        <Login/>
+        <hr>
+        <h3>Register:</h3>
+        <Register/>
+    <!-- </div> -->
   </div>
 </template>
 
 <script>
 import Login from '../../components/user/Login.vue';
+import Register from '../../components/user/Register.vue';
 
 export default {
     name: 'Auth',
     components: {
-        Login
-    }
-
+        Login, Register
+    },
+    data() {
+        return {
+            user: window.user || 'null',
+        }
+    },
+    methods: {
+        checkIfLoggedIn() {
+            this.user = window.user
+        }
+    },
+    async created() {
+        this.checkIfLoggedIn()
+    },
 }
 </script>

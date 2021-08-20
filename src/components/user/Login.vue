@@ -15,7 +15,7 @@
 ***************************/ 
 
 <template>
-  <div class="flex">
+  <div style="width: 500px;">
       <q-input rounded outlined v-model="username" label="username" />
       <q-input rounded outlined v-model="password" label="password" />
 
@@ -27,7 +27,7 @@
 
 <script>
 
-import firebaseInstance from "../../middleware/database/realtime/index";
+import firebaseInstance from "../../middleware/database/index";
 
 export default {
     name: 'Login',
@@ -38,8 +38,6 @@ export default {
         }
     },
     methods: {
-
-
     /**
      * Login Authrization trough google accounts.
      * @return {Object} - user email, name, token, and more.
@@ -49,7 +47,9 @@ export default {
         firebaseInstance.firebase
             .auth()
             .signInWithPopup(provider)
-            .then(() => this.$router.push("/posts"))
+            .then(() => {
+                this.$router.push("/posts")
+            })
             .catch((error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
@@ -59,8 +59,7 @@ export default {
                 var credential = error.credential;
                 this.$router.push("/auth")
             });
-        },
-
+    },
 
     /**
      * Login Authrization trough email and password.
@@ -80,7 +79,6 @@ export default {
           console.log(errorCode, errorMessage);
         });
     },
-
 
     /**
      * Sign out from firebase.

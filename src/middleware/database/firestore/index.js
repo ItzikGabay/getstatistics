@@ -12,9 +12,9 @@
  *
 ***************************/ 
 
-import firestoreInstance from '../'
-import database from 'firebase/database'
-import firestore from 'firebase/firestore'
+import firestoreInstance from '../';
+import database from 'firebase/database';
+import firestore from 'firebase/firestore';
 
 
 /**
@@ -24,7 +24,7 @@ import firestore from 'firebase/firestore'
  */
 async function findAll(options) {
 
-    const snapshot = await firestoreInstance.firebase.firestore().collection(options.endpoint).get()
+    const snapshot = await firestoreInstance.firebase.firestore().collection(options.endpoint).get();
     return snapshot.docs.map(doc => doc.data());
 
     // Add a new document with a generated id.
@@ -66,4 +66,4 @@ export default {
     findAll,
     findById,
     insertItem
-}
+};

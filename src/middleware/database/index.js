@@ -14,13 +14,13 @@
  *
 ***************************/
 
-import firebase from 'firebase/app'
+import firebase from 'firebase/app';
 
-import auth from 'firebase/auth'
-import 'firebase/database'
-import 'firebase/functions'
-import 'firebase/firestore'
-import 'firebase/storage'
+import auth from 'firebase/auth';
+import 'firebase/database';
+import 'firebase/functions';
+import 'firebase/firestore';
+import 'firebase/storage';
 
 // ## Firebase connections details
 const firebaseConfig = {
@@ -34,16 +34,14 @@ const firebaseConfig = {
 };
 
 // ## Create connection
-firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig);
 
-// let db = firebase.firestore()
-
-// ## Save User Info on Local Storage
+// When auth state changes -> Save User Info on Local Storage
 firebase.auth().onAuthStateChanged(user => {
     window.user = user;
     localStorage.setItem('user', JSON.stringify(user));
-})
+});
 
 export default {
     firebase
-}
+};

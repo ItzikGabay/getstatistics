@@ -12,8 +12,8 @@
  *
 ***************************/ 
 
-import firebaseInstance from '../'
-import database from 'firebase/database'
+import firebaseInstance from '../';
+import database from 'firebase/database';
 
 
 /**
@@ -24,15 +24,15 @@ import database from 'firebase/database'
 function findAll(options) {
     return firebaseInstance.firebase.database().ref(`${options.endpoint}/${window.user.uid}`).once('value')
         .then(res => {
-            const arr = []
-            const map = res.val()
+            const arr = [];
+            const map = res.val();
             for (const key in map) {
                 const item = map[key];
                 item.id = key;
-                arr.push(item)
+                arr.push(item);
             }
-            return arr
-    })
+            return arr;
+        });
 }
 
 
@@ -44,10 +44,10 @@ function findAll(options) {
 function findById(options) {
     return firebaseInstance.firebase.database().ref(`${options.endpoint}/${window.user.uid}`).once('value')
         .then(res => {
-            const map = res.val()
-            const filter = options.postId
-            return map[filter]
-    })
+            const map = res.val();
+            const filter = options.postId;
+            return map[filter];
+        });
 }
 
 
@@ -57,8 +57,9 @@ function findById(options) {
  * @return {null} return null
  */
 function insertItem(options) {
-    debugger;
-    return firebaseInstance.firebase.database().ref(`${options.endpoint}/${window.user.uid}`).push(options.item)
+    return firebaseInstance.firebase.database()
+        .ref(`${options.endpoint}/${window.user.uid}`)
+        .push(options.item);
 }
 
 
@@ -70,8 +71,9 @@ function insertItem(options) {
  * @return {null} return null
  */
 function findByIdAndUpdate(options) {
-    return firebaseInstance.firebase.database().ref(`${options.endpoint}/${window.user.uid}/${options.id}`)
-        .update(options.data)
+    return firebaseInstance.firebase.database()
+        .ref(`${options.endpoint}/${window.user.uid}/${options.id}`)
+        .update(options.data);
 }
 
 
@@ -82,8 +84,9 @@ function findByIdAndUpdate(options) {
  * @return {null} return null
  */
 function findByIdAndRemove(options) {
-    return firebaseInstance.firebase.database().ref(`${options.endpoint}/${window.user.uid}/${options.id}`)
-    .remove()
+    return firebaseInstance.firebase.database()
+        .ref(`${options.endpoint}/${window.user.uid}/${options.id}`)
+        .remove();
 }
 
 
@@ -94,4 +97,4 @@ export default {
     findById,
     findByIdAndUpdate,
     findByIdAndRemove
-}
+};
