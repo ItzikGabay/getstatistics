@@ -37,6 +37,10 @@ export default {
     props: ["accountsData"],
     data() {
       return {
+        /**
+        * columns: Table columns
+        * data: Table data
+        */
         columns: [
           {
           name: 'Account ID',
@@ -66,15 +70,21 @@ export default {
           headerClasses: 'bg-primary text-white'
         }],
         data: [{name: 'Loading..', info: 'Loading..'}],
-        test: '1'
       }
     },
     methods: {
+      /**
+      * Whenever user clicks, this function will redirect him to accounts/:accountId
+      */
       goTo(event, row){
         this.$router.push(`/accounts/${row.accountId}`)
       }
     },
     watch: {
+    /**
+    * Whenever parent data "accountsData" changed -> update the child.
+    * & create new object for table.
+    */
       accountsData() {
         let newData = []
         for(let i in this.accountsData) {

@@ -20,8 +20,7 @@
       <button @click="read()">Refresh Data</button>
       <hr>
       <!-- Test Fields -->
-
-
+      
       <p>Father component: </p>
       <List :postsData="this.data"/>
   </div>
@@ -51,15 +50,16 @@ export default {
         ...mapActions("postsStore", ["test"]),
 
         /**
-         * Send get request to retrieve all data from firebase.
-         * @param {Object} options - object {id:} of user & {route:} where to read in Firebase.
-         * @return {Array} array Data of request.
+         * Send get request to retrieve all data from firebase,
+         * and changing on current data object.
+         * @param {Object} options - {endpoint:} where to read in Firebase.
          */
         async read() {
             this.data = await firestoreInstance.findAll({endpoint: this.endpoint})
         }
 
     },
+    
     async created() {
         await this.read()
     }

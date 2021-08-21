@@ -27,6 +27,9 @@ import { mapActions } from 'vuex'
 export default {
     name: 'createAccount',
     data() {
+        /**
+        * accountInputName: String of user input for account name.
+        */
         return {
             accountInputName: ''
         }

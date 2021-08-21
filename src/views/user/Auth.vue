@@ -37,16 +37,25 @@ export default {
         Login, Register
     },
     data() {
+         /**
+         * user: Current user object info.
+         */
         return {
             user: window.user || 'null',
         }
     },
     methods: {
+         /**
+         * Checking if the user is connected or not authorized.
+         */
         checkIfLoggedIn() {
             this.user = window.user
         }
     },
     async created() {
+         /**
+         * When view started -> check if the user connected.
+         */
         this.checkIfLoggedIn()
     },
 }
