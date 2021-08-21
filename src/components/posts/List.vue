@@ -16,7 +16,7 @@
 
 <template>
     <div>
-        <p>Sun component: result =></p>
+        <h4>Posts result:</h4>
         <p>{{this.postsData}}</p>
     </div>
 </template>
