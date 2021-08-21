@@ -19,16 +19,33 @@ export default {
         commit("setAccountsState", accounts);
         return accounts;
     },
+    getAccountApiList: async ({ commit }, options) => {
+        // TODOS: Change to generic
+        const ApiList = await firestore.findSubItem(
+            {
+                endpoint: 'accounts',
+                subEndpoint: 'platforms_connected',
+                account_id: options.account_id,
+                stats_ref: ''
+            });
+        commit("setApiConnectionsState", ApiList)
+        return ApiList;
+    },
     addAccount: async ({ commit }, accountName) => {
         let item = {
             // TODOS: Change to generic
             owner_id: 'H9mzR35AQ1MdHIi5Ifg1t1uAaRY2',
             name: accountName,
-            users_connected: [],
-            platforms_connected: []
+            // users_connected: [], // will create collection later
+            // platforms_connected: []
+            // posts: []
         };
         const accounts = await firestore.insertItem({ endpoint: 'accounts', item: item });
         commit("setAccountsState", accounts);
         return accounts;
+    },
+    addNewApiConnection: async ({ commit }, options) => {
+        const newApiConnection = await firestore.insertSubItem({ endpoint: 'accounts', subEndpoint: 'platforms_connected', doc_id: options.doc_id, item: options.item });
+        return newApiConnection;
     }
 };

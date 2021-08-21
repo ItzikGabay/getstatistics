@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <List msg="Welcome to Your Vue.js App"/>
+    <List/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import List from '../components/posts/List.vue';
+import List from '../views/accounts/Accounts.vue';
 
 export default {
   name: 'Home',

@@ -50,10 +50,19 @@ const routes = [
     name: 'Accounts',
     component: () => import('../views/accounts/Accounts.vue')
   },
-    {
+  {
     path: '/accounts/add',
     name: 'AddAccount',
     component: () => import('../views/accounts/Add.vue')
+  },
+
+  /************************
+  * ! Dashboard Views
+  ***********************/
+  {
+    path: '/accounts/:id/dashboard',
+    name: 'Dashboard',
+    component: () => import('../views/dashboard/Dashboard.vue')
   },
   
   /************************

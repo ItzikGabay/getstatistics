@@ -51,6 +51,28 @@ async function findAllWhere(options) {
     // Add a new document with a generated id.
 }
 
+/**
+ * Send get request to retrieve all data from firebase.
+ * @param {Object} options - {route:} where to read in Firebase.
+ * @return {Array} array Data of request.
+ */
+async function findSubItem(options) {
+
+    const snapshot = await firestoreInstance.firebase.firestore()
+        .collection(options.endpoint)
+        .doc(options.account_id)
+        .collection(options.subEndpoint)
+        .get();
+    
+    let result = snapshot.docs.map(doc => {
+        let documentId = doc.id;
+        doc = doc.data();
+        doc.id = documentId;
+        return doc;
+    });
+    return result;
+    // Add a new document with a generated id.
+}
 
 /**
  * Find specific item from database
@@ -80,10 +102,32 @@ async function insertItem(options) {
     });
 }
 
+/**
+ * Insert new item to Firestore.
+ * @param {Object} options - object {endpoint: 'tablename'}  & {item: {newitem:} }.
+ * @return {null} return null
+ */
+async function insertSubItem(options) {
+    firestoreInstance.firebase.firestore()
+        .collection(options.endpoint)
+        .doc(options.doc_id)
+        .collection(options.subEndpoint)
+        .add(options.item)
+    .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+        return 'Item added sucessfully!';
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+}
+
 
 export default {
     findAll,
     findById,
     insertItem,
-    findAllWhere
+    findAllWhere,
+    insertSubItem,
+    findSubItem
 };

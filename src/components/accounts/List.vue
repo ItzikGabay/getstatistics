@@ -77,7 +77,7 @@ export default {
       * Whenever user clicks, this function will redirect him to accounts/:accountId
       */
       goTo(event, row){
-        this.$router.push(`/accounts/${row.accountId}`)
+        this.$router.push(`/accounts/${row.accountId}/dashboard`)
       }
     },
     watch: {

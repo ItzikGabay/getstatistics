@@ -27,7 +27,10 @@ export default {
     resetAccountState: ((state) => {
         for (const key in state.currentAccount) {
             state.currentAccount[key] = '';
-        }
-    })
+        }        
+    }),
+    
+    // Set posts array to state.
+    setApiConnectionsState: ((state, list) => state.currentAccount.platforms_connected = list),
 
 };

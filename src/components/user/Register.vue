@@ -49,12 +49,10 @@ export default {
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((userCredential) => {
           var user = userCredential.user;
-          debugger;
         })
         .catch((error) => {
           var errorCode = error.code;
           var errorMessage = error.message;
-          debugger;
         });
     },
   },
