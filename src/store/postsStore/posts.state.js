@@ -1,21 +1,32 @@
+/***************************
+ *   
+ * file: 
+ * /store/postsStore/state.js
+ *
+ * Summary: 
+ * Vuex State store file.
+ *
+ *
+***************************/
+
 export default {
     posts: [],
     editedPostId: '',
     editedPost: {
-        user_id: "123",
-        account_id: "1",
-        dateCreated: "0000",
+        user_id: "",
+        account_id: "",
+        dateCreated: "",
         data: {
             title: "",
             content: "",
         },
         platforms: [{
-            platform: "facebook",
-            posted: "true",
-            clickUrl: 'localhost:8080/working',
-            clickLinks: "0",
-            scheduleDate: "00000",
-            scheduleTime: "1753"
+            platform: "",
+            posted: "",
+            clickUrl: '',
+            clickLinks: "",
+            scheduleDate: "",
+            scheduleTime: ""
             }]
       }
 }

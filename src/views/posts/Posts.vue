@@ -1,7 +1,7 @@
 /***************************
  *   
  * file: 
- * /views/Posts.vue
+ * /views/posts/Posts.vue
  *
  * Summary: 
  * Main view Posts component.

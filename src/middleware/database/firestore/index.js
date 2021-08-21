@@ -49,12 +49,13 @@ async function findById(options) {
  * @return {null} return null
  */
 async function insertItem(options) {
-    firestoreInstance.firebase.firestore().collection("test").add({
+    firestoreInstance.firebase.firestore().collection(options.endpoint).add({
     name: "Tokyo",
     country: "Japan"
     })
     .then((docRef) => {
-    console.log("Document written with ID: ", docRef.id);
+        console.log("Document written with ID: ", docRef.id);
+        return 'Item added sucessfully!';
     })
     .catch((error) => {
         console.error("Error adding document: ", error);

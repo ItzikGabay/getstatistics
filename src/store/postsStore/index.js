@@ -9,10 +9,10 @@
  *
 ***************************/
 
-import state from './posts.state'
-import mutations from './posts.mutations'
-import actions from './posts.actions'
-import getters from './posts.getters'
+import state from './posts.state';
+import mutations from './posts.mutations';
+import actions from './posts.actions';
+import getters from './posts.getters';
 
 export default {
     namespaced: true,
@@ -20,4 +20,4 @@ export default {
     mutations,
     actions,
     getters
-}
+};

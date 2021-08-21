@@ -1,7 +1,7 @@
 /***************************
  *   
  * file: 
- * /views/Auth.vue
+ * /views/user/Auth.vue
  *
  * Summary: 
  * Login or Register to get authorization.

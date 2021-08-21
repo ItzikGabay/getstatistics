@@ -22,12 +22,18 @@
       <q-btn flat color="primary" label="Login" />
       <q-btn flat color="green" label="Login With Google" @click="googleAuthLogin()" />
       <q-btn flat color="red" label="Sign out" @click="signOut()" />
+      <hr>
+      <q-btn flat color="red" label="Test button" @click="test()" />
+
+      <p>Click on test to see result:</p>
+      <p>{{info}}</p>
   </div>
 </template>
 
 <script>
 
 import firebaseInstance from "../../middleware/database/index";
+import { mapActions } from 'vuex';
 
 export default {
     name: 'Login',
@@ -35,9 +41,11 @@ export default {
     return {
         username: '',
         password: '',
+        info: 'Not clicked yet'
         }
     },
     methods: {
+        ...mapActions("userStore", ["setUserState"]),
     /**
      * Login Authrization trough google accounts.
      * @return {Object} - user email, name, token, and more.
@@ -47,8 +55,10 @@ export default {
         firebaseInstance.firebase
             .auth()
             .signInWithPopup(provider)
-            .then(() => {
-                this.$router.push("/posts")
+            .then((res) => {
+                this.info = res
+                this.setUserState(res.user)
+                this.$router.push("/accounts")
             })
             .catch((error) => {
                 var errorCode = error.code;
@@ -60,7 +70,12 @@ export default {
                 this.$router.push("/auth")
             });
     },
-
+    /**
+     * TEST FUNCTION ONLY!
+     */
+    test() {
+        this.info = firebaseInstance.firebase.auth().currentUser
+    },
     /**
      * Login Authrization trough email and password.
      * @return {Object} - user email, name, token, and more.

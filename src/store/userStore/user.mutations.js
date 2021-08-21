@@ -1,3 +1,14 @@
+/***************************
+ *   
+ * file: 
+ * /store/userStore/mutations.js
+ *
+ * Summary: 
+ * Vuex Mutations store file.
+ *
+ *
+***************************/
+
 export default {
     
     // Set the id of the specific post of editing.

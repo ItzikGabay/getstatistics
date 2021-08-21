@@ -9,45 +9,56 @@
  *
 ***************************/
 
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../views/Home.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
-   /************************
-   * ! Default Views
-   ***********************/
+  /************************
+  * ! Default Views
+  ***********************/
   {
     path: '/',
     name: 'Home',
     component: Home
   },
 
-   /************************
-   * ! User Views
-   ***********************/
+  /************************
+  * ! User Views
+  ***********************/
   {
     path: '/auth',
     name: 'Auth',
     component: () => import('../views/user/Auth.vue')
   },
 
-   /************************
-   * ! Posts Views
-   ***********************/
+  /************************
+  * ! Posts Views
+  ***********************/
   {
     path: '/posts',
     name: 'Posts',
     component: () => import('../views/posts/Posts.vue')
   },
+  /************************
+  * ! Accounts Views
+  ***********************/
+  {
+    path: '/accounts',
+    name: 'Accounts',
+    component: () => import('../views/accounts/Accounts.vue')
+  },
+  
+  /************************
+  * ! Default Routes
+  ***********************/
   { path: '*', redirect: '/' }
-
-]
+];
 
 const router = new VueRouter({
   routes
-})
+});
 
-export default router
+export default router;

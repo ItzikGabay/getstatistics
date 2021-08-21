@@ -1,3 +1,14 @@
+/***************************
+ *   
+ * file: 
+ * /store/userStore/actions.js
+ *
+ * Summary: 
+ * Vuex Actions store file.
+ *
+ *
+***************************/
+
 import firestore from '../../middleware/database/firestore/index';
 
 export default {
