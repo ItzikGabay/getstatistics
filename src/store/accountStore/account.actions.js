@@ -14,12 +14,14 @@ import firebaseInstance from "../../middleware/database/index";
 
 export default {
     getUserAccounts: async ({ commit }, item) => {
+        // TODOS: Change to generic
         const accounts = await firestore.findAllWhere({ endpoint: 'accounts', queryKey: 'owner_id', queryValue: 'H9mzR35AQ1MdHIi5Ifg1t1uAaRY2'});
         commit("setAccountsState", accounts);
         return accounts;
     },
     addAccount: async ({ commit }, accountName) => {
         let item = {
+            // TODOS: Change to generic
             owner_id: 'H9mzR35AQ1MdHIi5Ifg1t1uAaRY2',
             name: accountName,
             users_connected: [],

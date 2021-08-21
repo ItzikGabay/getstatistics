@@ -12,10 +12,6 @@
  * Components used: 
  * components/accounts/List.vue
  *
-
- * TODOS:
- * Should to get from firebase all accounts id.
- * then, should to represent in a P tag.
 ***************************/ 
 
 <template>
@@ -50,6 +46,7 @@ export default {
       }
     },
     methods: {
+      // TODOS: add comments
       ...mapActions("accountStore", ["getUserAccounts"]),
       async read() {
         await this.getUserAccounts()
