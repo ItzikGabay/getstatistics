@@ -15,7 +15,7 @@ import firebaseInstance from "../../middleware/database/index";
 export default {
     getUserAccounts: async ({ commit }, item) => {
         // TODOS: Change to generic
-        const accounts = await firestore.findAllWhere({ endpoint: 'accounts', queryKey: 'owner_id', queryValue: 'H9mzR35AQ1MdHIi5Ifg1t1uAaRY2'});
+        const accounts = await firestore.findAllWhere({ endpoint: 'accounts', queryKey: 'owner_id', queryValue: 'H9mzR35AQ1MdHIi5Ifg1t1uAaRY2' });
         commit("setAccountsState", accounts);
         return accounts;
     },
@@ -27,7 +27,7 @@ export default {
             users_connected: [],
             platforms_connected: []
         };
-        const accounts = await firestore.insertItem({ endpoint: 'accounts', item: item});
+        const accounts = await firestore.insertItem({ endpoint: 'accounts', item: item });
         commit("setAccountsState", accounts);
         return accounts;
     }

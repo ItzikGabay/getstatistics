@@ -40,7 +40,13 @@ async function findAllWhere(options) {
     const snapshot = await firestoreInstance.firebase.firestore().collection(options.endpoint)
         .where(options.queryKey, '==', options.queryValue)
         .get();
-    return snapshot.docs.map(doc => doc.data());
+    let result = snapshot.docs.map(doc => {
+        let documentId = doc.id;
+        doc = doc.data();
+        doc.accountId = documentId;
+        return doc;
+    });
+    return result;
 
     // Add a new document with a generated id.
 }

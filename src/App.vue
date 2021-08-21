@@ -1,83 +1,91 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated class="glossy">
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          aria-label="Menu"
-          icon="fas fa-bars"
-        />
+  <div style="padding: 0;">
+    <!-- Main Layout -->
+    <q-layout view="hHh Lpr lff" class="shadow-2 rounded-borders">
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+      <!-- Header -->
+      <q-header elevated style="background: #082032">
+        <q-toolbar>
+          <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
+          <q-toolbar-title>Get Statistics</q-toolbar-title>
+        </q-toolbar>
+      </q-header>
+      <!-- End of Header -->
 
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      bordered
-      content-class="bg-grey-2"
-    >
-      <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="fas fa-graduation-cap" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.com/quasarframework/">
-          <q-item-section avatar>
-            <q-icon name="fas fa-code" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="fas fa-comments" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="far fa-clipboard" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://twitter.com/quasarframework">
-          <q-item-section avatar>
-            <q-icon name="fab fa-twitter" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-drawer>
+      <!-- Navbar -->
+      <q-drawer v-model="drawer" show-if-above :width="200" :breakpoint="500">
+        <q-scroll-area class="fit" style="background: #334756; color: #ffffff">
+          <q-list padding class="menu-list">
+            <q-item clickable v-ripple>
+              <q-item-section> <b>Welcome Back,</b> Flashdev </q-item-section>
+            </q-item>
 
-    <q-page-container>
-      <router-view/>
-    </q-page-container>
-  </q-layout>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="inbox" />
+              </q-item-section>
+
+              <q-item-section>
+                <router-link to="/#">Dashboard</router-link>
+              </q-item-section>
+            </q-item>
+
+            <q-item active clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="drafts" />
+              </q-item-section>
+
+              <q-item-section>
+                <router-link to="/item/1">Add Item</router-link>
+              </q-item-section>
+            </q-item>
+
+            <q-item active clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="star" />
+              </q-item-section>
+
+              <q-item-section>
+                <router-link to="/api">API List</router-link>
+              </q-item-section>
+            </q-item>
+
+            <q-item active clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="star" />
+              </q-item-section>
+
+              <q-item-section>
+                <router-link to="/posts">Posts</router-link>
+              </q-item-section>
+            </q-item>
+
+            <q-item active clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="star" />
+              </q-item-section>
+
+              <q-item-section>
+                <router-link to="/posts/add">Create Post</router-link>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-scroll-area>
+      </q-drawer>
+      <!-- End of NavBar -->
+
+
+      <!-- Page container -->
+      <q-page-container>
+        <router-view></router-view>
+      </q-page-container>
+      <!-- End of Page container -->
+      
+
+    </q-layout>
+    <!-- End of Main Layout -->
+  </div>
 </template>
 
 <script>
@@ -87,11 +95,24 @@ export default {
 
   data () {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop
+      leftDrawerOpen: this.$q.platform.is.desktop,
+      drawer: false,
+      miniState: true,
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+.q-item-section {
+  background: #ffffff;
+}
+
+.router-link-exact-active,
+.router-link-active,
+a,
+a:active {
+  text-decoration: none;
+  color: white;
+}
 </style>

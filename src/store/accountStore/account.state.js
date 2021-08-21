@@ -14,6 +14,7 @@ export default {
     account_id: '',
     currentAccount: {
         name: '', // 'Flashdev',
+        account_id: '',
         owner_id: '',
         platforms_connected: [{
             name: '', //'facebook',
