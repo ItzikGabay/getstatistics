@@ -62,6 +62,7 @@ const routes = [
   {
     path: '/accounts/:id/dashboard',
     name: 'Dashboard',
+    beforeEnter : guardMyroute,
     component: () => import('../views/dashboard/Dashboard.vue')
   },
   {
@@ -79,5 +80,20 @@ const routes = [
 const router = new VueRouter({
   routes
 });
+
+// Router guard
+function guardMyroute(to, from, next) {
+  let isAuthenticated = false;
+  if (localStorage.getItem('user'))
+    isAuthenticated = true;
+  else
+    isAuthenticated = false;
+
+  if (isAuthenticated) {
+    next(); // allow to enter route
+  } else {
+    next('/Auth'); // go to '/login';
+  }
+}
 
 export default router;

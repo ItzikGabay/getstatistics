@@ -38,7 +38,7 @@ firebase.initializeApp(firebaseConfig);
 
 // When auth state changes -> Save User Info on Local Storage
 firebase.auth().onAuthStateChanged(user => {
-    window.user = user;
+    // window.user = user;
     localStorage.setItem('user', JSON.stringify(user));
 });
 
