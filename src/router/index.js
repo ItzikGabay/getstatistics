@@ -64,6 +64,11 @@ const routes = [
     name: 'Dashboard',
     component: () => import('../views/dashboard/Dashboard.vue')
   },
+  {
+    path: '/accounts/:id/dashboard/:api_id',
+    name: 'Api',
+    component: () => import('../views/dashboard/Api.vue')
+  },
   
   /************************
   * ! Default Routes

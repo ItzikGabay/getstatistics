@@ -1,7 +1,7 @@
 /***************************
  *   
  * file: 
- * /components/accounts/Platforms.vue
+ * /components/dashboard/Platforms.vue
  *
  * Summary: 
  * Show all platforms of the account
@@ -10,7 +10,7 @@
  * Whenever client ask to see platforms connected, this component is used.
  *
  * Father Components: 
- * views/accounts/Accounts.vue
+ * views/dashboard/Dashboard.vue
  *
 ***************************/ 
 
@@ -25,8 +25,8 @@
         </q-card-section>
 
         <q-card-actions vertical align="center">
-            <q-btn flat>Get Stats</q-btn>
-            <q-btn flat>Publish post</q-btn>
+            <q-btn flat @click="goTo(platformsConnections[i - 1].id)">Get Stats</q-btn>
+            <q-btn flat @click="goTo(platformsConnections[i - 1].id)">Publish post</q-btn>
         </q-card-actions>
         </q-card>
     </div>
@@ -44,6 +44,15 @@ export default {
      */
     return {
       platformsConnections: []
+    }
+  },
+  methods: {
+    /**
+     * goTo function - 
+     * redirect after someone clicks on "get stats" on the v-card.
+     */
+    goTo(platformId) {
+      this.$router.push(`/accounts/${this.$route.params.id}/dashboard/${platformId}`)
     }
   },
   /**

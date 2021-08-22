@@ -47,8 +47,6 @@ async function findAllWhere(options) {
         return doc;
     });
     return result;
-
-    // Add a new document with a generated id.
 }
 
 /**
@@ -65,13 +63,36 @@ async function findSubItem(options) {
         .get();
     
     let result = snapshot.docs.map(doc => {
+        // pushing ID inside of the doc.
         let documentId = doc.id;
         doc = doc.data();
         doc.id = documentId;
         return doc;
     });
     return result;
-    // Add a new document with a generated id.
+}
+
+/**
+ * Send get request to retrieve all data from firebase.
+ * @param {Object} options - {route:} where to read in Firebase.
+ * @return {Array} array Data of request.
+ */
+async function findSubItemById(options) {
+
+    const snapshot = await firestoreInstance.firebase.firestore()
+        .collection(options.endpoint)
+        .doc(options.account_id)
+        .collection(options.subEndpoint)
+        .get(options.item_sub_item_id);
+    
+    let result = snapshot.docs.map(doc => {
+        // pushing ID inside of the doc.
+        let documentId = doc.id;
+        doc = doc.data();
+        doc.id = documentId;
+        return doc;
+    });
+    return result;
 }
 
 /**
@@ -129,5 +150,6 @@ export default {
     insertItem,
     findAllWhere,
     insertSubItem,
-    findSubItem
+    findSubItem,
+    findSubItemById
 };

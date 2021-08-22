@@ -25,11 +25,22 @@ export default {
             {
                 endpoint: 'accounts',
                 subEndpoint: 'platforms_connected',
-                account_id: options.account_id,
-                stats_ref: ''
+                account_id: options.account_id
             });
-        commit("setApiConnectionsState", ApiList)
+        commit("setApiConnectionsState", ApiList);
         return ApiList;
+    },
+    getItemSubItemById: async ({ commit }, options) => {
+        // TODOS: Change to generic
+        const ApiList = await firestore.findSubItemById(
+            {
+                endpoint: 'accounts',
+                subEndpoint: 'platforms_connected',
+                account_id: options.account_id,
+                item_sub_item_id: options.itemSubItemID
+            });
+        commit("setCurrentPlatformState", ApiList);
+        return ApiList;   
     },
     addAccount: async ({ commit }, accountName) => {
         let item = {

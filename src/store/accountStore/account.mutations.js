@@ -33,4 +33,6 @@ export default {
     // Set posts array to state.
     setApiConnectionsState: ((state, list) => state.currentAccount.platforms_connected = list),
 
+    setCurrentPlatformState: ((state, platform) => state.currentApi = platform)
+
 };

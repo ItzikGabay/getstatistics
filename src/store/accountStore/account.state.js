@@ -20,5 +20,9 @@ export default {
             name: '', //'facebook',
             connected: '', // 'true',
         }],
+    },
+    currentApi: {
+        name: '',
+        account_id: '',
     }
 };
