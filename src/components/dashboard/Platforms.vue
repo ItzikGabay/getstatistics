@@ -1,3 +1,19 @@
+/***************************
+ *   
+ * file: 
+ * /components/accounts/Platforms.vue
+ *
+ * Summary: 
+ * Show all platforms of the account
+ *
+ * Description: 
+ * Whenever client ask to see platforms connected, this component is used.
+ *
+ * Father Components: 
+ * views/accounts/Accounts.vue
+ *
+***************************/ 
+
 <template>
   <div>
     <p>Platforms Connected:</p>
@@ -23,10 +39,17 @@ export default {
   name: 'Platforms',
   props: ["platformsData"],
   data() {
+    /**
+     * platformsConnections: List of all the API's connected of specific account.
+     */
     return {
       platformsConnections: []
     }
   },
+  /**
+   * Whenever PlatformsData from father component is changed -> 
+   * Change in vue data aswell.
+   */
   watch: {
     platformsData() {
       this.platformsConnections = this.platformsData

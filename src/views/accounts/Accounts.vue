@@ -39,6 +39,10 @@ export default {
     },
     data() {
       return {
+        /**
+         * accountsData: account list.
+         * showButton: if no API is created yet, so show the button.
+         */
         accountsData: 'not loaded yet!',
         showButton: false,
       }
@@ -46,15 +50,30 @@ export default {
     methods: {
       // TODOS: add comments
       ...mapActions("accountStore", ["getUserAccounts"]),
+      /**
+       * read function - 
+       * Reading the data from DB and set it as state,
+       * and then reading it from the state.
+       */
       async read() {
         await this.getUserAccounts()
         this.accountsData = this.$store.state.accountStore.accounts
         if(this.accountsData.length < 1) this.showButton = true;
       },
+      /**
+       * goToCreateAccount function -
+       * function the redirect in order to create new account
+       * to the specific user.
+       * @return - redirect to "/accounts/add".
+       */
       goToCreateAccount() {
         this.$router.push('/accounts/add')
       }
     },
+    /**
+     * Whenever view started, call function read
+     * in order to get the data.
+     */
     created() {
       this.read()
     }

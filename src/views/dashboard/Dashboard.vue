@@ -1,3 +1,20 @@
+/***************************
+ *   
+ * file: 
+ * /views/accounts/Dashboard.vue
+ *
+ * Summary: 
+ * Mixed component of data to show of this specific account.
+ *
+ * Description: 
+ * Showing stats and API's connected to the user
+ *
+ * Components used: 
+ * components/accounts/Platforms.vue
+ * components/accounts/AddApi.vue
+ *
+***************************/ 
+
 <template>
   <div>
       <p>This is Father Dashboard View</p>
@@ -26,6 +43,10 @@ export default {
     methods: {
         ...mapActions("accountStore", ["getAccountApiList"]),
     },
+    /**
+     * When created -> Get API List from the current user
+     * and set data the same as state.
+     */
     created() {
         this.getAccountApiList({account_id: this.$route.params.id})
         .then(response => {

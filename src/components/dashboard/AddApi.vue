@@ -1,3 +1,19 @@
+/***************************
+ *   
+ * file: 
+ * /components/accounts/AddApi.vue
+ *
+ * Summary: 
+ * Add API connection as a form to specific account.
+ *
+ * Description: 
+ * Whenever client ask to add new platform, this component is used.
+ *
+ * Father Components: 
+ * views/accounts/Accounts.vue
+ *
+***************************/ 
+
 <template>
   <div>
   <p>Adding api:</p>
@@ -14,6 +30,11 @@ import { mapActions } from 'vuex';
 export default {
     name: 'AddApi',
     data() {
+      /**
+       * platform_name: User platform name.
+       * platform_key: User platform key.
+       * platform_secret: User platform secret.
+       */
       return {
         platform_name: '',
         platform_key: '',
@@ -22,6 +43,11 @@ export default {
     },
     methods: {
       ...mapActions("accountStore", ["addNewApiConnection"]),
+      /**
+       * AddApiConnection function -
+       * Adding API trough store.actions and redirect after success.
+       * @return - redirect to "/accounts/:id/dashboard"
+       */
         AddApiConnection() {
           let ApiConnectionData = {
             name: this.platform_name,
