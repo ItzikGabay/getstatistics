@@ -92,10 +92,10 @@ async function findById(options) {
  * @return {null} return null
  */
 async function insertItem(options) {
-    firestoreInstance.firebase.firestore().collection(options.endpoint).add(options.item)
+    return firestoreInstance.firebase.firestore().collection(options.endpoint).add(options.item)
     .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
-        return 'Item added sucessfully!';
+        return docRef;
     })
     .catch((error) => {
         console.error("Error adding document: ", error);
@@ -108,14 +108,14 @@ async function insertItem(options) {
  * @return {null} return null
  */
 async function insertSubItem(options) {
-    firestoreInstance.firebase.firestore()
+    return firestoreInstance.firebase.firestore()
         .collection(options.endpoint)
         .doc(options.doc_id)
         .collection(options.subEndpoint)
         .add(options.item)
     .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
-        return 'Item added sucessfully!';
+        return docRef;
     })
     .catch((error) => {
         console.error("Error adding document: ", error);

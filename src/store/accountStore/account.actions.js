@@ -45,7 +45,9 @@ export default {
         return accounts;
     },
     addNewApiConnection: async ({ commit }, options) => {
-        const newApiConnection = await firestore.insertSubItem({ endpoint: 'accounts', subEndpoint: 'platforms_connected', doc_id: options.doc_id, item: options.item });
+        const newApiConnectionDB = await firestore.insertItem({ endpoint: 'stats', item: { account_id: options.doc_id } });
+        let manipulatedItem = {...options.item, stats_id: newApiConnectionDB.id}
+        const newApiConnection = await firestore.insertSubItem({ endpoint: 'accounts', subEndpoint: 'platforms_connected', doc_id: options.doc_id, item: manipulatedItem });
         return newApiConnection;
     }
 };
