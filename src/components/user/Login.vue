@@ -38,71 +38,80 @@ import { mapActions } from 'vuex';
 export default {
     name: 'Login',
     data () {
-    return {
-        username: '',
-        password: '',
-        info: 'Not clicked yet'
-        }
+        /**
+         * username: user input email
+         * password: user input password
+         * info: info of user after he logged-in (will change).
+         */
+        return {
+            username: '',
+            password: '',
+            info: 'Not clicked yet'
+            }
     },
     methods: {
         ...mapActions("userStore", ["setUserState"]),
-    /**
-     * Login Authrization trough google accounts.
-     * @return {Object} - user email, name, token, and more.
-     */
-    googleAuthLogin() {
-        const provider = new firebaseInstance.firebase.auth.GoogleAuthProvider();
+        /**
+         * Login Authrization trough google accounts.
+         * @return {Object} - user email, name, token, and more.
+         */
+        googleAuthLogin() {
+            const provider = new firebaseInstance.firebase.auth.GoogleAuthProvider();
+            firebaseInstance.firebase
+                .auth()
+                .signInWithPopup(provider)
+                .then((res) => {
+                    this.info = res
+                    this.setUserState(res.user)
+                    this.$router.push("/accounts")
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    this.$router.push("/auth")
+                });
+        },
+        /**
+         * TEST FUNCTION ONLY!
+         */
+        test() {
+            this.info = firebaseInstance.firebase.auth().currentUser
+        },
+        /**
+         * Login Authrization trough email and password.
+         * @return {Object} - user email, name, token, and more.
+         */
+        UserPassAuthLogin() {
         firebaseInstance.firebase
             .auth()
-            .signInWithPopup(provider)
-            .then((res) => {
-                this.info = res
-                this.setUserState(res.user)
-                this.$router.push("/accounts")
+            .signInWithEmailAndPassword(this.username, this.password)
+            .then((userCredential) => {
+            var user = userCredential.user;
+            console.log(user);
             })
             .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // The email of the user's account used.
-                var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
-                this.$router.push("/auth")
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorCode, errorMessage);
             });
+        },
+        /**
+         * Sign out from firebase.
+         */
+        signOut() {
+            firebaseInstance.firebase.auth().signOut()
+            .then(() => this.$router.push("/home"))
+        }
     },
     /**
-     * TEST FUNCTION ONLY!
+     * Whenever application starts ->
+     * we made test function from the Firebase backend (works).
+     * use when needed.
      */
-    test() {
-        this.info = firebaseInstance.firebase.auth().currentUser
-    },
-    /**
-     * Login Authrization trough email and password.
-     * @return {Object} - user email, name, token, and more.
-     */
-    UserPassAuthLogin() {
-      firebaseInstance.firebase
-        .auth()
-        .signInWithEmailAndPassword(this.username, this.password)
-        .then((userCredential) => {
-          var user = userCredential.user;
-          console.log(user);
-        })
-        .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          console.log(errorCode, errorMessage);
-        });
-    },
-
-    /**
-     * Sign out from firebase.
-     */
-    signOut() {
-        firebaseInstance.firebase.auth().signOut()
-        .then(() => this.$router.push("/home"))
-    }
-    },
     created() {
         const googleAuthLogin = firebaseInstance.firebase.functions().httpsCallable('googleAuthLogin')
         googleAuthLogin({name: 'Itzik'})

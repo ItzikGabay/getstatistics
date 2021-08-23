@@ -13,12 +13,28 @@ import firestore from '../../middleware/database/firestore/index';
 import firebaseInstance from "../../middleware/database/index";
 
 export default {
+    /**
+     * getUserAccounts function - 
+     * Retrieve all accounts that registerd to
+     * the current user logged in & Commit to state.
+     * @params: not needed.
+     * @return: [Array] - list of accounts objects
+     */
     getUserAccounts: async ({ commit }, item) => {
         // TODOS: Change to generic
         const accounts = await firestore.findAllWhere({ endpoint: 'accounts', queryKey: 'owner_id', queryValue: 'H9mzR35AQ1MdHIi5Ifg1t1uAaRY2' });
         commit("setAccountsState", accounts);
         return accounts;
     },
+    /**
+     * getAccountApiList function - 
+     * Retrieve all Connected Platforms (api) that connected
+     * to this specific account (with id).
+     * @params: {Object} options.endpoint - which table to search in Firestore. (exp: 'accounts')
+     * @params: {Object} options.subEndpoint - which collections to search in the table. (exp: 'platforms_connected')
+     * @params: {Object} options.account_id - from which id we retrieve the data. (exp: 'fdfg4gt43dxfds42fd')
+     * @return: [Array] of {Object} - the list from the firestore.
+     */
     getAccountApiList: async ({ commit }, options) => {
         // TODOS: Change to generic
         const ApiList = await firestore.findSubItem(
@@ -30,6 +46,15 @@ export default {
         commit("setApiConnectionsState", ApiList);
         return ApiList;
     },
+    /**
+     * getItemSubItemById function - 
+     * Retrieve specific connected platform data trough ID (api).
+     * @params: {Object} options.endpoint - Which table to search in Firestore. (exp: 'accounts')
+     * @params: {Object} options.subEndpoint - Which collections to search in the table. (exp: 'platforms_connected')
+     * @params: {Object} options.account_id - From which id we retrieve the data. (exp: 'fdfg4gt43dxfds42fd')
+     * @params: {Object} options.item_sub_item_id - Which ID to look in the table -> collection -> doc -> collection -> id (it's here). (exp: 'fdfg4gt43dxfds42fd')
+     * @return: [Array] of {Object} - List from the firestore.
+     */
     getItemSubItemById: async ({ commit }, options) => {
         // TODOS: Change to generic
         const ApiList = await firestore.findSubItemById(
@@ -42,6 +67,12 @@ export default {
         commit("setCurrentPlatformState", ApiList);
         return ApiList;   
     },
+    /**
+     * addAccount function - 
+     * Add new account with owner(user) id.
+     * @params: String - Account name (exp: 'itzik').
+     * @return: New account created.
+     */
     addAccount: async ({ commit }, accountName) => {
         let item = {
             // TODOS: Change to generic
@@ -57,7 +88,7 @@ export default {
     },
     addNewApiConnection: async ({ commit }, options) => {
         const newApiConnectionDB = await firestore.insertItem({ endpoint: 'stats', item: { account_id: options.doc_id } });
-        let manipulatedItem = {...options.item, stats_id: newApiConnectionDB.id}
+        let manipulatedItem = { ...options.item, stats_id: newApiConnectionDB.id };
         const newApiConnection = await firestore.insertSubItem({ endpoint: 'accounts', subEndpoint: 'platforms_connected', doc_id: options.doc_id, item: manipulatedItem });
         return newApiConnection;
     }

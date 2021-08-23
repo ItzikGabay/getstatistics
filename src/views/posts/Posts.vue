@@ -48,7 +48,6 @@ export default {
     },
     methods: {
         ...mapActions("postsStore", ["test"]),
-
         /**
          * Send get request to retrieve all data from firebase,
          * and changing on current data object.
@@ -57,9 +56,7 @@ export default {
         async read() {
             this.data = await firestoreInstance.findAll({endpoint: this.endpoint})
         }
-
-    },
-    
+    },  
     async created() {
         await this.read()
     }

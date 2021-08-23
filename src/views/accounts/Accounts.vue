@@ -9,6 +9,9 @@
  * Description: 
  * Showing in table all the accounts connected to user id.
  *
+ * Path: 
+ * '/accounts',
+ *
  * Components used: 
  * components/accounts/List.vue
  *

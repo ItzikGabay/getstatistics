@@ -52,10 +52,10 @@ export default {
             this.user = window.user
         }
     },
+    /**
+    * When view started -> check if the user connected.
+    */
     async created() {
-         /**
-         * When view started -> check if the user connected.
-         */
         this.checkIfLoggedIn()
     },
 }

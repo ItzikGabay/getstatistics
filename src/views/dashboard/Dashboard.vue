@@ -9,9 +9,12 @@
  * Description: 
  * Showing stats and API's connected to the user
  *
+ * Path: 
+ * '/dashboard',
+ *
  * Components used: 
- * components/accounts/Platforms.vue
- * components/accounts/AddApi.vue
+ * components/dashboard/Platforms.vue
+ * components/dashboard/AddApi.vue
  *
 ***************************/ 
 

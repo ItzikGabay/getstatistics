@@ -106,7 +106,6 @@ async function findById(options) {
     return snapshot;
 }
 
-
 /**
  * Insert new item to Firestore.
  * @param {Object} options - object {endpoint: 'tablename'}  & {item: {newitem:} }.
@@ -142,7 +141,6 @@ async function insertSubItem(options) {
         console.error("Error adding document: ", error);
     });
 }
-
 
 export default {
     findAll,

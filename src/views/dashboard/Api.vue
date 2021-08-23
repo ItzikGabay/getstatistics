@@ -1,3 +1,22 @@
+/***************************
+ *   
+ * file: 
+ * /views/accounts/Api.vue
+ *
+ * Summary: 
+ * Showing all data of specific API (example: facebook, google, youtube)
+ *
+ * Description: 
+ * Whenever user click on API Id, we using this view.
+ *
+ * Path: 
+ * '/dashboard/:id',
+ *
+ * Components used: 
+ * components/dashboard/Info.vue
+ *
+***************************/ 
+
 <template>
   <div>
     <p>FATHER API VIEW:</p>
@@ -16,12 +35,21 @@ export default {
       Info
     },
     data() {
+      /**
+       * apiData: Api data from father component view.
+       */
       return {
         apiData: 'Not loaded yet.'
       }
   },
     methods: {
     ...mapActions("accountStore", ["getItemSubItemById"]),
+    /**
+     * read function - 
+     * Getting all data from Firestore &
+     * update the state from the actions file.
+     * @see accountStore.actions.js
+     */
     async read() {
       let result = await this.getItemSubItemById(
         {
@@ -32,7 +60,6 @@ export default {
     }
   },
   created() {
-    // alert(this.apiData)
     this.read()
   }
 }

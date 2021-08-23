@@ -9,6 +9,9 @@
  * Description: 
  * Make the user owner of the current new account.
  *
+ * Path: 
+ * '/accounts/add',
+ *
  * Components used: 
  * components/accounts/Create.vue
  *
