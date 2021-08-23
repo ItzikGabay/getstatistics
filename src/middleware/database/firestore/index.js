@@ -19,7 +19,7 @@ import firestore from 'firebase/firestore';
 
 /**
  * Send get request to retrieve all data from firebase.
- * @param {Object} options - {route:} where to read in Firebase.
+ * @param {Object} options - {endpoint:} where to read in Firebase.
  * @return {Array} array Data of request.
  */
 async function findAll(options) {

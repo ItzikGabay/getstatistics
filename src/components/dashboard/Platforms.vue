@@ -26,7 +26,7 @@
 
         <q-card-actions vertical align="center">
             <q-btn flat @click="goTo(platformsConnections[i - 1].id)">Get Stats</q-btn>
-            <q-btn flat @click="goTo(platformsConnections[i - 1].id)">Publish post</q-btn>
+            <q-btn flat @click="goTo()">Publish post</q-btn>
         </q-card-actions>
         </q-card>
     </div>
@@ -52,6 +52,9 @@ export default {
      * redirect after someone clicks on "get stats" on the v-card.
      */
     goTo(platformId) {
+      if(!platformId){
+        return this.$router.push(`/accounts/${this.$route.params.id}/posts`)
+      }   
       this.$router.push(`/accounts/${this.$route.params.id}/dashboard/${platformId}`)
     }
   },

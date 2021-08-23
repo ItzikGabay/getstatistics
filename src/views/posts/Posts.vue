@@ -23,18 +23,21 @@
       
       <p>Father component: </p>
       <List :postsData="this.data"/>
+      <hr>
+      <Add/>
   </div>
 </template>
 
 <script>
 import List from '../../components/posts/List.vue';
+import Add from '../../components/posts/Add.vue';
 import firestoreInstance from '../../middleware/database/firestore/index';
 import { mapActions } from 'vuex';
 
 export default {
     name: 'Posts',
     components: {
-        List
+        List, Add
     },
     data() {
         /**
@@ -42,19 +45,21 @@ export default {
          * @obj {data}: data of posts. 
          */
         return {
-            endpoint: 'test',
             data: ''
         }
     },
     methods: {
-        ...mapActions("postsStore", ["test"]),
+        ...mapActions("postsStore", ["getAccountPosts"]),
         /**
          * Send get request to retrieve all data from firebase,
          * and changing on current data object.
          * @param {Object} options - {endpoint:} where to read in Firebase.
          */
-        async read() {
-            this.data = await firestoreInstance.findAll({endpoint: this.endpoint})
+        read() {
+            this.getAccountPosts()
+            .then(() => {
+                this.data = this.$store.state.postsStore.posts
+            })
         }
     },  
     async created() {

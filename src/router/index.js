@@ -35,14 +35,6 @@ const routes = [
   },
 
   /************************
-  * ! Posts Views
-  ***********************/
-  {
-    path: '/posts',
-    name: 'Posts',
-    component: () => import('../views/posts/Posts.vue')
-  },
-  /************************
   * ! Accounts Views
   ***********************/
   {
@@ -54,6 +46,15 @@ const routes = [
     path: '/accounts/add',
     name: 'AddAccount',
     component: () => import('../views/accounts/Add.vue')
+  },
+
+  /************************
+  * ! Posts Views
+  ***********************/
+  {
+    path: '/accounts/:id/posts',
+    name: 'Posts',
+    component: () => import('../views/posts/Posts.vue')
   },
 
   /************************
