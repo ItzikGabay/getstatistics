@@ -49,21 +49,27 @@ export default {
         }
     },
     methods: {
-        ...mapActions("postsStore", ["getAccountPosts"]),
+        ...mapActions("postsStore", ["getAccountPosts", "createPost"]),
         /**
          * Send get request to retrieve all data from firebase,
          * and changing on current data object.
          * @param {Object} options - {endpoint:} where to read in Firebase.
          */
         read() {
-            this.getAccountPosts()
+            this.getAccountPosts({id: this.$route.params.id})
             .then(() => {
                 this.data = this.$store.state.postsStore.posts
             })
+        },
+        test() {
+            // Changed to 
+            // const userId = JSON.parse(localStorage.getItem('user')).uid;
+
         }
     },  
     async created() {
         await this.read()
+        // await this.test()
     }
 }
 </script>

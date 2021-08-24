@@ -123,6 +123,7 @@ async function insertItem(options) {
 }
 
 /**
+ * TODOS: comment
  * Insert new item to Firestore.
  * @param {Object} options - object {endpoint: 'tablename'}  & {item: {newitem:} }.
  * @return {null} return null
@@ -142,6 +143,33 @@ async function insertSubItem(options) {
     });
 }
 
+/**
+ * TODOS: comment
+ * Insert new item to Firestore.
+ * @param {Object} options - object {endpoint: 'tablename'}  & {item: {newitem:} }.
+ * @return {null} return null
+ */
+async function insertItemSubItem(options) {
+    let temp = { ...options };
+    delete temp.item;
+    temp.item = { name: 'Test' };
+    let result = await insertSubItem(temp);
+    return firestoreInstance.firebase.firestore()
+        .collection(options.endpoint)
+        .doc(options.doc_id)
+        .collection(options.subEndpoint)
+        .doc(result.id)
+        .collection(options.thirdEndpoint)
+        .add(options.item)
+    .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+        return docRef;
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+}
+
 export default {
     findAll,
     findById,
@@ -149,5 +177,6 @@ export default {
     findAllWhere,
     insertSubItem,
     findSubItem,
-    findSubItemById
+    findSubItemById,
+    insertItemSubItem
 };

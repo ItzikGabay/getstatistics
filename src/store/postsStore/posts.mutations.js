@@ -17,7 +17,7 @@ export default {
     // Reset edited post to to the main state.
     resetEditedPostState: ((state) => {
         for (const key in state.editedPost) {
-            state.editedPost[key] = ''
+            state.editedPost[key] = '';
         }
     })
 

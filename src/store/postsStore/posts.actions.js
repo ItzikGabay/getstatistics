@@ -17,8 +17,12 @@ export default {
         return posts;
     },
     getAccountPosts: async ({ commit }, options) => {
-        const posts = await firestore.findAll({ endpoint: 'posts' });
+        const posts = await firestore.findSubItem({ endpoint: 'posts', account_id: options.id, subEndpoint: 'data'});
         commit("setPostsState", posts);
+        return posts;
+    },
+    createPost: async ({ commit }, options) => {
+        const posts = await firestore.insertItemSubItem({ endpoint: 'posts', subEndpoint: 'data', thirdEndpoint:'content', doc_id: options.accoundId, item: options.item });
         return posts;
     },
 };
