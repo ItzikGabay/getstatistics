@@ -4,10 +4,10 @@
  * /firebase/firestore/index.js
  *
  * Summary: 
- * FIRESTORE - Database CRUD functions.
+ * Firestore (collections) Database CRUD functions.
  *
  * Description: 
- * Functions that gives you communication with the Firebase & Firestore DB.
+ * Functions that gives you communication with the Firestore DB.
  *
  *
 ***************************/ 
@@ -18,9 +18,10 @@ import firestore from 'firebase/firestore';
 
 
 /**
- * Send get request to retrieve all data from firebase.
- * @param {Object} options - {endpoint:} where to read in Firebase.
- * @return {Array} array Data of request.
+ * findAll function - 
+ * Retrieve all data from firebase specific table collection.
+ * @param {Object}: options - {endpoint: which table to read} 
+ * @return {Array}: Firestore Promise table data.
  */
 async function findAll(options) {
 
@@ -31,9 +32,12 @@ async function findAll(options) {
 }
 
 /**
- * Send get request to retrieve all data with query from firebase.
- * @param {Object} options - object {queryKey: queryValue} of search & {endpoint:} where to read in Firebase.
- * @return {Array} array Data of request.
+ * findAllWhere function - 
+ * Retrieve all data with query.
+ * @param {Object}: options - {queryKey: which key to search} & 
+ * {queryValue: which value is should to be} 
+ * & {endpoint: Which table to read.} 
+ * @return {Array}: Firestore Promise table data.
  */
 async function findAllWhere(options) {
 
@@ -50,9 +54,12 @@ async function findAllWhere(options) {
 }
 
 /**
- * Send get request to retrieve all data from firebase.
- * @param {Object} options - {route:} where to read in Firebase.
- * @return {Array} array Data of request.
+ * findSubItem function - 
+ * Find __DOC__ inside collection table.
+ * @param {Object}: options - {endpoint: which table to read} & 
+ * {account_id: doc ID to search} &
+ * {subEndpoint: which second collection to read}.
+ * @return {Array}: Firestore Promise table data.
  */
 async function findSubItem(options) {
 
@@ -73,9 +80,13 @@ async function findSubItem(options) {
 }
 
 /**
- * Send get request to retrieve all data from firebase.
- * @param {Object} options - {route:} where to read in Firebase.
- * @return {Array} array Data of request.
+ * findSubItemById function -
+ * Retrieve all data from firebase by ID query.
+ * @param {Object}: options - {endpoint: which table to read} & 
+ * {account_id: doc ID to search} &
+ * {subEndpoint: which second collection to read}.
+ * {item_sub_item_id: doc ID to get data}.
+ * @return {Array}: Firestore Promise table data.
  */
 async function findSubItemById(options) {
 
@@ -96,9 +107,11 @@ async function findSubItemById(options) {
 }
 
 /**
- * Find specific item from database
- * @param {Object} options - object {endpoint: 'tablename'}  & {id: }.
- * @return {object} return the specific item.
+ * findById function -
+ * Find specific document by ID.
+ * @param {Object}: options - {endpoint: which table to read} & 
+ * {id: which doc ID you want to get data}
+ * @return {Array}: Firestore Promise table data.
  */
 async function findById(options) {
     const snapshot = await firestoreInstance.firebase.firestore().collection(options.endpoint).doc(options.id).get();
@@ -107,9 +120,10 @@ async function findById(options) {
 }
 
 /**
- * Insert new item to Firestore.
- * @param {Object} options - object {endpoint: 'tablename'}  & {item: {newitem:} }.
- * @return {null} return null
+ * InsertItem function - 
+ * Insert new doc to collection table.
+ * @param {Object}: options - {endpoint: which table to read}
+ * {item: {Object} - which item you adding}
  */
 async function insertItem(options) {
     return firestoreInstance.firebase.firestore().collection(options.endpoint).add(options.item)
@@ -123,10 +137,14 @@ async function insertItem(options) {
 }
 
 /**
- * TODOS: comment
- * Insert new item to Firestore.
- * @param {Object} options - object {endpoint: 'tablename'}  & {item: {newitem:} }.
- * @return {null} return null
+ * insertSubItem function - 
+ * Insert new doc to new or existed collection.
+ * @param {Object}: options - 1. {endpoint: which table to read} &
+ * 2. {item: {Object} - which item you adding} & 
+ * 3. {doc_id: doc ID to search} &
+ * 4. {subEndpoint: which second collection to read} & 
+ * 5. {item: {Object} - which item you adding}
+ * @return {Object}: new item added
  */
 async function insertSubItem(options) {
     return firestoreInstance.firebase.firestore()
@@ -144,10 +162,19 @@ async function insertSubItem(options) {
 }
 
 /**
- * TODOS: comment
- * Insert new item to Firestore.
- * @param {Object} options - object {endpoint: 'tablename'}  & {item: {newitem:} }.
- * @return {null} return null
+ * insertItemSubItem function - 
+ * Insert new doc to new or existed collection under doc's 
+ * collection that is under doc's collections. (Nested)
+ * exp: collection1/:docs1/collection2/:docs2/collection3/:docs3 <- here.
+ * @param {Object}: options - 
+ * 1. {endpoint: which table to read} &
+ * 2. {item: {Object} - which item you adding} & 
+ * 3. {doc_id: doc ID to search} &
+ * 4. {subEndpoint: which second collection to read} & 
+ * 5. {id: doc ID to search inside} &
+ * 6. {thirdEndpoint: which second collection to read inside} & 
+ * 7. {item: {Object} - which item you adding}
+ * @return {Object}: new item added
  */
 async function insertItemSubItem(options) {
     let temp = { ...options };

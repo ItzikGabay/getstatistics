@@ -82,7 +82,12 @@ const router = new VueRouter({
   routes
 });
 
-// Router guard
+/**
+ * Router Guard function - 
+ * check's if the user is currently sign in or not.
+ * if not -> redirect you back to login.
+ * if connected -> give you access to site.
+ */
 function guardMyroute(to, from, next) {
   let isAuthenticated = false;
   if (localStorage.getItem('user'))

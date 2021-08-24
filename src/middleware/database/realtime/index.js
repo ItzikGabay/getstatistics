@@ -1,13 +1,15 @@
 /***************************
  *
  * file: 
- * /firebase/database/index.js
+ * /firebase/database/realtime/index.js
  *
  * Summary: 
- * FIREBASE - Database CRUD functions.
+ * FIREBASE Realtime Database CRUD functions.
  *
  * Description: 
- * Functions that gives you communication with the Firebase & Firestore DB.
+ * With the functions on this file,
+ * you are communicate with realtime DB
+ * when needed. 
  *
  *
 ***************************/ 
