@@ -15,10 +15,71 @@
 ***************************/ 
 
 <template>
-    <div>
-        <h4>Posts result:</h4>
-        <p>{{this.postsData}}</p>
-    </div>
+  <div>
+    <q-timeline-entry
+      class="timeline"
+      v-for="post in this.postsData"
+      :key="post.id"
+      :title="'ID: ' + post.id"
+      :subtitle="String(post.name)"
+      color="green"
+      icon="done_all"
+    >
+      <div>
+        <q-btn
+          size="lg"
+          text-color="#FF0080"
+          :label="post.id"
+           flat
+        />
+
+        <q-separator />
+
+        <div style="width: 95%" v-html="post.name"></div>
+      </div>
+      <q-separator />
+      <p>Posted:</p>
+      <!-- <q-badge
+        v-for="(value, key) in post.scheduleTime.platforms"
+        :key="key"
+        flat
+        color="green"
+        :label="value"
+        class="socialBadge"
+      /> -->
+      <q-badge flat color="orange" label="Taboola" class="socialBadge" />
+      <!-- <q-badge rounded color="red" label="ins" class="socialBadge" />
+        <q-badge rounded color="primary" label="fb" class="socialBadge"/>
+        <q-badge rounded color="orange" label="rav-meser" class="socialBadge" /> -->
+      <q-separator />
+      <p>More actions:</p>
+      <q-btn
+        size="md"
+        text-color="primary"
+        label="More info"
+        @click="edit(post.id)"
+        push
+      />
+
+      <q-btn
+        size="sm"
+        text-color="red"
+        label="Delete post"
+        @click="deletePost(post.id)"
+        flat
+      />
+
+      <q-separator />
+      <div class="q-gutter-sm">
+        <q-chip class="publisherChip">
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+          </q-avatar>
+          Published By Itzik
+        </q-chip>
+      </div>
+    </q-timeline-entry>
+  </div>
 </template>
 
 <script>
@@ -28,6 +89,29 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.socialBadge {
+  margin-right: 10px;
+}
 
+.publisherChip {
+  margin-top: 15px;
+}
+
+.timeline {
+  background: #ffffff;
+  width: 900px;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-bottom: 50px;
+}
+
+h5 {
+  margin: 0;
+}
+
+.q-separator {
+  margin: 20px 0 20px 0;
+  width: 95%;
+}
 </style>

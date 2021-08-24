@@ -16,15 +16,34 @@
 
 <template>
   <div>
-      <!-- Test Fields -->
-      <button @click="read()">Refresh Data</button>
+    <div class="q-px-lg q-pb-md">
+      <!-- <button @click="read()">Refresh Data</button> -->
+          <!-- Posts Lists div -->
+    <q-timeline color="secondary">
+
+      <!-- Month Display -->
+      <q-timeline-entry heading>
+          <q-chip size="18px" icon="bookmark">
+            August, 2021
+          </q-chip>
+      </q-timeline-entry>
+      <!-- End of Month Display -->
+
+<List :postsData="this.data"/>
+
+    <!-- Month Display -->
+      <q-timeline-entry heading>
+        <q-chip size="18px" icon="bookmark">
+          Septemember, 2021
+        </q-chip>
+      </q-timeline-entry>
+    </q-timeline>
+    <!-- End of Month Display -->
+
       <hr>
-      <!-- Test Fields -->
       
-      <p>Father component: </p>
-      <List :postsData="this.data"/>
-      <hr>
       <Add/>
+  </div>
   </div>
 </template>
 
@@ -61,11 +80,6 @@ export default {
                 this.data = this.$store.state.postsStore.posts
             })
         },
-        test() {
-            // Changed to 
-            // const userId = JSON.parse(localStorage.getItem('user')).uid;
-
-        }
     },  
     async created() {
         await this.read()

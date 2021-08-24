@@ -197,6 +197,23 @@ async function insertItemSubItem(options) {
     });
 }
 
+/**
+ * InsertItem function - 
+ * Insert new doc to collection table.
+ * @param {Object}: options - {endpoint: which table to read}
+ * @param {Object}: options - {doc_id: which doc to search}
+ * {item: {Object} - which type you adding to current item - object, array, etc}
+ */
+async function setAtDoc(options) {
+    return firestoreInstance.firebase.firestore().collection(options.endpoint).doc(options.doc_id).set(options.item)
+    .then((docRef) => {
+        return docRef;
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+}
+
 export default {
     findAll,
     findById,
@@ -205,5 +222,6 @@ export default {
     insertSubItem,
     findSubItem,
     findSubItemById,
-    insertItemSubItem
+    insertItemSubItem,
+    setAtDoc
 };
