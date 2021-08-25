@@ -20,7 +20,6 @@
 
 <template>
   <div>
-      <p>This is Father Dashboard View</p>
       <Platforms :platformsData="this.platformsConnections"/>
       <hr>
       <AddApi/>

@@ -17,6 +17,14 @@
 <template>
   <div>
     <div class="q-px-lg q-pb-md">
+
+      <q-btn
+        size="md"
+        text-color="primary"
+        label="Add Post"
+        @click="goTo('add')"
+        push
+      />
       <!-- <button @click="read()">Refresh Data</button> -->
           <!-- Posts Lists div -->
     <q-timeline color="secondary">
@@ -39,24 +47,18 @@
       </q-timeline-entry>
     </q-timeline>
     <!-- End of Month Display -->
-
-      <hr>
-      
-      <Add/>
   </div>
   </div>
 </template>
 
 <script>
 import List from '../../components/posts/List.vue';
-import Add from '../../components/posts/Add.vue';
-import firestoreInstance from '../../middleware/database/firestore/index';
 import { mapActions } from 'vuex';
 
 export default {
     name: 'Posts',
     components: {
-        List, Add
+        List
     },
     data() {
         /**
@@ -75,11 +77,17 @@ export default {
          * @param {Object} options - {endpoint:} where to read in Firebase.
          */
         read() {
-            this.getAccountPosts({id: this.$route.params.id})
-            .then(() => {
-                this.data = this.$store.state.postsStore.posts
-            })
+            this.data = this.$store.state.postsStore.posts
+            if (this.data.length < 1) {
+              this.getAccountPosts({id: this.$route.params.id})
+              .then(() => {
+                  this.data = this.$store.state.postsStore.posts
+              })
+            }
         },
+        goTo(id) {
+        this.$router.push(`/accounts/${this.$route.params.id}/posts/${id}`)
+      }
     },  
     async created() {
         await this.read()

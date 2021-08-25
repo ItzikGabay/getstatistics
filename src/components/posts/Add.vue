@@ -16,10 +16,52 @@
 ***************************/ 
 
 <template>
-  <div style="width: 300px;">
-      <q-input standout v-model="name" label="Post name" />
-      <q-input standout v-model="content" label="Content" />
-      <q-btn color="primary" @click="addPost()">Add Post</q-btn>
+  <div>
+      <!-- New Changes -->
+    <div class="text-editor">
+      <q-input standout v-model="currentPost.title" label="Title" />
+
+      <q-editor
+        v-model="currentPost.content"
+        min-height="20rem"
+        class="text-editor"
+      />
+    </div>
+
+    <q-btn
+      v-if="!post"
+      color="white"
+      text-color="black"
+      label="Insert"
+      @click="addPost()"
+      class="buttonMargin"
+    />
+    <q-btn
+      v-if="post"
+      color="white"
+      text-color="black"
+      label="Save"
+      @click="updatePost"
+      class="buttonMargin"
+    />
+    
+    <div class="row">
+      <div class="col-6" style="padding-right: 10px">
+        <h5>HTML Preview:</h5>
+        <q-card flat bordered>
+          <q-card-section v-html="currentPost.content" />
+        </q-card>
+      </div>
+      <div class="col-6">
+        <h5>Hardcoded Preview:</h5>
+        <q-card flat bordered>
+          <q-card-section>
+            <pre style="white-space: pre-line">{{ currentPost.content }}</pre>
+          </q-card-section>
+        </q-card>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -36,6 +78,10 @@ export default {
     return {
       name: '',
       content: '',
+      currentPost: {
+        title: '',
+        content: ''
+      }
     }
   },
   methods: {
@@ -51,10 +97,10 @@ export default {
       const userId = JSON.parse(localStorage.getItem('user')).uid;
       // User schema we are sending.
       let post = {
-        name: this.name,
+        name: this.currentPost.title,
         content: {
-          title: 'hey!',
-          data: this.content
+          title: this.currentPost.title,
+          data: this.currentPost.content
         },
         schedules: [{
           title: 'facebook!',
@@ -70,11 +116,14 @@ export default {
           return;
       })
       // this.setOrUpdatePost({item: post, account_id: this.$route.params.id, post_id: })
+      this.$router.push(`/accounts/${this.$route.params.id}/posts`)
     }
   },
 }
 </script>
 
 <style>
-
+.text-editor {
+  margin: 30px 0 0 0;
+}
 </style>

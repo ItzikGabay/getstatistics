@@ -19,7 +19,7 @@ export default {
     setAccountsState: ((state, accounts) => state.accounts = accounts),
 
     // Set edited post to to the main state.
-    setAccountState: ((state, account) => state.currentAccount = account),
+    setCurrentAccountState: ((state, account) => state.currentAccount = account),
 
     // Reset edited post to to the main state.
     resetAccountState: ((state) => {

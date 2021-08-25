@@ -21,7 +21,7 @@
       v-for="post in this.postsData"
       :key="post.id"
       :title="'ID: ' + post.id"
-      :subtitle="String(post.name)"
+      :subtitle="String(post.content.title)"
       color="green"
       icon="done_all"
     >
@@ -29,24 +29,26 @@
         <q-btn
           size="lg"
           text-color="#FF0080"
-          :label="post.id"
+          :label="post.content.title"
+          @click="goTo(post.id)"
            flat
         />
 
         <q-separator />
 
-        <div style="width: 95%" v-html="post.name"></div>
+        <div style="width: 95%" v-html="post.content.data"></div>
       </div>
       <q-separator />
       <p>Posted:</p>
-      <!-- <q-badge
-        v-for="(value, key) in post.scheduleTime.platforms"
+      <!-- {{post.schedules}} -->
+      <q-badge
+        v-for="(value, key) in post.schedules"
         :key="key"
         flat
         color="green"
         :label="value"
         class="socialBadge"
-      /> -->
+      />
       <q-badge flat color="orange" label="Taboola" class="socialBadge" />
       <!-- <q-badge rounded color="red" label="ins" class="socialBadge" />
         <q-badge rounded color="primary" label="fb" class="socialBadge"/>
@@ -57,7 +59,7 @@
         size="md"
         text-color="primary"
         label="More info"
-        @click="edit(post.id)"
+        @click="goTo(post.id)"
         push
       />
 
@@ -75,7 +77,7 @@
           <q-avatar>
             <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
           </q-avatar>
-          Published By Itzik
+          Published By {{post.user_id}}
         </q-chip>
       </div>
     </q-timeline-entry>
@@ -86,6 +88,11 @@
 export default {
     name: 'List',
     props: ['postsData'],
+    methods: {
+      goTo(id) {
+        this.$router.push(`/accounts/${this.$route.params.id}/posts/${id}`)
+      }
+    }
 }
 </script>
 

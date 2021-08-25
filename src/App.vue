@@ -27,7 +27,7 @@
               </q-item-section>
 
               <q-item-section>
-                <router-link to="/#">Dashboard</router-link>
+                <router-link to="/#/accounts">Accounts</router-link>
               </q-item-section>
             </q-item>
 

@@ -78,6 +78,7 @@ export default {
       * @return - redirect to "/accounts/:id/dashboard"
       */
       goTo(event, row){
+        // TODOS: Save to state
         this.$router.push(`/accounts/${row.accountId}/dashboard`)
       }
     },

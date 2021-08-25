@@ -56,6 +56,16 @@ const routes = [
     name: 'Posts',
     component: () => import('../views/posts/Posts.vue')
   },
+  {
+    path: '/accounts/:id/posts/add',
+    name: 'Create',
+    component: () => import('../views/posts/Create.vue')
+  },
+  {
+    path: '/accounts/:id/posts/:post_id',
+    name: 'View',
+    component: () => import('../views/posts/View.vue')
+  },
 
   /************************
   * ! Dashboard Views

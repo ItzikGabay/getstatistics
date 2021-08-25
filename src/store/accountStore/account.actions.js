@@ -91,5 +91,5 @@ export default {
         let manipulatedItem = { ...options.item, stats_id: newApiConnectionDB.id };
         const newApiConnection = await firestore.insertSubItem({ endpoint: 'accounts', subEndpoint: 'platforms_connected', doc_id: options.doc_id, item: manipulatedItem });
         return newApiConnection;
-    }
+    },
 };

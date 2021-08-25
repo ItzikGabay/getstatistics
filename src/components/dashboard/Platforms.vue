@@ -16,20 +16,47 @@
 
 <template>
   <div>
-    <p>Platforms Connected:</p>
-      <div class="flex flex-center">
-        <q-card v-for="i in platformsConnections.length" :key="i" class="my-card">
-        <q-card-section class="bg-orange-8 text-white">
-            <div class="text-h6">{{platformsConnections[i - 1].name }}</div>
-            <div class="text-subtitle2">Connected: {{platformsConnections[i - 1].connected }}</div>
-        </q-card-section>
+    <!-- new changes -->
+      <div class="row">
+        <div  v-for="i in platformsConnections.length" :key="i" class="col-lg-4 col-md-6 col-sm-12">
+                <q-card class="my-card" flat bordered>
+                  <q-card-section horizontal>
+                    <q-card-section class="q-pt-xs">
+                      <div class="text-overline">Connected: {{platformsConnections[i - 1].connected }}</div>
+                        <q-btn
+                      size="lg"
+                      text-color="#FF0080"
+                      :label="platformsConnections[i - 1].name"
+                      @click="goTo()"
+                      flat
+                    />
+                      <div class="text-caption text-grey">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      </div>
+                    </q-card-section>
 
-        <q-card-actions vertical align="center">
-            <q-btn flat @click="goTo(platformsConnections[i - 1].id)">Get Stats</q-btn>
-            <q-btn flat @click="goTo()">Publish post</q-btn>
-        </q-card-actions>
-        </q-card>
-    </div>
+                    <q-card-section class="col-5 flex flex-center">
+                      <q-img
+                        class="rounded-borders"
+                        src="https://cdn.quasar.dev/img/parallax2.jpg"
+                      />
+                    </q-card-section>
+                  </q-card-section>
+
+                  <q-separator />
+
+                  <q-card-actions>
+                    <q-btn flat round icon="event" />
+                    <q-btn flat @click="goTo()">
+                      Publish Post
+                    </q-btn>
+                    <q-btn flat color="primary" @click="goTo(platformsConnections[i - 1].id)">
+                      Get Stats
+                    </q-btn>
+                  </q-card-actions>
+                </q-card>
+        </div>
+      </div>
   </div>
 </template>
 
