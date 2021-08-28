@@ -38,4 +38,13 @@ export default {
     setOrUpdatePost: async ({ commit }, options) => {
         firestore.setAtDoc({ endpoint: 'posts', doc_id: options.doc_id, item: options.item });
     },
+    updatePostById: async ({ commit }, options) => {
+        firestore.updateSubDocById({
+            endpoint: 'posts',
+            subEndpoint: 'list',
+            doc_id: options.account_id,
+            item_sub_item_id: options.post_id,
+            item: options.item
+        });
+    }
 };

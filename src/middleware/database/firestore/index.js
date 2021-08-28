@@ -215,11 +215,13 @@ async function setAtDoc(options) {
  * @param {Object}: options - {doc_id: which doc to search}
  * {item: {Object} - which type you adding to current item - object, array, etc}
  */
-async function updateDocById(options) {
+async function updateSubDocById(options) {
     return firestoreInstance.firebase.firestore()
         .collection(options.endpoint)
-        .doc(options.doc_id)
-        .update(options.item) // object
+        .doc(options.account_id)
+        .collection(options.subEndpoint)
+        .doc(options.item_sub_item_id)
+        .update(options.item)
     .then((docRef) => {
         return docRef;
     })
@@ -238,5 +240,5 @@ export default {
     findSubItemById,
     insertItemSubItem,
     setAtDoc,
-    updateDocById
+    updateSubDocById
 };

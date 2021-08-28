@@ -31,18 +31,23 @@
       />
     </div>
 
+<!-- Update button -->
     <q-btn
-      color="white"
-      text-color="black"
-      label="Insert"
-      @click="addPost()"
-      class="buttonMargin"
-    />
-    <q-btn
+      v-if="this.$route.params.post_id"
       color="white"
       text-color="black"
       label="Save"
       @click="updatePost"
+      class="buttonMargin"
+    />
+
+<!-- Add button -->
+      <q-btn
+      v-else
+      color="white"
+      text-color="black"
+      label="Insert"
+      @click="addPost()"
       class="buttonMargin"
     />
     
@@ -85,15 +90,15 @@ export default {
       // }
       currentPost: {
         content: {
-          title: 'sdf',
-          data: 'sdf'
+          title: 'test',
+          data: 'testtt'
         }
       },
       postId: this.$route.params.postId
     }
   },
   methods: {
-    ...mapActions("postsStore", ["createPost", "setAtDoc"]),
+    ...mapActions("postsStore", ["createPost", "setAtDoc", "updatePostById"]),
     /**
      * addPost() function - 
      * Sending user schema with user input data
@@ -131,19 +136,24 @@ export default {
       // this.setOrUpdatePost({item: post, account_id: this.$route.params.id, post_id: })
       this.$router.push(`/accounts/${this.$route.params.id}/posts`)
     },
-    updatePost() {
-      alert('hello!')
+    async updatePost() {
+      let result = await this.updatePostById({
+        account_id: this.$route.params.id, 
+        post_id: this.$route.params.post_id, 
+        item: post
+        })
     }
   },
   created() {
     // Checks if state is commited or not,
     // if not, we going to retrieve it again.
-    // if(!this.$store.state.postsStore.editedPost.content.title) {
-    //   // get request retreive data
-    // } else {
-    //   this.currentPost = this.$store.state.postsStore.editedPost
-    // }
-  }
+    if(this.$route.params.post_id) {
+      // get request retreive data
+      // but needs checks first if loaded
+      debugger;
+      return this.currentPost = this.$store.state.postsStore.editedPost;
+      }
+    }
 }
 </script>
 
