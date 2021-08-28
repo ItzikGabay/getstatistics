@@ -63,8 +63,13 @@ const routes = [
   },
   {
     path: '/accounts/:id/posts/:post_id',
-    name: 'View',
+    name: 'Viewer',
     component: () => import('../views/posts/View.vue')
+  },
+  {
+    path: '/accounts/:id/posts/:post_id/edit',
+    name: 'Edit',
+    component: () => import('../views/posts/Create.vue')
   },
 
   /************************

@@ -6,7 +6,8 @@
 </template>
 
 <script>
-import Add from '../../components/posts/Add.vue'
+import Add from '../../components/posts/Add.vue';
+
 export default {
     name: 'Create',
     components: {

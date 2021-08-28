@@ -3,6 +3,12 @@ export default {
     // Set posts array to state.
     setPostsState: ((state, posts) => state.posts = posts),
 
+    // reset posts state
+    resetPostsState: ((state) => state.posts = ''),
+
+    // Push post to posts array of state.
+    pushPostsState: ((state, post) => state.posts.push(post)),
+
 
     // Set the id of the specific post of editing.
     setEditedPostId: ((state, id) => state.editedPostId = id),

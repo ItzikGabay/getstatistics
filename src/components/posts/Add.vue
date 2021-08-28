@@ -17,19 +17,21 @@
 
 <template>
   <div>
+    {{this.currentPost}}
+    <!-- {{this.postId}} -->
       <!-- New Changes -->
     <div class="text-editor">
-      <q-input standout v-model="currentPost.title" label="Title" />
+      <!-- <q-input standout v-model="this.currentPost.content.title" label="Title" /> -->
+      <q-input standout v-model="currentPost.content.title" label="Title" />
 
       <q-editor
-        v-model="currentPost.content"
+        v-model="currentPost.content.data"
         min-height="20rem"
         class="text-editor"
       />
     </div>
 
     <q-btn
-      v-if="!post"
       color="white"
       text-color="black"
       label="Insert"
@@ -37,7 +39,6 @@
       class="buttonMargin"
     />
     <q-btn
-      v-if="post"
       color="white"
       text-color="black"
       label="Save"
@@ -49,14 +50,14 @@
       <div class="col-6" style="padding-right: 10px">
         <h5>HTML Preview:</h5>
         <q-card flat bordered>
-          <q-card-section v-html="currentPost.content" />
+          <q-card-section v-html="currentPost.content.data" />
         </q-card>
       </div>
       <div class="col-6">
         <h5>Hardcoded Preview:</h5>
         <q-card flat bordered>
           <q-card-section>
-            <pre style="white-space: pre-line">{{ currentPost.content }}</pre>
+            <pre style="white-space: pre-line">{{ currentPost.content.data }}</pre>
           </q-card-section>
         </q-card>
       </div>
@@ -78,10 +79,17 @@ export default {
     return {
       name: '',
       content: '',
+      // currentPost: {
+      //   title: '',
+      //   content: ''
+      // }
       currentPost: {
-        title: '',
-        content: ''
-      }
+        content: {
+          title: 'sdf',
+          data: 'sdf'
+        }
+      },
+      postId: this.$route.params.postId
     }
   },
   methods: {
@@ -97,14 +105,19 @@ export default {
       const userId = JSON.parse(localStorage.getItem('user')).uid;
       // User schema we are sending.
       let post = {
-        name: this.currentPost.title,
+        name: this.currentPost.content.title,
+        date_created: '11-11-1111',
         content: {
-          title: this.currentPost.title,
-          data: this.currentPost.content
+          title: this.currentPost.content.title,
+          data: this.currentPost.content.data
         },
         schedules: [{
-          title: 'facebook!',
-          date: '11-11-1111'
+          title: 'twitter',
+          date: '11-11-1111',
+          posted: false,
+          published_url: '',
+          clicks: 0,
+          published_time: ''
         }],
         user_id: userId
       };
@@ -117,8 +130,20 @@ export default {
       })
       // this.setOrUpdatePost({item: post, account_id: this.$route.params.id, post_id: })
       this.$router.push(`/accounts/${this.$route.params.id}/posts`)
+    },
+    updatePost() {
+      alert('hello!')
     }
   },
+  created() {
+    // Checks if state is commited or not,
+    // if not, we going to retrieve it again.
+    // if(!this.$store.state.postsStore.editedPost.content.title) {
+    //   // get request retreive data
+    // } else {
+    //   this.currentPost = this.$store.state.postsStore.editedPost
+    // }
+  }
 }
 </script>
 

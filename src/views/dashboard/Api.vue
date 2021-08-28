@@ -56,7 +56,7 @@ export default {
           account_id: this.$route.params.id, 
           itemSubItemID: this.$route.params.api_id
         });
-        this.apiData = this.$store.state.accountStore.currentApi[0]
+        this.apiData = this.$store.state.accountStore.currentApi
     }
   },
   created() {

@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
     name: 'List',
     props: ["accountsData"],
@@ -73,13 +74,17 @@ export default {
       }
     },
     methods: {
+      ...mapMutations("postsStore", ["resetPostsState"]),
       /**
       * Whenever user clicks, this function will redirect him to accounts/:accountId
       * @return - redirect to "/accounts/:id/dashboard"
       */
       goTo(event, row){
         // TODOS: Save to state
-        this.$router.push(`/accounts/${row.accountId}/dashboard`)
+        // this.$store.dispatch("resetPostsState");
+        let result = this.$store.state.postsStore;
+        debugger;
+        this.$router.push(`/accounts/${row.accountId}/dashboard`);
       }
     },
     watch: {

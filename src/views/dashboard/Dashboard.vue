@@ -21,9 +21,7 @@
 <template>
   <div>
       <Platforms :platformsData="this.platformsConnections"/>
-      <hr>
       <AddApi/>
-      <hr>
   </div>
 </template>
 

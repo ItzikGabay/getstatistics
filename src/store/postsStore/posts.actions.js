@@ -17,13 +17,23 @@ export default {
         return posts;
     },
     getAccountPosts: async ({ commit }, options) => {
-        const posts = await firestore.findSubItem({ endpoint: 'posts', account_id: options.id, subEndpoint: 'list'});
+        const posts = await firestore.findSubItem({ endpoint: 'posts', account_id: options.id, subEndpoint: 'list' });
+        commit("resetPostsState");
         commit("setPostsState", posts);
         return posts;
     },
+    getPostById: async ({ commit }, options) => {
+        const post = await firestore.findSubItemById({ endpoint: 'posts', account_id: options.id, subEndpoint: 'list', item_sub_item_id: options.postId});
+        commit("setEditedPostState", post);
+        return post;
+    },
     createPost: async ({ commit }, options) => {
-        const posts = await firestore.insertSubItem({ endpoint: 'posts', subEndpoint: 'list', doc_id: options.accoundId, item: options.item });
-        return posts;
+        const newPost = await firestore.insertSubItem({ endpoint: 'posts', subEndpoint: 'list', doc_id: options.accoundId, item: options.item });
+        let newPostId = newPost.id;
+            
+        let newPostData = await firestore.findSubItemById({ endpoint: 'posts', account_id: options.accoundId, subEndpoint: 'list', item_sub_item_id: newPostId});
+        commit("pushPostsState", newPostData);
+        return newPostData;
     },
     setOrUpdatePost: async ({ commit }, options) => {
         firestore.setAtDoc({ endpoint: 'posts', doc_id: options.doc_id, item: options.item });

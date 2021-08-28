@@ -15,8 +15,7 @@
 ***************************/ 
 
 <template>
-  <div>
-  <p>Adding api:</p>
+  <div class="getWhiteBackground">
     <q-input v-model="platform_name" standout hint="API Name"  label="Enter API Name" />
     <q-input v-model="platform_key" standout hint="API Key"  label="Enter API Key" />
     <q-input v-model="platform_secret" standout hint="API Secret"  label="Enter API Secret" />

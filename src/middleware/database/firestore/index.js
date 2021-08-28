@@ -94,16 +94,10 @@ async function findSubItemById(options) {
         .collection(options.endpoint)
         .doc(options.account_id)
         .collection(options.subEndpoint)
-        .get(options.item_sub_item_id);
+        .doc(options.item_sub_item_id)
+        .get();
     
-    let result = snapshot.docs.map(doc => {
-        // pushing ID inside of the doc.
-        let documentId = doc.id;
-        doc = doc.data();
-        doc.id = documentId;
-        return doc;
-    });
-    return result;
+    return { ...snapshot.data(), id: snapshot.id };
 }
 
 /**
@@ -214,6 +208,26 @@ async function setAtDoc(options) {
     });
 }
 
+/**
+ * InsertItem function - 
+ * Insert new doc to collection table.
+ * @param {Object}: options - {endpoint: which table to read}
+ * @param {Object}: options - {doc_id: which doc to search}
+ * {item: {Object} - which type you adding to current item - object, array, etc}
+ */
+async function updateDocById(options) {
+    return firestoreInstance.firebase.firestore()
+        .collection(options.endpoint)
+        .doc(options.doc_id)
+        .update(options.item) // object
+    .then((docRef) => {
+        return docRef;
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+}
+
 export default {
     findAll,
     findById,
@@ -223,5 +237,6 @@ export default {
     findSubItem,
     findSubItemById,
     insertItemSubItem,
-    setAtDoc
+    setAtDoc,
+    updateDocById
 };
