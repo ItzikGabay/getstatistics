@@ -39,10 +39,12 @@ export default {
   methods: {
     ...mapActions("postsStore", ["getPostById"]),
     async read() {
+      this.$q.loading.show()
       await this.getPostById({
         id: this.$route.params.id,
         postId: this.$route.params.post_id,
       });
+      this.$q.loading.hide()
     },
   },
   created() {

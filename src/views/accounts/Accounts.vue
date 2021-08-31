@@ -25,7 +25,6 @@
       <p>data: {{data}}</p>
       <button @click="read()">Click here</button> -->
       <!-- {{accounts}} -->
-      {{getTableData}}
       <h4 v-if="showButton">Seems that you didnt create your account!</h4>
       <q-btn v-if="showButton" style="background: #FF0080; color: white" label="Create account" @click="goToCreateAccount()"/>
       <List :accountsData="this.getTableData"/>

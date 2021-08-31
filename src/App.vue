@@ -17,8 +17,10 @@
       <q-drawer v-model="drawer" show-if-above :width="200" :breakpoint="500">
         <q-scroll-area class="fit" style="background: #334756; color: #ffffff">
           <q-list padding class="menu-list">
+
+            <div v-if="!user">
             <q-item clickable v-ripple>
-              <q-item-section> <b>Welcome Back,</b> Flashdev </q-item-section>
+              <q-item-section><b>Hello</b> Please Register or Log in! </q-item-section>
             </q-item>
 
             <q-item clickable v-ripple>
@@ -27,49 +29,101 @@
               </q-item-section>
 
               <q-item-section>
-                <router-link to="/#/accounts">Accounts</router-link>
+                <router-link to="/Auth">Log in</router-link>
               </q-item-section>
             </q-item>
+            </div>
 
-            <q-item active clickable v-ripple>
+            
+            <div v-if="user">
+                          <!-- Account Sections -->
+
+
+            <q-item clickable v-ripple>
+              <q-item-section>{{this.newId}} <b>Welcome Back,</b> {{this.user.displayName}} </q-item-section>
+            </q-item>
+
+              <q-expansion-item
+              v-if="user" 
+              :header-inset-level="0"
+              expand-separator
+              label="User"
+              default-opened
+            >
+
+            <q-item clickable v-ripple>
               <q-item-section avatar>
-                <q-icon name="drafts" />
+                <q-icon name="account_circle" />
               </q-item-section>
 
               <q-item-section>
-                <router-link to="/item/1">Add Item</router-link>
+                <router-link to="/accounts">Accounts</router-link>
               </q-item-section>
             </q-item>
 
-            <q-item active clickable v-ripple>
+</q-expansion-item>
+
+            <q-expansion-item
+              v-if="this.$route.params.id" 
+              :header-inset-level="0"
+              expand-separator
+              label="Statistics"
+              default-opened
+            >
+                        <q-item v-if="this.$route.params.id" active clickable v-ripple>
               <q-item-section avatar>
-                <q-icon name="star" />
+                <q-icon name="dashboard" />
               </q-item-section>
 
               <q-item-section>
-                <router-link to="/api">API List</router-link>
+                <router-link :to="this.dashboardLink">Dashboard</router-link>
               </q-item-section>
             </q-item>
+            </q-expansion-item>
 
-            <q-item active clickable v-ripple>
+            <!-- Account Sections -->
+            <q-expansion-item
+              v-if="this.$route.params.id" 
+              :header-inset-level="0"
+              expand-separator
+              label="Schedule Posts"
+              default-opened
+            >
+
+            <q-item  v-if="this.$route.params.id" clickable v-ripple>
               <q-item-section avatar>
-                <q-icon name="star" />
+                <q-icon name="today" />
               </q-item-section>
 
               <q-item-section>
-                <router-link to="/posts">Posts</router-link>
+                <router-link :to="this.postsLink">All Posts</router-link>
               </q-item-section>
             </q-item>
 
-            <q-item active clickable v-ripple>
+            <q-item  v-if="this.$route.params.id" clickable v-ripple>
               <q-item-section avatar>
-                <q-icon name="star" />
+                <q-icon name="post_add" />
               </q-item-section>
 
               <q-item-section>
-                <router-link to="/posts/add">Create Post</router-link>
+                <router-link :to="this.addPostLink">Create Post</router-link>
               </q-item-section>
             </q-item>
+            </q-expansion-item>
+
+
+
+            <q-expansion-item
+              v-if="this.$route.params.id" 
+              :header-inset-level="0"
+              expand-separator
+              label="Audiences"
+              default-opened
+            >
+            </q-expansion-item>
+
+
+            </div>
           </q-list>
         </q-scroll-area>
       </q-drawer>
@@ -93,22 +147,36 @@ import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'LayoutDefault',
-
   data () {
     return {
       leftDrawerOpen: this.$q.platform.is.desktop,
       drawer: false,
       miniState: true,
+      user: '',
+      accountId: this.$route.params.id,
     }
   },
+  computed: {
+    dashboardLink() {
+      return `/accounts/${this.$route.params.id}/dashboard`
+    },
+    postsLink() {
+      return `/accounts/${this.$route.params.id}/posts`
+    },
+    addPostLink() {
+      return `/accounts/${this.$route.params.id}/posts/add`
+    },
+  },
   async created() {
+    this.$q.loading.show()
     await this.getUserAccounts()
-    let user = window.user;
+    this.user = window.user;
+    this.$q.loading.hide()
   },
     methods: {
     ...mapActions("accountStore", ["getUserAccounts"]),
     ...mapActions("postsStore", ["getAccountPosts"]),
-  },
+  }
 }
 </script>
 

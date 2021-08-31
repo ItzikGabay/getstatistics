@@ -16,7 +16,6 @@
 
 <template>
 <div>
-  {{newListRender}}
 <!-- Table of accounts -->
   <div class="q-pa-md">
     <q-table

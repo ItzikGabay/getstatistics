@@ -20,7 +20,6 @@
 
 <template>
   <div>
-      {{this.currentAccount}}
       <Platforms :platformsData="this.currentAccount.platforms_connected"/>
       <AddApi/>
   </div>

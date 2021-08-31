@@ -81,7 +81,15 @@ export default {
       }
     },  
     async created() {
+        if(!this.posts) {
+          this.$q.loading.show()
+        }
         await this.read()
+    },
+    watch: {
+      posts: () => {
+        this.$q.loading.hide()
+      }
     }
 }
 </script>

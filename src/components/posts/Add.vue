@@ -17,7 +17,6 @@
 
 <template>
   <div>
-    {{this.currentPost}}
     
     <!-- Text Editor -->
     <div class="text-editor">

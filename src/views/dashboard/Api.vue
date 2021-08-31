@@ -51,12 +51,14 @@ export default {
      * @see accountStore.actions.js
      */
     async read() {
+      this.$q.loading.show()
       let result = await this.getItemSubItemById(
         {
           account_id: this.$route.params.id, 
           itemSubItemID: this.$route.params.api_id
         });
         this.apiData = this.$store.state.accountStore.currentApi
+        this.$q.loading.hide()
     }
   },
   created() {
