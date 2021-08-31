@@ -22,6 +22,12 @@
   <div>
       <Platforms :platformsData="this.currentAccount.platforms_connected"/>
       <div v-if="this.currentAccount.platforms_connected.length < 1">
+            <q-banner rounded class="bg-yellow-8 text-white">
+
+            Seems that you didnt create your connections yet.
+            Please add one in order to start using this app.
+
+            </q-banner>
           <AddApi/>
       </div>
   </div>

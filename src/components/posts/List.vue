@@ -46,7 +46,7 @@
         :key="key"
         flat
         color="green"
-        :label="value"
+        :label="value.title"
         class="socialBadge"
       />
       <q-badge flat color="orange" label="Taboola" class="socialBadge" />

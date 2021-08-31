@@ -40,7 +40,7 @@
 
 
             <q-item clickable v-ripple>
-              <q-item-section>{{this.newId}} <b>Welcome Back,</b> {{this.user.displayName}} </q-item-section>
+              <q-item-section><b>Welcome Back,</b> {{this.user.displayName}} </q-item-section>
             </q-item>
 
               <q-expansion-item
@@ -48,7 +48,6 @@
               :header-inset-level="0"
               expand-separator
               label="User Account"
-              default-opened
             >
 
             <q-item clickable v-ripple active>
@@ -57,7 +56,7 @@
               </q-item-section>
 
               <q-item-section>
-                <router-link to="/accounts">Profile</router-link>
+                <router-link to="/user/profile">Profile</router-link>
               </q-item-section>
             </q-item>
 
@@ -77,7 +76,7 @@
               </q-item-section>
 
               <q-item-section>
-                <router-link to="/accounts">Add Account</router-link>
+                <router-link to="/accounts/add">Add Account</router-link>
               </q-item-section>
             </q-item>
 
@@ -150,7 +149,6 @@
               :header-inset-level="0"
               expand-separator
               label="Audiences"
-              default-opened
             >
             </q-expansion-item>
 
@@ -185,7 +183,7 @@ export default {
       drawer: false,
       miniState: true,
       user: '',
-      accountId: this.$route.params.id,
+      accountId: this.$route.params.id
     }
   },
   computed: {

@@ -19,8 +19,6 @@
 
 <template>
     <div>
-        <p>Father component working!</p>
-        <hr>
         <Create/>
     </div>
 </template>
