@@ -37,7 +37,7 @@
       </q-timeline-entry>
       <!-- End of Month Display -->
 
-<List :postsData="this.data"/>
+<List :postsData="this.posts"/>
 
     <!-- Month Display -->
       <q-timeline-entry heading>
@@ -53,21 +53,15 @@
 
 <script>
 import List from '../../components/posts/List.vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
     name: 'Posts',
     components: {
         List
     },
-    data() {
-        /**
-         * @str "endpoint": which table to search in database.
-         * @obj {data}: data of posts. 
-         */
-        return {
-            data: ''
-        }
+    computed: {
+    ...mapState("postsStore", ["posts"]),
     },
     methods: {
         ...mapActions("postsStore", ["getAccountPosts", "createPost"]),
@@ -80,9 +74,6 @@ export default {
             this.data = this.$store.state.postsStore.posts
             if (this.data.length < 1) {
               this.getAccountPosts({id: this.$route.params.id})
-              .then(() => {
-                  this.data = this.$store.state.postsStore.posts
-              })
             }
         },
         goTo(id) {
@@ -91,7 +82,6 @@ export default {
     },  
     async created() {
         await this.read()
-        // await this.test()
     }
 }
 </script>

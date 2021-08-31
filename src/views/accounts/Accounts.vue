@@ -24,15 +24,17 @@
       <p>the user is connected to.</p>
       <p>data: {{data}}</p>
       <button @click="read()">Click here</button> -->
+      <!-- {{accounts}} -->
+      {{getTableData}}
       <h4 v-if="showButton">Seems that you didnt create your account!</h4>
       <q-btn v-if="showButton" style="background: #FF0080; color: white" label="Create account" @click="goToCreateAccount()"/>
-      <List :accountsData="this.accountsData"/>
+      <List :accountsData="this.getTableData"/>
   </div>
 </template>
 
 <script>
 import List from '../../components/accounts/List.vue'
-import { mapActions } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 
 
 export default {
@@ -49,6 +51,10 @@ export default {
         accountsData: 'not loaded yet!',
         showButton: false,
       }
+    },
+    computed: {
+      ...mapState("accountStore", ["accounts"]),
+      ...mapGetters("accountStore", ["getTableData"]),
     },
     methods: {
       // TODOS: add comments
@@ -77,8 +83,22 @@ export default {
      * Whenever view started, call function read
      * in order to get the data.
      */
-    created() {
-      this.read()
+    async created() {
+      let result = await this.getTableData;
+        // if(result < 0) {
+        //  this.read()
+        // }
+        // this.accountData = this.$store.state.accountStore.accounts;
+        // this.accountsData = this.$store.state.accountStore.accounts;
+
+      // if(this.$state.store.accountStore.accounts < 1) {
+      //   return this.read()
+      // } else {
+      //   let result = this.$state.store.accountStore.accounts;
+      // }
+      // if(this.accounts < 1) {
+      // }
+      // this.accountsData = this.accounts;
     }
 }
 </script>

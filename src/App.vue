@@ -89,6 +89,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'LayoutDefault',
@@ -99,7 +100,15 @@ export default {
       drawer: false,
       miniState: true,
     }
-  }
+  },
+  async created() {
+    await this.getUserAccounts()
+    let user = window.user;
+  },
+    methods: {
+    ...mapActions("accountStore", ["getUserAccounts"]),
+    ...mapActions("postsStore", ["getAccountPosts"]),
+  },
 }
 </script>
 

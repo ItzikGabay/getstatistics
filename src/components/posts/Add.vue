@@ -18,39 +18,41 @@
 <template>
   <div>
     {{this.currentPost}}
-    <!-- {{this.postId}} -->
-      <!-- New Changes -->
+    
+    <!-- Text Editor -->
     <div class="text-editor">
-      <!-- <q-input standout v-model="this.currentPost.content.title" label="Title" /> -->
       <q-input standout v-model="currentPost.content.title" label="Title" />
-
       <q-editor
         v-model="currentPost.content.data"
         min-height="20rem"
-        class="text-editor"
-      />
+        class="text-editor"/>
     </div>
+    <!-- Text Editor -->
 
-<!-- Update button -->
-    <q-btn
-      v-if="this.$route.params.post_id"
-      color="white"
-      text-color="black"
-      label="Save"
-      @click="updatePost"
-      class="buttonMargin"
-    />
-
-<!-- Add button -->
+  <!-- Update button -->
       <q-btn
-      v-else
-      color="white"
-      text-color="black"
-      label="Insert"
-      @click="addPost()"
-      class="buttonMargin"
-    />
+        v-if="this.$route.params.post_id"
+        color="white"
+        text-color="black"
+        label="Save"
+        @click="updatePost"
+        class="buttonMargin"
+      />
+  <!-- Update button -->
+
+
+  <!-- Add button -->
+        <q-btn
+        v-else
+        color="white"
+        text-color="black"
+        label="Insert"
+        @click="addPost()"
+        class="buttonMargin"
+      />
+  <!-- Add button -->
     
+    <!-- HTML Preview -->
     <div class="row">
       <div class="col-6" style="padding-right: 10px">
         <h5>HTML Preview:</h5>
@@ -58,6 +60,9 @@
           <q-card-section v-html="currentPost.content.data" />
         </q-card>
       </div>
+      <!-- HTML Preview -->
+
+      <!-- Harcoded Preview -->
       <div class="col-6">
         <h5>Hardcoded Preview:</h5>
         <q-card flat bordered>
@@ -66,8 +71,9 @@
           </q-card-section>
         </q-card>
       </div>
-    </div>
+      <!-- Harcoded Preview -->
 
+    </div>
   </div>
 </template>
 
@@ -77,28 +83,24 @@ import { mapActions } from 'vuex';
 export default {
   name: 'Add',
   data() {
+
     /**
-     * name: name of post input.
-     * content: content of post input.
+     * title: name of post input.
+     * data: content of post input.
      */
     return {
-      name: '',
-      content: '',
-      // currentPost: {
-      //   title: '',
-      //   content: ''
-      // }
+      postId: this.$route.params.postId,
       currentPost: {
         content: {
-          title: 'test',
-          data: 'testtt'
+          title: 'test for input',
+          data: 'testing the input'
         }
       },
-      postId: this.$route.params.postId
     }
   },
   methods: {
     ...mapActions("postsStore", ["createPost", "setAtDoc", "updatePostById"]),
+
     /**
      * addPost() function - 
      * Sending user schema with user input data
@@ -136,6 +138,11 @@ export default {
       // this.setOrUpdatePost({item: post, account_id: this.$route.params.id, post_id: })
       this.$router.push(`/accounts/${this.$route.params.id}/posts`)
     },
+
+    /**
+     * updatePost() function - 
+     * Updating specific post by his ID.
+     */
     async updatePost() {
       let result = await this.updatePostById({
         account_id: this.$route.params.id, 
@@ -150,7 +157,6 @@ export default {
     if(this.$route.params.post_id) {
       // get request retreive data
       // but needs checks first if loaded
-      debugger;
       return this.currentPost = this.$store.state.postsStore.editedPost;
       }
     }

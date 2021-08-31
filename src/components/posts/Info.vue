@@ -1,3 +1,20 @@
+/***************************
+ *   
+ * file: 
+ * /components/posts/Info.vue
+ *
+ * Summary: 
+ * Show title & content of specific post.
+ *
+ * Description: 
+ * Whenever client want to see the data of his post
+ * we using this component.
+ *
+ * Father Components: 
+ * views/posts/View.vue
+ *
+***************************/ 
+
 <template>
   <div>
 

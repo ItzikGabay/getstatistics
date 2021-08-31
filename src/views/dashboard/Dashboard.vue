@@ -20,7 +20,8 @@
 
 <template>
   <div>
-      <Platforms :platformsData="this.platformsConnections"/>
+      {{this.currentAccount}}
+      <Platforms :platformsData="this.currentAccount.platforms_connected"/>
       <AddApi/>
   </div>
 </template>
@@ -28,7 +29,7 @@
 <script>
 import Platforms from '../../components/dashboard/Platforms.vue';
 import AddApi from '../../components/dashboard/AddApi.vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
     name: 'Dashboard',
@@ -43,16 +44,15 @@ export default {
     methods: {
         ...mapActions("accountStore", ["getAccountApiList"]),
     },
+    computed: {
+        ...mapState("accountStore", ["accounts", "currentAccount"])
+    },
     /**
      * When created -> Get API List from the current user
      * and set data the same as state.
      */
     created() {
         this.getAccountApiList({account_id: this.$route.params.id})
-        .then(response => {
-            let result = this.$store.state.accountStore.currentAccount.platforms_connected;
-            this.platformsConnections = result;
-        });
   }
 
 }

@@ -21,6 +21,9 @@ export default {
     // Set edited post to to the main state.
     setCurrentAccountState: ((state, account) => state.currentAccount = account),
 
+    // Push post to posts array of state.
+    pushAccountState: ((state, newAccount) => state.accounts.push(newAccount)),
+
     // Reset edited post to to the main state.
     resetAccountState: ((state) => {
         for (const key in state.currentAccount) {

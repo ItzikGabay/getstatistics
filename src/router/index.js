@@ -90,6 +90,11 @@ const routes = [
   /************************
   * ! Default Routes
   ***********************/
+  {
+    path: '/test',
+    name: 'Test',
+    component: () => import('../views/test/Test.vue')
+  },
   { path: '*', redirect: '/' }
 ];
 

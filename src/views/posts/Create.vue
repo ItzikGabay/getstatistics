@@ -1,3 +1,16 @@
+/***************************
+ *   
+ * file: 
+ * /views/posts/Create.vue
+ *
+ * Summary: 
+ * Adding new post to firestore & state.
+ *
+ * Components used: 
+ * components/posts/Add.vue
+ *
+***************************/ 
+
 <template>
   <div>
       <p>Creating new:</p>

@@ -12,6 +12,13 @@
  *
 ***************************/ 
 
+
+// 1. if we have state
+// 1.1 if we dont- Actions of GET
+
+
+
+
 import firestoreInstance from '../';
 import database from 'firebase/database';
 import firestore from 'firebase/firestore';

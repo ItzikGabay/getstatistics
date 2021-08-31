@@ -54,6 +54,7 @@
         <q-badge rounded color="primary" label="fb" class="socialBadge"/>
         <q-badge rounded color="orange" label="rav-meser" class="socialBadge" /> -->
       <q-separator />
+      
       <p>More actions:</p>
       <q-btn
         size="md"

@@ -16,11 +16,12 @@
 
 <template>
 <div>
+  {{newListRender}}
 <!-- Table of accounts -->
   <div class="q-pa-md">
     <q-table
       title="Accounts"
-      :data="data"
+      :data="accountsData"
       :columns="columns"
       row-key="name"
       @row-click="goTo"
@@ -73,6 +74,16 @@ export default {
         data: [{name: 'Loading..', info: 'Loading..'}],
       }
     },
+    computed: {
+      newListRender: () => {
+        // return this.accountsData;
+      let newData = []
+      //   for(let i in this.accountsData) {
+      //     newData.push({name: this.accountsData[i].name, info: 'test', accountId: this.accountsData[i].accountId})
+      //   }
+        return newData
+      }
+    },
     methods: {
       ...mapMutations("postsStore", ["resetPostsState"]),
       /**
@@ -81,11 +92,15 @@ export default {
       */
       goTo(event, row){
         // TODOS: Save to state
-        // this.$store.dispatch("resetPostsState");
-        let result = this.$store.state.postsStore;
-        debugger;
         this.$router.push(`/accounts/${row.accountId}/dashboard`);
-      }
+      },
+      /**
+       * test() function
+       * @desc should give you number
+       * @params Array - the numbrer
+       * @return Object - random number
+       *
+       */
     },
     watch: {
     /**

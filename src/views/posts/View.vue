@@ -1,41 +1,55 @@
+/***************************
+ *   
+ * file: 
+ * /views/posts/View.vue
+ *
+ * Summary: 
+ * Main view *Post* component.
+ *
+ * Description: 
+ * Let user see data about specific post
+ *
+ * Components used: 
+ * components/posts/Info.vue
+ * components/posts/Schedules.vue
+ *
+***************************/ 
+
 <template>
   <div>
-      <Info :postData="this.currentPost"/>
-      <Schedules :postData="this.currentPost"/>
+    <Info :postData="this.editedPost" />
+    <Schedules :postData="this.editedPost" />
   </div>
 </template>
 
 <script>
-import Info from '../../components/posts/Info.vue';
-import Schedules from '../../components/posts/Schedules.vue';
-import { mapActions } from 'vuex';
+import Info from "../../components/posts/Info.vue";
+import Schedules from "../../components/posts/Schedules.vue";
+import { mapActions, mapState } from "vuex";
 
 export default {
-  name: 'Viewer',
+  name: "Viewer",
   components: {
-    Info, Schedules
+    Info,
+    Schedules,
   },
-  data() {
-    return {
-      currentPost: {content: {
-        title: 'Loading..',
-        data: 'Loading..'
-      }}
-    }
+  computed: {
+    ...mapState("postsStore", ["posts", "editedPost"]),
   },
   methods: {
     ...mapActions("postsStore", ["getPostById"]),
     async read() {
-      await this.getPostById({id: this.$route.params.id, postId: this.$route.params.post_id});
-      this.currentPost = this.$store.state.postsStore.editedPost;
-    }
+      await this.getPostById({
+        id: this.$route.params.id,
+        postId: this.$route.params.post_id,
+      });
+    },
   },
   created() {
     this.read();
-  }
-}
+  },
+};
 </script>
 
 <style>
-
 </style>

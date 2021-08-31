@@ -1,3 +1,20 @@
+/***************************
+ *   
+ * file: 
+ * /components/posts/Schedules.vue
+ *
+ * Summary: 
+ * Show list of schedules of specific post.
+ *
+ * Description: 
+ * Whenever client want to see platform schedules
+ * of current post we using this component.
+ *
+ * Father Components: 
+ * views/dashboard/Info.vue
+ *
+***************************/ 
+
 <template>
   <div>
           <q-markup-table>

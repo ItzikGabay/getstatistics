@@ -90,6 +90,14 @@ export default {
         const newApiConnectionDB = await firestore.insertItem({ endpoint: 'stats', item: { account_id: options.doc_id } });
         let manipulatedItem = { ...options.item, stats_id: newApiConnectionDB.id };
         const newApiConnection = await firestore.insertSubItem({ endpoint: 'accounts', subEndpoint: 'platforms_connected', doc_id: options.doc_id, item: manipulatedItem });
+        
+        // TODOS:
+        // To push to state once created new API
+        // To do findById of the new api by the follow id:
+        // let NewApiId = newApiConnection.id
+        // and then ->
+        // commit("pushAccountState", newAPI)
+        
         return newApiConnection;
     },
 };
