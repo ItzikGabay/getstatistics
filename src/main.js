@@ -5,6 +5,16 @@ import router from './router';
 import store from './store';
 import './quasar';
 
+import langHeb from 'quasar/lang/he'
+// ...
+import Quasar from 'quasar'
+
+// ...
+Vue.use(Quasar, {
+  // ...,
+  lang: langHeb
+})
+
 Vue.config.productionTip = false;
 
 new Vue({

@@ -9,5 +9,11 @@ import Quasar from 'quasar'
 
 Vue.use(Quasar, {
   config: {},
-  iconSet: iconSet
+  iconSet: iconSet,
+  build: {
+    rtl: true
+  },
+  framework: {
+    lang: 'he'
+  }
  })

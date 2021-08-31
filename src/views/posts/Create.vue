@@ -13,7 +13,6 @@
 
 <template>
   <div>
-      <p>Creating new:</p>
         <Add/>
   </div>
 </template>

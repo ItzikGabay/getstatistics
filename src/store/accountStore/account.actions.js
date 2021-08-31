@@ -83,7 +83,8 @@ export default {
             // posts: []
         };
         const accounts = await firestore.insertItem({ endpoint: 'accounts', item: item });
-        commit("setAccountsState", accounts);
+        // TODO Commit after add account
+        // commit("setAccountsState", accounts);
         return accounts;
     },
     addNewApiConnection: async ({ commit }, options) => {

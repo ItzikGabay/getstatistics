@@ -47,17 +47,37 @@
               v-if="user" 
               :header-inset-level="0"
               expand-separator
-              label="User"
+              label="User Account"
               default-opened
             >
 
-            <q-item clickable v-ripple>
+            <q-item clickable v-ripple active>
               <q-item-section avatar>
                 <q-icon name="account_circle" />
               </q-item-section>
 
               <q-item-section>
+                <router-link to="/accounts">Profile</router-link>
+              </q-item-section>
+            </q-item>
+
+                <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="people" />
+              </q-item-section>
+
+              <q-item-section>
                 <router-link to="/accounts">Accounts</router-link>
+              </q-item-section>
+            </q-item>
+
+              <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="person_add" />
+              </q-item-section>
+
+              <q-item-section>
+                <router-link to="/accounts">Add Account</router-link>
               </q-item-section>
             </q-item>
 
@@ -70,7 +90,8 @@
               label="Statistics"
               default-opened
             >
-                        <q-item v-if="this.$route.params.id" active clickable v-ripple>
+            
+            <q-item v-if="this.$route.params.id" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="dashboard" />
               </q-item-section>
@@ -79,6 +100,17 @@
                 <router-link :to="this.dashboardLink">Dashboard</router-link>
               </q-item-section>
             </q-item>
+
+            <q-item v-if="this.$route.params.id" clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="api" />
+              </q-item-section>
+
+              <q-item-section>
+                <router-link :to="this.createApiLink">Add API</router-link>
+              </q-item-section>
+            </q-item>
+
             </q-expansion-item>
 
             <!-- Account Sections -->
@@ -159,6 +191,9 @@ export default {
   computed: {
     dashboardLink() {
       return `/accounts/${this.$route.params.id}/dashboard`
+    },
+    createApiLink() {
+      return `/accounts/${this.$route.params.id}/dashboard/addAPI`
     },
     postsLink() {
       return `/accounts/${this.$route.params.id}/posts`

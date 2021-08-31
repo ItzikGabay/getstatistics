@@ -82,6 +82,12 @@ const routes = [
     component: () => import('../views/dashboard/Dashboard.vue')
   },
   {
+    path: '/accounts/:id/dashboard/addAPI',
+    name: 'Dashboard',
+    beforeEnter: guardMyroute,
+    component: () => import('../views/dashboard/CreateApi.vue')
+  },
+  {
     path: '/accounts/:id/dashboard/:api_id',
     name: 'Api',
     component: () => import('../views/dashboard/Api.vue')

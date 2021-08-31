@@ -21,7 +21,9 @@
 <template>
   <div>
       <Platforms :platformsData="this.currentAccount.platforms_connected"/>
-      <AddApi/>
+      <div v-if="this.currentAccount.platforms_connected.length < 1">
+          <AddApi/>
+      </div>
   </div>
 </template>
 
