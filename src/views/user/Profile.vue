@@ -1,30 +1,28 @@
 <template>
-  <div>
-      <p>Hello!</p>
-      <p>{{getUser}}</p>
-      <p>{{user}}</p>
+  <div style="width: 500px;">
+      <h4>Account info:</h4>
+      <Info :userData="this.getUser"/>
   </div>
 </template>
 
 <script>
-import firebase from '../../middleware/database/index'
+import Info from '../../components/user/Info.vue'
+
 export default {
 name: 'Profile',
+    components: {
+        Info
+    },
     data() {
         return {
-            userId: '',
-            user: ''
+            dense: false
         }
     },
     computed: {
         getUser() {
-            return window.user;
+            return JSON.parse(localStorage.getItem('user'))
         }
     },
-    async created() {
-        this.user = window.user;
-        // this.userId = await firebase.firebase.auth().currentUser;
-    }
 }
 </script>
 
