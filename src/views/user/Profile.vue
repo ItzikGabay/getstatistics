@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 500px;">
+  <div style="width: 500px;" class="getWhiteBackground q-pa-md">
       <h4>Account info:</h4>
       <Info :userData="this.getUser"/>
   </div>

@@ -162,7 +162,9 @@
 
       <!-- Page container -->
       <q-page-container>
+        <div class="q-pa-md q-pb-md">
         <router-view></router-view>
+        </div>
       </q-page-container>
       <!-- End of Page container -->
       

@@ -112,6 +112,7 @@ export default {
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   margin-bottom: 50px;
+  margin-left: 18px;
 }
 
 h5 {
@@ -119,7 +120,7 @@ h5 {
 }
 
 .q-separator {
-  margin: 20px 0 20px 0;
+  margin: 12px 0 12px 0;
   width: 95%;
 }
 </style>

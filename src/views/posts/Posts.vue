@@ -16,7 +16,6 @@
 
 <template>
   <div>
-    <div class="q-px-lg q-pb-md">
       <div>
         <q-banner v-if="this.posts.length < 1" rounded class="bg-yellow-8 text-white">
           Seems that you didnt create your Posts yet. Please add one in
@@ -52,7 +51,6 @@
       </q-timeline>
       <!-- End of Month Display -->
     </div>
-  </div>
 </template>
 
 <script>

@@ -17,7 +17,6 @@
 <template>
 <div>
 <!-- Table of accounts -->
-  <div class="q-pa-md">
     <q-table
       title="Accounts"
       :data="accountsData"
@@ -27,7 +26,6 @@
     />
   </div>
 <!-- End Table of accounts -->
-</div>
   
 </template>
 

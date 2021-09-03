@@ -27,7 +27,7 @@
                       size="lg"
                       text-color="#FF0080"
                       :label="platformsData[i - 1].name"
-                      @click="goTo()"
+                      @click="goTo(platformsData[i - 1].id)"
                       flat
                     />
                       <div class="text-caption text-grey">
@@ -46,13 +46,7 @@
                   <q-separator />
 
                   <q-card-actions>
-                    <q-btn flat round icon="event" />
-                    <q-btn flat @click="goTo()">
-                      Publish Post
-                    </q-btn>
-                    <q-btn flat color="primary" @click="goTo(platformsData[i - 1].id)">
-                      Get Stats
-                    </q-btn>
+                    <q-btn flat round color="primary" @click="goTo(platformsData[i - 1].id)" icon="query_stats" />
                   </q-card-actions>
                 </q-card>
         </div>

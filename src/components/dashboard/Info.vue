@@ -17,16 +17,90 @@
 
 <template>
   <div>
-  <p>This is info paragraph</p>
-  {{apiData}}
+   <!-- New Changes -->
+       <!-- Pick Month section -->
+    <div class="getWhiteBackground">
+        <q-select filled v-model="model" :options="options" label="Pick month"/>
+    </div>
+    <!-- End of Pick Month section -->
+
+  <!-- Table -->
+    <q-table
+      :data="data"
+      :columns="columns"
+      row-key="name"
+    />
+  <!-- End of Table -->
+
+    <!-- Charts -->
+    <div class="row getWhiteBackground">
+        <div class="col-md-6">
+              <apexchart class="apexchart" height="250" type="bar" :options="chartOptions" :series="series"></apexchart>
+        </div>
+        <div class="col-md-6">
+              <apexchart class="apexchart" type="line" height="250" :options="chartOptions2" :series="seriesTwo"></apexchart>
+        </div>
+    </div>  
+    <!-- End of Charts -->
+    {{apiData}}
   </div>
 </template>
 
 <script>
+import ApexCharts from 'apexcharts'
 
 export default {
   name: 'Info',
   props: ["apiData"],
+  data(){
+    return {
+      model: null,
+      options: [],
+
+      // Table columns
+      columns: [
+        {
+          name: 'date', required: true, label: 'Date', align: 'left',
+          field: row => row.name, format: val => `${val}`, sortable: true, 
+          classes: 'bg-grey-2 ellipsis', style: 'max-width: 100px',headerClasses: 'bg-primary text-white'
+        },
+        { name: 'new', align: 'left', label: 'Leads Added', field: 'new', sortable: true },
+        { name: 'score', align: 'left', label: 'System Score', field: 'score', sortable: true },
+      ],
+
+      // Table data
+      data: [],
+      chartOptions: {
+          chart: {
+            id: 'vuechart-example'
+          },
+          xaxis: {
+            categories: [1,2,3,4,8,9,10,11,12]
+          }
+        },
+        series: [{
+          name: 'series-1',
+          data: [5,7,1,2,9,5,1,9]
+        }],
+      chartOptions2: {
+          chart: {
+            id: 'vuechart-example'
+          },
+          xaxis: {
+            categories: [1,2,3,4,8,9,10,11,12]
+          }
+        },
+        seriesTwo: [{
+          name: 'series-1',
+          data: [5,7,1,2,9,5,1,9]
+        }],
+    }
+  },
+  mutations: {
+    getData: () => {
+      return alert('hello')
+    }
+  }
 }
 </script>
 
