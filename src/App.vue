@@ -48,6 +48,8 @@
               :header-inset-level="0"
               expand-separator
               label="User Account"
+              default-opened
+              header-class="bg-blue-grey-10 text-primary"
             >
 
             <q-item clickable v-ripple active>
@@ -88,9 +90,10 @@
               expand-separator
               label="Statistics"
               default-opened
+              header-class="bg-blue-grey-10 text-white"
             >
             
-            <q-item v-if="this.$route.params.id" clickable v-ripple>
+            <q-item v-if="this.$route.params.id" clickable v-ripple >
               <q-item-section avatar>
                 <q-icon name="dashboard" />
               </q-item-section>
@@ -119,6 +122,7 @@
               expand-separator
               label="Schedule Posts"
               default-opened
+              header-class="bg-blue-grey-10 text-white"
             >
 
             <q-item  v-if="this.$route.params.id" clickable v-ripple>
@@ -149,6 +153,7 @@
               :header-inset-level="0"
               expand-separator
               label="Audiences"
+              header-class="bg-blue-grey-10 text-white"
             >
             </q-expansion-item>
 
