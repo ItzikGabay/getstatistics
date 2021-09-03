@@ -47,8 +47,11 @@ export default {
      * ! Current_Platform inside account State
      ***************/
     
-    // Set posts array to state.
+    // Set api connection to array of state.
     setApiConnectionsState: ((state, list) => state.currentAccount.platforms_connected = list),
+    
+    // Push api connection to state.
+    pushApiConnectionsState: ((state, newApi) => state.currentAccount.platforms_connected.push(newApi)),
 
     // Set current platform of account id state.
     setCurrentPlatformState: ((state, platform) => state.currentApi = platform)

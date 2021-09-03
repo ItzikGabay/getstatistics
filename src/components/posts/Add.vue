@@ -138,6 +138,8 @@
       />
   <!-- Add button -->
     
+    <hr style="margin: 15px 0 15px 0;">
+
     <!-- HTML Preview -->
     <div class="row">
       <div class="col-6" style="padding-right: 10px">
@@ -250,9 +252,3 @@ export default {
     }
 }
 </script>
-
-<style>
-.text-editor {
-  margin: 30px 0 0 0;
-}
-</style>

@@ -19,8 +19,6 @@
 
 <template>
   <div>
-    <p>FATHER API VIEW:</p>
-    <hr>
     <Info :apiData="this.apiData"/>
   </div>
 </template>

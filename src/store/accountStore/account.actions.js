@@ -27,6 +27,19 @@ export default {
         return accounts;
     },
     /**
+ * getUserAccounts function - 
+ * Retrieve all accounts that registerd to
+ * the current user logged in & Commit to state.
+ * @params: not needed.
+ * @return: [Array] - list of accounts objects
+ */
+    getAccountById: async ({ commit }, options) => {
+        // TODOS: Change to generic
+        const account = await firestore.findById({ endpoint: 'accounts', id: options.accountId});
+        // commit("setAccountsState", accounts);
+        return account;
+    },
+    /**
      * getAccountApiList function - 
      * Retrieve all Connected Platforms (api) that connected
      * to this specific account (with id).
@@ -83,22 +96,23 @@ export default {
             // posts: []
         };
         const accounts = await firestore.insertItem({ endpoint: 'accounts', item: item });
-        // TODO Commit after add account
-        // commit("setAccountsState", accounts);
+        
+        // After account added to DB, update in state aswell ->
+        let DBResult = await firestore.findById({ endpoint: 'accounts', id: accounts.id })
+        DBResult = DBResult.data()
+        // push the id
+        DBResult.accountId = accounts.id;
+        // commit new result to state
+        commit("pushAccountState", DBResult)
         return accounts;
     },
     addNewApiConnection: async ({ commit }, options) => {
         const newApiConnectionDB = await firestore.insertItem({ endpoint: 'stats', item: { account_id: options.doc_id } });
         let manipulatedItem = { ...options.item, stats_id: newApiConnectionDB.id };
         const newApiConnection = await firestore.insertSubItem({ endpoint: 'accounts', subEndpoint: 'platforms_connected', doc_id: options.doc_id, item: manipulatedItem });
-        
-        // TODOS:
-        // To push to state once created new API
-        // To do findById of the new api by the follow id:
-        // let NewApiId = newApiConnection.id
-        // and then ->
-        // commit("pushAccountState", newAPI)
-        
+
+        let DBResult = await firestore.findSubItemById({ endpoint: 'accounts', account_id: options.doc_id, subEndpoint: 'platforms_connected', item_sub_item_id: newApiConnection.id })
+        commit("pushApiConnectionsState", DBResult)        
         return newApiConnection;
     },
 };

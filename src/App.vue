@@ -11,8 +11,7 @@
         </q-toolbar>
       </q-header>
       <!-- End of Header -->
-
-
+      
       <!-- Navbar -->
       <q-drawer v-model="drawer" show-if-above :width="200" :breakpoint="500">
         <q-scroll-area class="fit" style="background: #334756; color: #ffffff">
@@ -167,6 +166,11 @@
 
       <!-- Page container -->
       <q-page-container>
+            <q-breadcrumbs>
+              <q-breadcrumbs-el icon="home" />
+              <q-breadcrumbs-el label="On Progress.." icon="widgets" />
+            </q-breadcrumbs>
+
         <div class="q-pa-md q-pb-md">
         <router-view></router-view>
         </div>
@@ -231,5 +235,10 @@ a,
 a:active {
   text-decoration: none;
   color: white;
+}
+
+.q-breadcrumbs {
+  margin: 25px 15px 0px 15px;
+  padding: 0;
 }
 </style>

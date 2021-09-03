@@ -125,8 +125,8 @@ export default {
             secret: this.platform_secret
           }
           this.addNewApiConnection({doc_id: this.$route.params.id, item: ApiConnectionData})
+          this.done3 = true;
           this.$router.push(`/accounts/${this.$route.params.id}/dashboard/`)
-          done3 = true;
         }
     }
 }

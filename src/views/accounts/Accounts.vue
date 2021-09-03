@@ -25,21 +25,33 @@
       <p>data: {{data}}</p>
       <button @click="read()">Click here</button> -->
       <!-- {{accounts}} -->
-      <h4 v-if="showButton">Seems that you didnt create your account!</h4>
-      <q-btn v-if="showButton" style="background: #FF0080; color: white" label="Create account" @click="goToCreateAccount()"/>
+      <!-- <q-btn v-if="showButton" style="background: #FF0080; color: white" label="Create account" @click="goToCreateAccount()"/> -->
+
+      <div v-if="this.accounts.length < 1" >
+        <q-banner rounded class="bg-yellow-8 text-white">
+          Seems that you didnt create your accounts yet. Please add one in
+          order to start use this app.
+        </q-banner>
+        
+        <Create/>
+      </div>
+
+      <div v-else >
       <List :accountsData="this.getTableData"/>
+      </div>
   </div>
 </template>
 
 <script>
 import List from '../../components/accounts/List.vue'
+import Create from '../../components/accounts/Create.vue'
 import { mapActions, mapState, mapGetters } from 'vuex'
 
 
 export default {
     name: 'Accounts',
     components: {
-      List
+      List, Create
     },
     data() {
       return {

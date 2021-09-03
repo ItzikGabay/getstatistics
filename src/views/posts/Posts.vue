@@ -16,17 +16,36 @@
 
 <template>
   <div>
-      <div>
-        <q-banner v-if="this.posts.length < 1" rounded class="bg-yellow-8 text-white">
+    <hr>
+      <div v-if="this.posts.length < 1" >
+        <q-banner rounded class="bg-yellow-8 text-white">
           Seems that you didnt create your Posts yet. Please add one in
           order to start schedule.
         </q-banner>
+      <q-btn
+        style="margin-top: 25px;"
+        size="md"
+        text-color="white"
+        label="Add your first post"
+        @click="goTo('add')"
+        padding="lg"
+        icon="add"
+        class="full-width"
+        color="primary"
+        push
+      />
       </div>
+
+    <div v-else>
       <q-btn
         size="md"
-        text-color="primary"
+        text-color="white"
         label="Add Post"
         @click="goTo('add')"
+        padding="lg"
+        icon="add"
+        class="full-width"
+        color="amber"
         push
       />
       <!-- <button @click="read()">Refresh Data</button> -->
@@ -50,6 +69,7 @@
         </q-timeline-entry>
       </q-timeline>
       <!-- End of Month Display -->
+    </div>
     </div>
 </template>
 
@@ -77,15 +97,16 @@ export default {
       if (this.data.length < 1) {
         this.getAccountPosts({ id: this.$route.params.id });
       }
+      this.$q.loading.hide();
     },
     goTo(id) {
       this.$router.push(`/accounts/${this.$route.params.id}/posts/${id}`);
     }
   },
   async created() {
-    if (!this.posts) {
-      this.$q.loading.show();
-    }
+    // if (!this.posts && !this.posts !== '') {
+      // }
+    this.$q.loading.show();
     await this.read();
   }
   // watch: {

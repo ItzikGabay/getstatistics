@@ -89,6 +89,8 @@ export default {
       */
       goTo(event, row){
         // TODOS: Save to state
+        // 
+        this.resetPostsState()
         this.$router.push(`/accounts/${row.accountId}/dashboard`);
       },
       /**
