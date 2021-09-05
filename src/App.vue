@@ -41,6 +41,9 @@
             <q-item clickable v-ripple>
               <q-item-section><b>Welcome Back,</b> {{this.user.displayName}} </q-item-section>
             </q-item>
+            <q-item clickable v-ripple @click="this.signOut">
+              <q-item-section>Sign Out</q-item-section>
+              </q-item>
 
               <q-expansion-item
               v-if="user" 
@@ -184,7 +187,8 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex';
+import firebaseInstance from "./middleware/database/index";
 
 export default {
   name: 'LayoutDefault',
@@ -194,7 +198,8 @@ export default {
       drawer: false,
       miniState: true,
       user: '',
-      accountId: this.$route.params.id
+      accountId: this.$route.params.id,
+      show: false,
     }
   },
   computed: {
@@ -218,8 +223,16 @@ export default {
     this.$q.loading.hide()
   },
     methods: {
-    ...mapActions("accountStore", ["getUserAccounts"]),
+    ...mapActions("accountStore", ["getUserAccounts", "resetState"]),
     ...mapActions("postsStore", ["getAccountPosts"]),
+    signOut() {
+      firebaseInstance.firebase.auth().signOut()
+        .then(() =>{
+          this.resetState()
+          // location.reload();
+          this.$router.push("/home")
+          });
+      }
   }
 }
 </script>

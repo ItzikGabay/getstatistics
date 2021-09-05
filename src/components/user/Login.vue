@@ -15,18 +15,30 @@
 ***************************/ 
 
 <template>
-  <div style="width: 500px;">
-      <q-input rounded outlined v-model="username" label="username" />
-      <q-input rounded outlined v-model="password" label="password" />
+  <div>
 
-      <q-btn flat color="primary" label="Login" />
-      <q-btn flat color="green" label="Login With Google" @click="googleAuthLogin()" />
-      <q-btn flat color="red" label="Sign out" @click="signOut()" />
-      <hr>
-      <q-btn flat color="red" label="Test button" @click="test()" />
+    <div class="column" style="margin: 0px 150px 0px 0px;">
+      <div class="row">
+        <q-card square bordered class="q-pa-lg shadow-1">
+          <q-card-section>
+            <q-form class="q-gutter-md">
+              <q-input square filled clearable v-model="username" type="email" label="email" />
+              <q-input square filled clearable v-model="password" type="password" label="password" />
+            </q-form>
+          </q-card-section>
+          <q-card-actions class="q-px-md">
+            <q-btn unelevated color="light-green-7" size="lg" class="full-width" icon="pattern" label="Login" />
+            <hr>
+            <q-btn unelevated color="grey-10" size="lg" class="full-width" label="Google Login" icon="add_to_drive" @click="googleAuthLogin()" />
+          </q-card-actions>
+        </q-card>
+      </div>
+    </div>
+
+      <!-- <q-btn flat color="red" label="Test button" @click="test()" />
 
       <p>Click on test to see result:</p>
-      <p>{{info}}</p>
+      <p>{{info}}</p> -->
   </div>
 </template>
 

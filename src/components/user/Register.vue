@@ -15,15 +15,23 @@
 ***************************/  
 
 <template>
-  <div style="width: 500px">
-    <q-input rounded outlined v-model="email" label="username" />
-    <q-input rounded outlined v-model="password" label="password" />
-    <q-btn
-      flat
-      color="primary"
-      label="Register"
-      @click="registerWithPassword()"
-    />
+  <div>
+    <div class="column">
+      <div class="row">
+        <q-card square bordered class="q-pa-lg shadow-1">
+          <q-card-section>
+            <q-form class="q-gutter-md">
+              <q-input square filled clearable v-model="email" type="email" label="email" />
+              <!-- <q-input square filled clearable v-model="username" type="username" label="username" /> -->
+              <q-input square filled clearable v-model="password" type="password" label="password" />
+            </q-form>
+          </q-card-section>
+          <q-card-actions class="q-px-md">
+            <q-btn unelevated color="primary" size="lg" class="full-width" icon="pattern" @click="registerWithPassword()" label="Register now for free" />
+          </q-card-actions>
+        </q-card>
+      </div>
+    </div>
   </div>
 </template>
 

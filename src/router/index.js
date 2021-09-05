@@ -22,6 +22,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    beforeEnter: guardMyroute,
     component: Home
   },
 
@@ -36,6 +37,7 @@ const routes = [
   {
     path: '/user/profile',
     name: 'Profile',
+    beforeEnter: guardMyroute,
     component: () => import('../views/user/Profile.vue')
   },
 
@@ -45,10 +47,12 @@ const routes = [
   {
     path: '/accounts',
     name: 'Accounts',
+    beforeEnter: guardMyroute,
     component: () => import('../views/accounts/Accounts.vue')
   },
   {
     path: '/accounts/add',
+    beforeEnter: guardMyroute,
     name: 'AddAccount',
     component: () => import('../views/accounts/Add.vue')
   },
@@ -58,21 +62,25 @@ const routes = [
   ***********************/
   {
     path: '/accounts/:id/posts',
+    beforeEnter: guardMyroute,
     name: 'Posts',
     component: () => import('../views/posts/Posts.vue')
   },
   {
     path: '/accounts/:id/posts/add',
+    beforeEnter: guardMyroute,
     name: 'Create',
     component: () => import('../views/posts/Create.vue')
   },
   {
     path: '/accounts/:id/posts/:post_id',
+    beforeEnter: guardMyroute,
     name: 'Viewer',
     component: () => import('../views/posts/View.vue')
   },
   {
     path: '/accounts/:id/posts/:post_id/edit',
+    beforeEnter: guardMyroute,
     name: 'Edit',
     component: () => import('../views/posts/Create.vue')
   },
@@ -95,6 +103,7 @@ const routes = [
   {
     path: '/accounts/:id/dashboard/:api_id',
     name: 'Api',
+    beforeEnter: guardMyroute,
     component: () => import('../views/dashboard/Api.vue')
   },
   
@@ -121,11 +130,13 @@ const router = new VueRouter({
  */
 function guardMyroute(to, from, next) {
   let isAuthenticated = false;
-  if (localStorage.getItem('user'))
-    isAuthenticated = true;
+  let storageTest = JSON.parse(localStorage.getItem('user'))
+  if (storageTest)
+  isAuthenticated = true;
   else
-    isAuthenticated = false;
-
+  isAuthenticated = false;
+  
+  debugger;
   if (isAuthenticated) {
     next(); // allow to enter route
   } else {

@@ -17,6 +17,24 @@
 
 <template>
   <div>
+
+    <!-- Api data -->
+    <div class="getWhiteBackground">
+      <div class="text-h4">
+        Viewing:
+        <q-badge align="top">{{apiData.name}}</q-badge>
+      </div>
+      <hr>
+      <div>
+        <h6>Platform Info:</h6>
+        <p><b>Platform ID:</b> {{apiData.id}}</p>
+        <p><b>Stats ID:</b> {{apiData.stats_id}}</p>
+        <p><b>connected:</b> {{apiData.connected}}</p>
+        <p><b>Key:</b> <a href="javascript:void(0)">Click here to see</a></p>
+        <p><b>Secret:</b> <a href="javascript:void(0)">Click here to see</a></p>
+      </div>
+    </div>
+
    <!-- New Changes -->
        <!-- Pick Month section -->
     <div class="getWhiteBackground">
@@ -29,6 +47,7 @@
       :data="data"
       :columns="columns"
       row-key="name"
+      style="margin-bottom: 10px;"
     />
   <!-- End of Table -->
 
@@ -42,6 +61,9 @@
         </div>
     </div>  
     <!-- End of Charts -->
+
+    <!-- #### -->
+    <!-- Api data -->
     {{apiData}}
   </div>
 </template>
@@ -104,6 +126,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

@@ -18,11 +18,10 @@
 <template>
   <div>
     <!-- <div v-if="!this.user"> -->
-        <h3>Login:</h3>
+        <q-page class="bg-indigo-10 row justify-center items-center" >
         <Login/>
-        <hr>
-        <h3>Register:</h3>
         <Register/>
+        </q-page>
     <!-- </div> -->
   </div>
 </template>
@@ -60,3 +59,7 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+
+</style>

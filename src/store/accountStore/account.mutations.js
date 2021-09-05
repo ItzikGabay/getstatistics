@@ -18,6 +18,9 @@ export default {
     // Set posts array to state.
     setAccountsState: ((state, accounts) => state.accounts = accounts),
 
+    // Reset the id of the specific post of editing.
+    resetAccountsState: ((state) => state.accounts = ''),
+
     // Set edited post to to the main state.
     setCurrentAccountState: ((state, account) => state.currentAccount = account),
 

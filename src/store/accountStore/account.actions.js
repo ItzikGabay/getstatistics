@@ -22,7 +22,11 @@ export default {
      */
     getUserAccounts: async ({ commit }, item) => {
         // TODOS: Change to generic
-        const accounts = await firestore.findAllWhere({ endpoint: 'accounts', queryKey: 'owner_id', queryValue: 'H9mzR35AQ1MdHIi5Ifg1t1uAaRY2' });
+        let hasUserAuth = JSON.parse(localStorage.getItem('user'))
+        if (hasUserAuth == null) {
+            return;
+        }
+        const accounts = await firestore.findAllWhere({ endpoint: 'accounts', queryKey: 'owner_id', queryValue: hasUserAuth.uid });
         commit("setAccountsState", accounts);
         return accounts;
     },
@@ -115,4 +119,9 @@ export default {
         commit("pushApiConnectionsState", DBResult)        
         return newApiConnection;
     },
+    resetState: async ({ commit }, options) => {
+        commit("resetAccountState")
+        commit("resetAccountId")
+        commit("resetAccountsState")
+    }
 };

@@ -40,7 +40,8 @@ firebase.initializeApp(firebaseConfig);
 // Save User Info on Local Storage + window
 firebase.auth().onAuthStateChanged(user => {
     window.user = user;
-    localStorage.setItem('user', JSON.stringify(user));
+    user = JSON.stringify(user)
+    localStorage.setItem('user', user);
 });
 
 export default {
