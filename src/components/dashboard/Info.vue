@@ -29,7 +29,8 @@
         <h6>Platform Info:</h6>
         <p><b>Platform ID:</b> {{apiData.id}}</p>
         <p><b>Stats ID:</b> {{apiData.stats_id}}</p>
-        <p><b>connected:</b> {{apiData.connected}}</p>
+        <p v-if="apiData.connected == true"><b>connected:</b><span style="color: green"> {{apiData.connected}}</span></p>
+        <p v-if="apiData.connected == false"><b>connected:</b><span style="color: red"> {{apiData.connected}}</span></p>
         <p><b>Key:</b> <a href="javascript:void(0)">Click here to see</a></p>
         <p><b>Secret:</b> <a href="javascript:void(0)">Click here to see</a></p>
       </div>
@@ -38,7 +39,8 @@
    <!-- New Changes -->
        <!-- Pick Month section -->
     <div class="getWhiteBackground">
-        <q-select filled v-model="model" :options="options" label="Pick month"/>
+      <h6>Filter by-</h6>
+        <q-select filled v-model="model" :options="options" label="Month"/>
     </div>
     <!-- End of Pick Month section -->
 
