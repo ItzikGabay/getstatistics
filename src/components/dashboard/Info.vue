@@ -31,8 +31,10 @@
         <p><b>Stats ID:</b> {{apiData.stats_id}}</p>
         <p v-if="apiData.connected == true"><b>connected:</b><span style="color: green"> {{apiData.connected}}</span></p>
         <p v-if="apiData.connected == false"><b>connected:</b><span style="color: red"> {{apiData.connected}}</span></p>
-        <p><b>Key:</b> <a href="javascript:void(0)">Click here to see</a></p>
-        <p><b>Secret:</b> <a href="javascript:void(0)">Click here to see</a></p>
+        <p>Key:</p>
+        <q-btn flat @click="changeValue('key', apiData.key)">{{this.key}}</q-btn>
+        <p>Secret:</p>
+        <q-btn flat @click="changeValue('secret', apiData.secret)">{{this.secret}}</q-btn>
       </div>
     </div>
 
@@ -80,6 +82,8 @@ export default {
     return {
       model: null,
       options: [],
+      key: 'Click here to see',
+      secret: 'Click here to see',
 
       // Table columns
       columns: [
@@ -120,9 +124,14 @@ export default {
         }],
     }
   },
-  mutations: {
+  computed: {
     getData: () => {
       return alert('hello')
+    }
+  },
+  methods: {
+    changeValue(item, data) {
+      this[item] = data
     }
   }
 }

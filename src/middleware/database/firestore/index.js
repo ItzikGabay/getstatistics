@@ -120,6 +120,34 @@ async function findById(options) {
     return snapshot;
 }
 
+    /**
+     * findSubItemById function -
+     * Retrieve all data from firebase by ID query.
+     * @param {Object}: options - {endpoint: which table to read} & 
+     * {account_id: doc ID to search} &
+     * {subEndpoint: which second collection to read}.
+     * {item_sub_item_id: doc ID to get data}.
+     * @return {Array}: Firestore Promise table data.
+     */
+async function deleteSubItemById(options) {
+
+        const snapshot = await firestoreInstance.firebase.firestore()
+            .collection(options.endpoint)
+            .doc(options.account_id)
+            .collection(options.subEndpoint)
+            .doc(options.item_sub_item_id)
+            .delete()
+            .then(res => {
+                console.log('Product deleted Successfully');
+                debugger;
+            })
+            .catch((error) => {
+                console.error('Error removing document: ', error);
+            });
+
+    return snapshot;
+    }
+
 /**
  * InsertItem function - 
  * Insert new doc to collection table.
@@ -247,5 +275,6 @@ export default {
     findSubItemById,
     insertItemSubItem,
     setAtDoc,
-    updateSubDocById
+    updateSubDocById,
+    deleteSubItemById
 };

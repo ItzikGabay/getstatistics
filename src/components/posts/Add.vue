@@ -188,6 +188,7 @@ export default {
   },
   methods: {
     ...mapActions("postsStore", ["createPost", "setAtDoc", "updatePostById"]),
+    ...mapActions("accountStore", ["getAccountApiList"]),
 
     /**
      * addPost() function - 
@@ -195,7 +196,18 @@ export default {
      * to store actions, that's going to send
      * request to firebase and update state.
      */
-    addPost() {
+    async addPost() {
+      let apiList = await this.getAccountApiList({account_id: this.$route.params.id})
+      let apiListMap = apiList.map((api) => {
+        return {...api,
+        clicks: 0,
+        posted: false,
+        published_url: '',
+        date: '11-11-1111',
+        title: api.name,
+        }
+      })
+      debugger;
       // getting user id from LocalStorage
       const userId = JSON.parse(localStorage.getItem('user')).uid;
       // User schema we are sending.
@@ -206,7 +218,8 @@ export default {
           title: this.currentPost.content.title,
           data: this.currentPost.content.data
         },
-        schedules: [{
+        /**
+        *schedules: [{
           title: 'twitter',
           date: '11-11-1111',
           posted: false,
@@ -214,6 +227,8 @@ export default {
           clicks: 0,
           published_time: ''
         }],
+         */
+        schedules: apiListMap,
         user_id: userId
       };
       // Action function:

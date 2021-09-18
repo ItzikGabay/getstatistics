@@ -16,6 +16,7 @@
 
 <template>
 <div>
+  <Banner text="* You can create more than 1 account."/>
 <!-- Table of accounts -->
     <q-table
       title="Accounts"
@@ -31,9 +32,13 @@
 
 <script>
 import { mapMutations } from 'vuex';
+import Banner from '../../components/Banner.vue'
 export default {
     name: 'List',
     props: ["accountsData"],
+    components: {
+      Banner
+    },
     data() {
       return {
         /**

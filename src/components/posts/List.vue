@@ -86,12 +86,19 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+
 export default {
     name: 'List',
     props: ['postsData'],
     methods: {
+      ...mapActions("postsStore", ["deletePostById"]),
       goTo(id) {
         this.$router.push(`/accounts/${this.$route.params.id}/posts/${id}`)
+      },
+      deletePost(id) {
+        // alert(id)
+        this.deletePostById({postId: id, account_id: this.$route.params.id})
       }
     }
 }

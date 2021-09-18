@@ -58,8 +58,7 @@
           </q-chip>
         </q-timeline-entry>
         <!-- End of Month Display -->
-
-        <List :postsData="this.posts" />
+        <List :postsData="this.getPostsData" />
 
         <!-- Month Display -->
         <q-timeline-entry heading>
@@ -83,7 +82,10 @@ export default {
     List
   },
   computed: {
-    ...mapState("postsStore", ["posts"])
+    ...mapState("postsStore", ["posts"]),
+    getPostsData() {
+      return [...this.posts]
+    }
   },
   methods: {
     ...mapActions("postsStore", ["getAccountPosts", "createPost"]),
@@ -93,10 +95,10 @@ export default {
      * @param {Object} options - {endpoint:} where to read in Firebase.
      */
     read() {
-      this.data = this.$store.state.postsStore.posts;
-      if (this.data.length < 1) {
+      // this.data = this.$store.state.postsStore.posts;
+      // if (this.data.length < 1) {
         this.getAccountPosts({ id: this.$route.params.id });
-      }
+      // }
       this.$q.loading.hide();
     },
     goTo(id) {

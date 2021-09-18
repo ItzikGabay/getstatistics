@@ -197,7 +197,7 @@ export default {
       leftDrawerOpen: this.$q.platform.is.desktop,
       drawer: false,
       miniState: true,
-      user: '',
+      user: this.userData,
       accountId: this.$route.params.id,
       show: false,
     }
@@ -215,22 +215,30 @@ export default {
     addPostLink() {
       return `/accounts/${this.$route.params.id}/posts/add`
     },
+    userData() {
+      return this.$store.state.userStore.userConnected;
+    }
   },
   async created() {
     this.$q.loading.show()
     await this.getUserAccounts()
     this.user = window.user;
     this.$q.loading.hide()
+    console.log(this.$store.state.userStore.userConnected);
   },
     methods: {
     ...mapActions("accountStore", ["getUserAccounts", "resetState"]),
     ...mapActions("postsStore", ["getAccountPosts"]),
+    ...mapState("accountStore", ["userConnected"]),
     signOut() {
       firebaseInstance.firebase.auth().signOut()
         .then(() =>{
+          // console.log(this.userConnected);
           this.resetState()
+          this.user = '';
           // location.reload();
-          this.$router.push("/home")
+          // this.$router.push("/auth")
+          this.$router.go("/auth")
           });
       }
   }

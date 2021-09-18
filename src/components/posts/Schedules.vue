@@ -32,6 +32,7 @@
 
         <!-- Dynamic table -->
         <tr v-for="(value, key) in postData.schedules" :key="key">
+          <!-- <div>{{value}}</div> -->
           <td class="text-left"><q-badge color="green">{{ value.title }}</q-badge></td>
           <!-- <td class="text-left" v-if="postData"><q-badge color="green">{{ value }}</q-badge></td> -->
           <!-- <td class="text-left" v-if="!post.scheduleTime.platformsObj[value].posted"><q-badge color="amber">{{ value }}</q-badge></td> -->

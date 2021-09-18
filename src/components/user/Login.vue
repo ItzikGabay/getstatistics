@@ -75,7 +75,9 @@ export default {
                 .then((res) => {
                     this.info = res
                     this.setUserState(res.user)
-                    this.$router.push("/accounts")
+                    console.log(res.user)
+                    this.$router.go("/")
+                    // this.$router.push("/accounts")
                 })
                 .catch((error) => {
                     var errorCode = error.code;
@@ -84,7 +86,8 @@ export default {
                     var email = error.email;
                     // The firebase.auth.AuthCredential type that was used.
                     var credential = error.credential;
-                    this.$router.push("/auth")
+                    console.log(error)
+                    // this.$router.push("/auth")
                 });
         },
         /**

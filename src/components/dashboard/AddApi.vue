@@ -34,8 +34,8 @@
         icon="settings"
         :done="done1"
       >
-        Please choose the name or the platform you are going to add.
-        <q-input v-model="platform_name" standout hint="API Name"  label="Enter API Name" />
+        <!-- <q-input v-model="platform_name" standout hint="API Name"  label="Enter API Name" /> -->
+        <q-select filled v-model="platform_name" :options="options" label="Choose Platform to connect:" />
         <q-stepper-navigation>
           <q-btn @click="() => { done1 = true; step = 2 }" color="primary" label="Continue" />
         </q-stepper-navigation>
@@ -106,7 +106,10 @@ export default {
         step: 1,
         done1: false,
         done2: false,
-        done3: false
+        done3: false,
+        options: [
+        'Google', 'Facebook', 'Twitter', 'Rav-meser'
+      ]
       }
     },
     methods: {

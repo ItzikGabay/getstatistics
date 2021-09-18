@@ -130,13 +130,13 @@ const router = new VueRouter({
  */
 function guardMyroute(to, from, next) {
   let isAuthenticated = false;
-  let storageTest = JSON.parse(localStorage.getItem('user'))
+  let storageTest = JSON.parse(localStorage.getItem('user'));
   if (storageTest)
   isAuthenticated = true;
   else
   isAuthenticated = false;
   
-  debugger;
+  // debugger;
   if (isAuthenticated) {
     next(); // allow to enter route
   } else {
