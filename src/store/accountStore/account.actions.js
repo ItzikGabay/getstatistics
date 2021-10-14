@@ -39,7 +39,7 @@ export default {
  */
     getAccountById: async ({ commit }, options) => {
         // TODOS: Change to generic
-        const account = await firestore.findById({ endpoint: 'accounts', id: options.accountId});
+        const account = await firestore.findById({ endpoint: 'accounts', id: options.accountId });
         // commit("setAccountsState", accounts);
         return account;
     },
@@ -73,7 +73,6 @@ export default {
      * @return: [Array] of {Object} - List from the firestore.
      */
     getItemSubItemById: async ({ commit }, options) => {
-        // TODOS: Change to generic
         const ApiList = await firestore.findSubItemById(
             {
                 endpoint: 'accounts',
@@ -82,7 +81,7 @@ export default {
                 item_sub_item_id: options.itemSubItemID
             });
         commit("setCurrentPlatformState", ApiList);
-        return ApiList;   
+        return ApiList;
     },
     /**
      * addAccount function - 
@@ -100,7 +99,7 @@ export default {
             // posts: []
         };
         const accounts = await firestore.insertItem({ endpoint: 'accounts', item: item });
-        
+
         // After account added to DB, update in state aswell ->
         let DBResult = await firestore.findById({ endpoint: 'accounts', id: accounts.id })
         DBResult = DBResult.data()
@@ -116,7 +115,7 @@ export default {
         const newApiConnection = await firestore.insertSubItem({ endpoint: 'accounts', subEndpoint: 'platforms_connected', doc_id: options.doc_id, item: manipulatedItem });
 
         let DBResult = await firestore.findSubItemById({ endpoint: 'accounts', account_id: options.doc_id, subEndpoint: 'platforms_connected', item_sub_item_id: newApiConnection.id })
-        commit("pushApiConnectionsState", DBResult)        
+        commit("pushApiConnectionsState", DBResult)
         return newApiConnection;
     },
     resetState: async ({ commit }, options) => {

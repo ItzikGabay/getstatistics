@@ -91,7 +91,7 @@ const routes = [
   {
     path: '/accounts/:id/dashboard',
     name: 'Dashboard',
-    beforeEnter : guardMyroute,
+    beforeEnter: guardMyroute,
     component: () => import('../views/dashboard/Dashboard.vue')
   },
   {
@@ -100,13 +100,20 @@ const routes = [
     beforeEnter: guardMyroute,
     component: () => import('../views/dashboard/CreateApi.vue')
   },
+  // {
+  //   path: '/accounts/:id/dashboard/:api_id',
+  //   name: 'Api',
+  //   beforeEnter: guardMyroute,
+  //   component: () => import('../views/dashboard/Api.vue')
+  // },
+  // new changes @version 1.2.0
   {
     path: '/accounts/:id/dashboard/:api_id',
     name: 'Api',
     beforeEnter: guardMyroute,
-    component: () => import('../views/dashboard/Api.vue')
+    component: () => import('../views/api/Details.vue')
   },
-  
+
   /************************
   * ! Default Routes
   ***********************/
@@ -132,11 +139,10 @@ function guardMyroute(to, from, next) {
   let isAuthenticated = false;
   let storageTest = JSON.parse(localStorage.getItem('user'));
   if (storageTest)
-  isAuthenticated = true;
+    isAuthenticated = true;
   else
-  isAuthenticated = false;
-  
-  // debugger;
+    isAuthenticated = false;
+
   if (isAuthenticated) {
     next(); // allow to enter route
   } else {
