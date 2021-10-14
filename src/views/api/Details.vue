@@ -40,7 +40,6 @@ export default {
       let copy = { ...this.apiData.results };
       copy = Object.entries(copy);
       return copy.map((r) => {
-        // return r;
         return {
           day: r[0],
           newLeads: r[1].length,

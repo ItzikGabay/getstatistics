@@ -10,6 +10,7 @@ views/user/Auth.vue * ***************************/
         <img src="@/assets/logo_big.png" class="image" />
       </div>
       <!-- <h6>Please login with Google Auth in order to continue.</h6> -->
+      <h6></h6>
       <h6>Please login in order to continue.</h6>
       <p class="q-mb-lg center-text">
         (It's recommended to use the same business email)
@@ -56,6 +57,7 @@ views/user/Auth.vue * ***************************/
 <script>
 import firebaseInstance from '../../middleware/database/index';
 import { mapActions } from 'vuex';
+import { QSpinnerFacebook } from 'quasar';
 
 export default {
   name: 'Login',
@@ -73,6 +75,28 @@ export default {
   },
   methods: {
     ...mapActions('userStore', ['setUserState']),
+    showLoading() {
+      this.$q.loading.show({
+        spinner: QSpinnerFacebook,
+        spinnerColor: 'blue',
+        spinnerSize: 140,
+        backgroundColor: 'white',
+        message: 'Loading..',
+        messageColor: 'black',
+      });
+
+      // hiding in 3s
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide();
+        this.timer = void 0;
+      }, 3000);
+    },
+    beforeDestroy() {
+      if (this.timer !== void 0) {
+        clearTimeout(this.timer);
+        this.$q.loading.hide();
+      }
+    },
     /**
      * Login Authrization trough google accounts.
      * @return {Object} - user email, name, token, and more.
@@ -85,11 +109,12 @@ export default {
         .then((res) => {
           this.info = res;
           this.setUserState(res.user);
-          console.log(res.user);
+          this.showLoading();
           // this.$router.push("/accounts")
         })
         .then((res) => {
-          this.$router.push('/accounts');
+          this.beforeDestroy();
+          this.$router.go('/accounts');
         })
         .catch((error) => {
           var errorCode = error.code;
@@ -143,6 +168,7 @@ export default {
    * use when needed.
    */
   created() {
+    this.showLoading();
     const googleAuthLogin = firebaseInstance.firebase
       .functions()
       .httpsCallable('googleAuthLogin');

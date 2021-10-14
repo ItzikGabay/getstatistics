@@ -163,10 +163,6 @@
 
       <!-- Page container -->
       <q-page-container>
-        <!-- <q-breadcrumbs>
-              <q-breadcrumbs-el icon="home" />
-              <q-breadcrumbs-el label="On Progress.." icon="widgets" />
-            </q-breadcrumbs> -->
 
         <div class="q-pa-md q-pb-md">
           <router-view></router-view>

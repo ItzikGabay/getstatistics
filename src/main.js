@@ -9,10 +9,18 @@ import langHeb from 'quasar/lang/he'
 // ...
 import Quasar from 'quasar'
 
-
+// apex
 import VueApexCharts from 'vue-apexcharts';
 Vue.use(VueApexCharts)
 Vue.component('apexchart', VueApexCharts)
+
+// vue-skeleton-loader
+import VueSkeletonLoader from 'skeleton-loader-vue';
+Vue.use(VueSkeletonLoader)
+Vue.component('vue-skeleton-loader', VueSkeletonLoader);
+
+// import Skeleton from 'vue-loading-skeleton';
+// Vue.use(Skeleton)
 
 // ...
 Vue.use(Quasar, {
