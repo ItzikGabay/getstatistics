@@ -1,6 +1,6 @@
 <template>
   <div class="row getWhiteBackground">
-    <div class="col-md-6">
+    <div class="col-md-6" id="chart">
       <apexchart
         class="apexchart"
         height="250"
@@ -101,4 +101,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+#chart {
+  max-width: 760px;
+  margin: 35px auto;
+  opacity: 0.9;
+}
+</style>

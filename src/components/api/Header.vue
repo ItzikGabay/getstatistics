@@ -15,8 +15,18 @@
       </div>
       <q-separator />
       <div class="credeteils inline-block text-right flex-item">
-        <p><b>Key:</b> {{ this.currentApi.key }}</p>
-        <p><b>Secret:</b> {{ this.currentApi.secret }}</p>
+        <a href="javascript:" class="q-mr-sm"
+          >Key<q-tooltip :offset="[0, 8]">{{ this.currentApi.key }}</q-tooltip>
+        </a>
+        <a href="javascript:"
+          >Secret
+          <q-tooltip :offset="[0, 8]">{{ this.currentApi.secret }}</q-tooltip>
+        </a>
+
+        <!-- <a href="javascript:"><b>secret: </b></a>
+        <a href="javascript:" @click="this.reavealSecret">
+          <q-tooltip :offset="[0, 8]">{{ this.secret }}</q-tooltip>
+        </a> -->
       </div>
     </div>
   </div>
@@ -32,7 +42,13 @@ export default {
 </script>
 
 <style scoped>
-/* flex-container {
+a:link {
+  color: black;
+  background-color: transparent;
+  text-decoration: under;
+}
+
+flex-container {
   display: flex;
   justify-content: space-evenly;
 }
@@ -44,8 +60,6 @@ flex-container::before {
 flex-container::after {
   content: '';
 }
-
-/* non-essential decorative styles */
 
 .main {
   display: flex;
