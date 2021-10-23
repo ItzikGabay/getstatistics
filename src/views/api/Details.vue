@@ -78,7 +78,6 @@ export default {
     await this.fetchDataByAccountId();
     await this.fetchDataFromCurrentAPI();
     let result = this.apiData.results;
-    // console.log(result);
   },
 };
 </script>

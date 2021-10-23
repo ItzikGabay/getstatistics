@@ -56,7 +56,6 @@ export default {
   watch: {
     tableData() {
       this.temp = this.tableData;
-      // console.log(this.tableData);
     },
   },
 };

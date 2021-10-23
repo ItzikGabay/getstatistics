@@ -212,7 +212,6 @@ export default {
     await this.getUserAccounts();
     this.user = window.user;
     this.$q.loading.hide();
-    console.log(this.$store.state.userStore.userConnected);
   },
   methods: {
     ...mapActions('accountStore', ['getUserAccounts', 'resetState']),
@@ -223,7 +222,6 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          // console.log(this.userConnected);
           this.resetState();
           this.user = '';
           // location.reload();

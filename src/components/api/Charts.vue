@@ -61,7 +61,6 @@ export default {
       let days = [];
       let leads = [];
       this.chartData.map((r) => {
-        console.log(r);
         days.push(r.day);
         leads.push(r.newLeads);
       });

@@ -61,8 +61,6 @@ let Drivers = {
          newResult[year][month][day].push(arr[leadInd])
       }
 
-      // console.log(newResult);
-
       let data = newResult['2021'][month]
       return {
          data: data,
